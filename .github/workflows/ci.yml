@@ -57,7 +57,7 @@ jobs:
     name: Validate Test Plan
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
     needs: [lint]
     permissions:
       contents: read

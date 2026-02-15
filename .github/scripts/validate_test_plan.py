@@ -37,6 +37,16 @@ def parse_test_plan(body: str) -> dict:
         return result
 
     # Detect doc-only PRs: "Documentation update" checked, nothing else checked.
+    # Detect dependency-only PRs (Dependabot, Renovate, etc.)
+    dep_patterns = [
+        r"^Bumps? \[",          # Dependabot body format
+        r"^chore\(deps\)",      # Conventional commit dep bumps
+        r"Dependabot commands",  # Dependabot footer
+        r"^\| Package \|",      # Renovate table format
+    ]
+    if any(re.search(p, body, re.MULTILINE) for p in dep_patterns):
+        result["is_doc_only"] = True  # reuse doc-only skip logic
+
     doc_checked = bool(re.search(r"- \[x\] Documentation update", body, re.IGNORECASE))
     other_types = [
         r"- \[x\] Bug fix",
