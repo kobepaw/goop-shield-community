@@ -35,6 +35,5 @@ class TelemetryPipeline:
 
     def __init__(self, audit_db_path: str = "data/shield_audit.db") -> None:
         raise ImportError(
-            "TelemetryPipeline requires goop-ai Enterprise. "
-            "Not available in the community edition."
+            "TelemetryPipeline requires goop-ai Enterprise. Not available in the community edition."
         )

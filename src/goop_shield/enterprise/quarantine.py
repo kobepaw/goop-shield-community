@@ -23,8 +23,7 @@ class QuarantineStore:
 
     def __init__(self, base_path: str = "data/quarantine") -> None:
         raise ImportError(
-            "QuarantineStore requires goop-ai Enterprise. "
-            "Not available in the community edition."
+            "QuarantineStore requires goop-ai Enterprise. Not available in the community edition."
         )
 
     def quarantine(

@@ -8,7 +8,9 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-pytestmark = pytest.mark.skipif(True, reason="Enterprise features not available in community edition")
+pytestmark = pytest.mark.skipif(
+    True, reason="Enterprise features not available in community edition"
+)
 
 from goop_shield.enterprise.consistency_checker import (
     ConsistencyChecker,

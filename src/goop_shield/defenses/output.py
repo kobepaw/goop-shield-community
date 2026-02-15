@@ -133,10 +133,7 @@ class SecretLeakScanner(OutputScanner):
             return 0.0
         counts = Counter(s)
         length = len(s)
-        return -sum(
-            (count / length) * math.log2(count / length)
-            for count in counts.values()
-        )
+        return -sum((count / length) * math.log2(count / length) for count in counts.values())
 
     def _check_high_entropy(self, text: str) -> list[dict[str, object]]:
         """Find high-entropy alphanumeric strings that may be novel secrets.
@@ -150,12 +147,14 @@ class SecretLeakScanner(OutputScanner):
             entropy = self._shannon_entropy(candidate)
             if entropy > 4.0:
                 should_block = entropy > 4.5 and len(candidate) > 30
-                findings.append({
-                    "value": candidate[:8] + "..." + candidate[-4:],
-                    "length": len(candidate),
-                    "entropy": round(entropy, 2),
-                    "block": should_block,
-                })
+                findings.append(
+                    {
+                        "value": candidate[:8] + "..." + candidate[-4:],
+                        "length": len(candidate),
+                        "entropy": round(entropy, 2),
+                        "block": should_block,
+                    }
+                )
         return findings
 
     def scan(self, context: OutputContext) -> InlineVerdict:
@@ -302,7 +301,7 @@ class CanaryLeakScanner(OutputScanner):
 
             # 6. Partial hex matching: extract hex portion after CANARY_ prefix
             if token.startswith("CANARY_"):
-                hex_part = token[len("CANARY_"):]
+                hex_part = token[len("CANARY_") :]
                 hex_lower = hex_part.lower()
                 if hex_lower and (
                     hex_lower in response_lower
@@ -569,9 +568,7 @@ class HarmfulContentScanner(OutputScanner):
             all_educational = True
             for text_variant in (response, normalized, decoded_normalized):
                 m = pattern.search(text_variant)
-                if m and not self._has_educational_context(
-                    text_variant, m.start(), m.end()
-                ):
+                if m and not self._has_educational_context(text_variant, m.start(), m.end()):
                     all_educational = False
                     break
 

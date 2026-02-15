@@ -106,7 +106,9 @@ class ConfigLoader:
                 default = match.group(2)
                 # Security: only allow SHIELD_* env vars to prevent exfiltration
                 if not var_name.startswith("SHIELD_"):
-                    logger.warning("Blocked env var substitution for non-SHIELD_ variable: %s", var_name)
+                    logger.warning(
+                        "Blocked env var substitution for non-SHIELD_ variable: %s", var_name
+                    )
                     if default is not None:
                         return default
                     return match.group(0)

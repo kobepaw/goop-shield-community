@@ -91,26 +91,26 @@ _CONFUSABLE_MAP: dict[str, str] = {
     "\u057d": "u",  # Armenian ս (visual match)
     "\u0585": "o",  # Armenian օ
     # --- Georgian (U+10D0–U+10FF range) ---
-    "\u10D0": "a",  # Georgian ა
-    "\u10D4": "e",  # Georgian ე
-    "\u10D8": "i",  # Georgian ი
-    "\u10DD": "o",  # Georgian ო
-    "\u10E1": "s",  # Georgian ს
-    "\u10E2": "t",  # Georgian ტ
-    "\u10EE": "x",  # Georgian ხ
+    "\u10d0": "a",  # Georgian ა
+    "\u10d4": "e",  # Georgian ე
+    "\u10d8": "i",  # Georgian ი
+    "\u10dd": "o",  # Georgian ო
+    "\u10e1": "s",  # Georgian ს
+    "\u10e2": "t",  # Georgian ტ
+    "\u10ee": "x",  # Georgian ხ
     # --- Cherokee (U+13A0–U+13FF range) ---
-    "\u13A0": "D",  # Cherokee Ꭰ
-    "\u13A1": "R",  # Cherokee Ꭱ
-    "\u13A2": "T",  # Cherokee Ꭲ
-    "\u13A9": "A",  # Cherokee Ꭹ (visual match)
-    "\u13AA": "J",  # Cherokee Ꭺ (visual match)
-    "\u13AB": "E",  # Cherokee Ꭻ (visual match)
-    "\u13B3": "W",  # Cherokee Ꮃ
-    "\u13B7": "M",  # Cherokee Ꮇ (visual match)
-    "\u13BE": "S",  # Cherokee Ꮎ (visual match)
-    "\u13C0": "G",  # Cherokee Ꮐ
-    "\u13C3": "V",  # Cherokee Ꮓ (visual match)
-    "\u13CF": "Z",  # Cherokee Ꮟ (visual match)
+    "\u13a0": "D",  # Cherokee Ꭰ
+    "\u13a1": "R",  # Cherokee Ꭱ
+    "\u13a2": "T",  # Cherokee Ꭲ
+    "\u13a9": "A",  # Cherokee Ꭹ (visual match)
+    "\u13aa": "J",  # Cherokee Ꭺ (visual match)
+    "\u13ab": "E",  # Cherokee Ꭻ (visual match)
+    "\u13b3": "W",  # Cherokee Ꮃ
+    "\u13b7": "M",  # Cherokee Ꮇ (visual match)
+    "\u13be": "S",  # Cherokee Ꮎ (visual match)
+    "\u13c0": "G",  # Cherokee Ꮐ
+    "\u13c3": "V",  # Cherokee Ꮓ (visual match)
+    "\u13cf": "Z",  # Cherokee Ꮟ (visual match)
 }
 
 # Leetspeak → ASCII map (common substitutions)

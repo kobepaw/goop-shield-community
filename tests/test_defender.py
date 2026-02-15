@@ -216,6 +216,7 @@ class TestDefenseEnableDisable:
         names = d.registry.names()
         # Mandatory defenses are always re-added even if not in the allowlist
         from goop_shield.config import ShieldConfig as ShieldCfg
+
         assert set(names) == {"safety_filter", "input_validator"} | ShieldCfg.MANDATORY_DEFENSES
 
     def test_denylist_removes_non_mandatory(self):
@@ -247,6 +248,7 @@ class TestDefenseEnableDisable:
         config = ShieldConfig(enabled_defenses=[])
         d = Defender(config)
         from goop_shield.config import ShieldConfig as ShieldCfg
+
         assert len(d.registry) == len(ShieldCfg.MANDATORY_DEFENSES)
         for name in ShieldCfg.MANDATORY_DEFENSES:
             assert name in d.registry.names()

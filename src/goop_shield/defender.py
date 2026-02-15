@@ -190,7 +190,8 @@ class Defender:
             if self.registry.get(name) is None:
                 logger.warning(
                     "Mandatory defense '%s' was disabled — re-enabling. "
-                    "Mandatory defenses cannot be removed.", name
+                    "Mandatory defenses cannot be removed.",
+                    name,
                 )
                 # Re-register the mandatory defense
                 self._re_register_mandatory(name)
@@ -203,6 +204,7 @@ class Defender:
             PromptNormalizer,
             SafetyFilter,
         )
+
         _mandatory_classes = {
             "prompt_normalizer": PromptNormalizer,
             "safety_filter": SafetyFilter,

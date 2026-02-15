@@ -21,8 +21,7 @@ class IPEnricher:
 
     def __init__(self, *args, **kwargs) -> None:
         raise ImportError(
-            "GeoIP enrichment requires goop-ai Enterprise. "
-            "Not available in the community edition."
+            "GeoIP enrichment requires goop-ai Enterprise. Not available in the community edition."
         )
 
     def enrich(self, ip: str) -> IPIntel:

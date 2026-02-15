@@ -36,8 +36,7 @@ class GoopRangeBridge:
 
     def __init__(self, gooprange_config: dict | None = None) -> None:
         raise ImportError(
-            "GoopRangeBridge requires goop-ai Enterprise. "
-            "Not available in the community edition."
+            "GoopRangeBridge requires goop-ai Enterprise. Not available in the community edition."
         )
 
     def validate_bypass(self, probe_result: Any) -> ValidationResult:

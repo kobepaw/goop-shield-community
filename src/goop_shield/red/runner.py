@@ -17,6 +17,4 @@ class RedTeamRunner:
     """
 
     def __init__(self, *args, **kwargs) -> None:
-        raise ImportError(
-            "Red team runner requires goop-ai Enterprise."
-        )
+        raise ImportError("Red team runner requires goop-ai Enterprise.")

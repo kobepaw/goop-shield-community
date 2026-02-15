@@ -35,9 +35,7 @@ if _enterprise_intel:
     from goop_shield.intel.geoip import _is_private, _parse_asn
     from goop_shield.intel.threat_actors import _compute_risk_level
 
-_skip_enterprise = pytest.mark.skipif(
-    not _enterprise_intel, reason="Requires goop-ai Enterprise"
-)
+_skip_enterprise = pytest.mark.skipif(not _enterprise_intel, reason="Requires goop-ai Enterprise")
 
 # ============================================================================
 # Fixtures

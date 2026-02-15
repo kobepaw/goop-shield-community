@@ -16,6 +16,4 @@ class ProbeScheduler:
     """
 
     def __init__(self, *args, **kwargs) -> None:
-        raise ImportError(
-            "Red team scheduler requires goop-ai Enterprise."
-        )
+        raise ImportError("Red team scheduler requires goop-ai Enterprise.")
