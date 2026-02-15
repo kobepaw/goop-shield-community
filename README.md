@@ -202,17 +202,6 @@ disabled_defenses:
 
 See [docs/configuration.md](docs/configuration.md) for all config fields.
 
-## Enterprise Features
-
-The open-source goop-shield includes the full defense pipeline. For enterprise deployments, the enterprise edition adds:
-
-- **BroRL Ranking** -- adaptive defense ordering via Thompson sampling
-- **Consistency Checker** -- cross-model response divergence detection
-- **Sandbag Detector** -- detects deliberate AI performance degradation
-- **Training Data Gate** -- validates training data before ingestion
-- **GoopRange Bridge** -- real-world validation against live LLM targets
-- **Telemetry Aggregation** -- multi-instance telemetry pipeline
-
 ## Documentation
 
 - [Quick Start](docs/quickstart.md)
