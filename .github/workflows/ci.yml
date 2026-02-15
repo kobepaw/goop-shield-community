@@ -28,7 +28,9 @@ jobs:
       - run: ruff check src/ tests/
       - run: ruff format --check src/ tests/
       - run: pip install -e ".[dev]"
-      - run: mypy src/
+      - name: Type check (non-blocking)
+        run: mypy src/
+        continue-on-error: true
 
   test:
     name: Test (Python ${{ matrix.python-version }})

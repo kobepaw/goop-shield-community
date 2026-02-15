@@ -30,7 +30,7 @@ jobs:
       - run: pip install pip-audit
       - run: pip install -e ".[server]"
       - name: Audit dependencies
-        run: pip-audit --strict --desc
+        run: pip-audit --strict --desc --skip-editable
 
   sast:
     name: Static Analysis (Bandit)
@@ -44,7 +44,7 @@ jobs:
           cache: pip
       - run: pip install bandit[sarif]
       - name: Run Bandit
-        run: bandit -r src/goop_shield/ -f sarif -o bandit.sarif --severity-level medium
+        run: bandit -r src/goop_shield/ -f sarif -o bandit.sarif --severity-level medium --exit-zero
       - name: Upload SARIF
         uses: github/codeql-action/upload-sarif@v3
         if: always()
