@@ -1,0 +1,1236 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kobepaw.github.io/goop-shield-community/defense-pipeline/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Defense Pipeline - goop-shield</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#defense-pipeline" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="goop-shield" class="md-header__button md-logo" aria-label="goop-shield" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            goop-shield
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Defense Pipeline
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/kobepaw/goop-shield-community" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kobepaw/goop-shield-community
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../editions/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Editions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../contributing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="goop-shield" class="md-nav__button md-logo" aria-label="goop-shield" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    goop-shield
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/kobepaw/goop-shield-community" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kobepaw/goop-shield-community
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-execution-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline Execution Order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mandatory-defenses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mandatory Defenses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mandatory Defenses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-promptnormalizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. PromptNormalizer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-safetyfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. SafetyFilter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-agentconfigguard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. AgentConfigGuard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ranked-defenses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ranked Defenses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ranked Defenses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#heuristic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heuristic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Heuristic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-inputvalidator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. InputValidator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-injectionblocker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. InjectionBlocker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-contextlimiter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. ContextLimiter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-outputfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. OutputFilter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crypto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crypto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Crypto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8-promptsigning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. PromptSigning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-outputwatermark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. OutputWatermark
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Content">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#10-ragverifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. RAGVerifier
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-canarytokendetector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. CanaryTokenDetector
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-semanticfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. SemanticFilter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-obfuscationdetector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. ObfuscationDetector
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behavioral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behavioral
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Behavioral">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#14-agentsandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. AgentSandbox
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-ratelimiter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. RateLimiter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-promptmonitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. PromptMonitor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-modelguardrails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. ModelGuardrails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-intentvalidator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. IntentValidator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-exfildetector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. ExfilDetector
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ioc-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IOC-Based
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IOC-Based">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#20-domainreputationdefense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. DomainReputationDefense
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#21-iocmatcherdefense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. IOCMatcherDefense
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-scanners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output Scanners
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output Scanners">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secretleakscanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SecretLeakScanner
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#canaryleakscanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CanaryLeakScanner
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#harmfulcontentscanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HarmfulContentScanner
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enabling-and-disabling-defenses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabling and Disabling Defenses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enabling and Disabling Defenses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#via-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Via Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#via-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Via Python
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defense-verdicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defense Verdicts
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="defense-pipeline">Defense Pipeline<a class="headerlink" href="#defense-pipeline" title="Permanent link">&para;</a></h1>
+<p>goop-shield ships with 24 inline defenses and 3 output scanners. This document describes each one.</p>
+<h2 id="pipeline-execution-order">Pipeline Execution Order<a class="headerlink" href="#pipeline-execution-order" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Mandatory defenses</strong> run first, in fixed order (not reorderable)</li>
+<li><strong>Ranked defenses</strong> run in order determined by the ranking backend</li>
+<li><strong>Output scanners</strong> run on the <code>/api/v1/scan-response</code> endpoint</li>
+</ol>
+<p>If any defense blocks, the pipeline short-circuits immediately. If a defense sanitizes the prompt, the sanitized version is passed to downstream defenses.</p>
+<hr />
+<h2 id="mandatory-defenses">Mandatory Defenses<a class="headerlink" href="#mandatory-defenses" title="Permanent link">&para;</a></h2>
+<p>These three defenses always run first. They set <code>mandatory = True</code> and cannot be reordered by BroRL or static ranking.</p>
+<h3 id="1-promptnormalizer">1. PromptNormalizer<a class="headerlink" href="#1-promptnormalizer" title="Permanent link">&para;</a></h3>
+<p><strong>Category</strong>: Heuristic | <strong>Mandatory</strong>: Yes</p>
+<p>Neutralizes Unicode and encoding evasion techniques:</p>
+<ul>
+<li><strong>Unicode normalization</strong> (NFC) to collapse equivalent character representations</li>
+<li><strong>Confusable character detection</strong> -- maps 62+ homoglyphs (Cyrillic, Greek, Armenian) back to Latin equivalents</li>
+<li><strong>Leetspeak decoding</strong> -- <code>0-&gt;o, 1-&gt;i, 3-&gt;e, 4-&gt;a, 5-&gt;s, 7-&gt;t, @-&gt;a, $-&gt;s</code></li>
+<li><strong>Whitespace normalization</strong> -- collapses zero-width characters, invisible separators</li>
+<li><strong>Encoding detection</strong> -- recursively decodes base64, hex, URL encoding, HTML entities (depth 2)</li>
+</ul>
+<p>Runs first so all downstream defenses see a normalized prompt.</p>
+<h3 id="2-safetyfilter">2. SafetyFilter<a class="headerlink" href="#2-safetyfilter" title="Permanent link">&para;</a></h3>
+<p><strong>Category</strong>: Heuristic | <strong>Mandatory</strong>: Yes</p>
+<p>Pattern-based safety filtering with keyword lists and regex rules. Catches explicit harmful content, policy violations, and known-bad prompt patterns.</p>
+<h3 id="3-agentconfigguard">3. AgentConfigGuard<a class="headerlink" href="#3-agentconfigguard" title="Permanent link">&para;</a></h3>
+<p><strong>Category</strong>: Behavioral | <strong>Mandatory</strong>: Yes</p>
+<p>Detects attempts to modify AI agent configuration files. Vendor-neutral across 9 AI agents:</p>
+<ul>
+<li>Claude Code (<code>.claude/</code>, <code>CLAUDE.md</code>, <code>.mcp.json</code>)</li>
+<li>Cursor (<code>.cursor/</code>, <code>.cursorrc</code>)</li>
+<li>Windsurf (<code>.windsurf/</code>, <code>.windsurfrc</code>)</li>
+<li>Cline (<code>.cline/</code>, <code>cline_mcp_settings.json</code>)</li>
+<li>Roo Code (<code>.roo/</code>, <code>.roomcp</code>)</li>
+<li>GitHub Copilot (<code>.github/copilot/</code>)</li>
+<li>Aider (<code>.aider*</code>)</li>
+<li>Continue.dev (<code>.continue/</code>)</li>
+<li>OpenAI Codex (<code>.codex/</code>)</li>
+</ul>
+<p>Matches 47 config file patterns against 19+ modification verbs (write, edit, overwrite, append, etc.) including non-English verbs (Spanish, French, German, Russian). Supports negation awareness ("don't modify" is not flagged) and cross-turn detection via session tracking.</p>
+<hr />
+<h2 id="ranked-defenses">Ranked Defenses<a class="headerlink" href="#ranked-defenses" title="Permanent link">&para;</a></h2>
+<p>These 18 defenses are ordered by the ranking backend. Listed here by category.</p>
+<h3 id="heuristic">Heuristic<a class="headerlink" href="#heuristic" title="Permanent link">&para;</a></h3>
+<h4 id="4-inputvalidator">4. InputValidator<a class="headerlink" href="#4-inputvalidator" title="Permanent link">&para;</a></h4>
+<p>Validates prompt length and format. Blocks prompts exceeding <code>max_prompt_length</code> (default 2000 chars) or <code>max_prompt_tokens</code> (default 1024).</p>
+<h4 id="5-injectionblocker">5. InjectionBlocker<a class="headerlink" href="#5-injectionblocker" title="Permanent link">&para;</a></h4>
+<p>Detects SQL injection, OS command injection, and prompt injection patterns. Uses regex-based detection with configurable confidence threshold (<code>injection_confidence_threshold</code>, default 0.7).</p>
+<h4 id="6-contextlimiter">6. ContextLimiter<a class="headerlink" href="#6-contextlimiter" title="Permanent link">&para;</a></h4>
+<p>Prevents context window abuse where an attacker tries to fill the context window with padding to push instructions out of scope. Enforces <code>max_context_tokens</code> (default 2048).</p>
+<h4 id="7-outputfilter">7. OutputFilter<a class="headerlink" href="#7-outputfilter" title="Permanent link">&para;</a></h4>
+<p>Filters response content for policy violations. Applied during the defense pipeline for prompt-side content patterns.</p>
+<h3 id="crypto">Crypto<a class="headerlink" href="#crypto" title="Permanent link">&para;</a></h3>
+<h4 id="8-promptsigning">8. PromptSigning<a class="headerlink" href="#8-promptsigning" title="Permanent link">&para;</a></h4>
+<p>Computes a cryptographic signature for the prompt to verify integrity. Detects if the prompt has been tampered with between signing and execution.</p>
+<h4 id="9-outputwatermark">9. OutputWatermark<a class="headerlink" href="#9-outputwatermark" title="Permanent link">&para;</a></h4>
+<p>Watermarks LLM responses for provenance tracking. Embeds invisible markers that survive copy/paste and light editing.</p>
+<h3 id="content">Content<a class="headerlink" href="#content" title="Permanent link">&para;</a></h3>
+<h4 id="10-ragverifier">10. RAGVerifier<a class="headerlink" href="#10-ragverifier" title="Permanent link">&para;</a></h4>
+<p>Detects injection attacks targeting RAG (Retrieval-Augmented Generation) pipelines. Catches attempts to poison retrieved documents with adversarial instructions.</p>
+<h4 id="11-canarytokendetector">11. CanaryTokenDetector<a class="headerlink" href="#11-canarytokendetector" title="Permanent link">&para;</a></h4>
+<p>Detects attempts to extract canary tokens planted by the deception engine. Checks both the current (normalized) prompt and the original prompt to avoid false negatives from normalizer transformations.</p>
+<h4 id="12-semanticfilter">12. SemanticFilter<a class="headerlink" href="#12-semanticfilter" title="Permanent link">&para;</a></h4>
+<p>Semantic similarity-based filtering. Compares prompt embeddings against known-bad patterns using vector similarity rather than exact string matching.</p>
+<h4 id="13-obfuscationdetector">13. ObfuscationDetector<a class="headerlink" href="#13-obfuscationdetector" title="Permanent link">&para;</a></h4>
+<p>Detects encoded, obfuscated, or multi-layer-encoded payloads. Catches base64-wrapped instructions, hex-encoded commands, and nested encoding schemes.</p>
+<h3 id="behavioral">Behavioral<a class="headerlink" href="#behavioral" title="Permanent link">&para;</a></h3>
+<h4 id="14-agentsandbox">14. AgentSandbox<a class="headerlink" href="#14-agentsandbox" title="Permanent link">&para;</a></h4>
+<p>Enforces sandboxing rules for agent execution. Restricts file system access, network calls, and subprocess execution based on configured policies.</p>
+<h4 id="15-ratelimiter">15. RateLimiter<a class="headerlink" href="#15-ratelimiter" title="Permanent link">&para;</a></h4>
+<p>Token-bucket rate limiting per source IP or session. Prevents brute-force probing and resource exhaustion attacks.</p>
+<h4 id="16-promptmonitor">16. PromptMonitor<a class="headerlink" href="#16-promptmonitor" title="Permanent link">&para;</a></h4>
+<p>Monitors prompt patterns over time. Detects anomalous prompt sequences, repeated probing patterns, and gradual escalation attempts.</p>
+<h4 id="17-modelguardrails">17. ModelGuardrails<a class="headerlink" href="#17-modelguardrails" title="Permanent link">&para;</a></h4>
+<p>Enforces model-specific guardrails. Applies different rules depending on the target LLM model (e.g., stricter rules for instruction-tuned models).</p>
+<h4 id="18-intentvalidator">18. IntentValidator<a class="headerlink" href="#18-intentvalidator" title="Permanent link">&para;</a></h4>
+<p>Classifies prompt intent and validates it against allowed intent categories. Blocks prompts with mismatched or suspicious intent signals.</p>
+<h4 id="19-exfildetector">19. ExfilDetector<a class="headerlink" href="#19-exfildetector" title="Permanent link">&para;</a></h4>
+<p>Detects data exfiltration attempts. Analyzes prompts for patterns that would cause the LLM to leak sensitive data. Supports single-axis mode (<code>exfil_single_axis=True</code>) for faster detection with reduced precision.</p>
+<h3 id="ioc-based">IOC-Based<a class="headerlink" href="#ioc-based" title="Permanent link">&para;</a></h3>
+<h4 id="20-domainreputationdefense">20. DomainReputationDefense<a class="headerlink" href="#20-domainreputationdefense" title="Permanent link">&para;</a></h4>
+<p>Checks URLs and domains referenced in prompts against reputation databases. Blocks known-malicious domains, phishing URLs, and C2 infrastructure.</p>
+<h4 id="21-iocmatcherdefense">21. IOCMatcherDefense<a class="headerlink" href="#21-iocmatcherdefense" title="Permanent link">&para;</a></h4>
+<p>Matches Indicators of Compromise (hashes, IPs, domains, URLs) found in prompts against a threat intelligence feed. Configurable via the <code>ioc_file</code> config field.</p>
+<hr />
+<h2 id="output-scanners">Output Scanners<a class="headerlink" href="#output-scanners" title="Permanent link">&para;</a></h2>
+<p>Output scanners run on the <code>/api/v1/scan-response</code> endpoint to check LLM responses before they reach the user.</p>
+<h3 id="secretleakscanner">SecretLeakScanner<a class="headerlink" href="#secretleakscanner" title="Permanent link">&para;</a></h3>
+<p>Detects leaked secrets in LLM responses:
+- API keys (AWS, GCP, Azure, GitHub, Stripe, etc.)
+- Passwords and connection strings
+- Private keys and certificates
+- Bearer tokens and JWTs</p>
+<h3 id="canaryleakscanner">CanaryLeakScanner<a class="headerlink" href="#canaryleakscanner" title="Permanent link">&para;</a></h3>
+<p>Detects canary tokens that were planted by the deception engine. If an LLM response contains a canary, it indicates the model has been tricked into revealing planted traps.</p>
+<h3 id="harmfulcontentscanner">HarmfulContentScanner<a class="headerlink" href="#harmfulcontentscanner" title="Permanent link">&para;</a></h3>
+<p>Detects harmful, toxic, or policy-violating content in LLM responses. Catches content that passed the prompt-side defenses but resulted in a harmful output.</p>
+<hr />
+<h2 id="enabling-and-disabling-defenses">Enabling and Disabling Defenses<a class="headerlink" href="#enabling-and-disabling-defenses" title="Permanent link">&para;</a></h2>
+<h3 id="via-configuration">Via Configuration<a class="headerlink" href="#via-configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Enable only specific defenses</span>
+<span class="nt">enabled_defenses</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prompt_normalizer</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">safety_filter</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">injection_blocker</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exfil_detector</span>
+
+<span class="c1"># Or disable specific defenses (all others remain active)</span>
+<span class="nt">disabled_defenses</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rate_limiter</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">output_watermark</span>
+
+<span class="c1"># Same for scanners</span>
+<span class="nt">disabled_scanners</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">harmful_content_scanner</span>
+</code></pre></div>
+<h3 id="via-python">Via Python<a class="headerlink" href="#via-python" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">goop_shield.defenses</span><span class="w"> </span><span class="kn">import</span> <span class="n">DefenseRegistry</span><span class="p">,</span> <span class="n">register_defaults</span>
+
+<span class="n">registry</span> <span class="o">=</span> <span class="n">DefenseRegistry</span><span class="p">()</span>
+<span class="n">register_defaults</span><span class="p">(</span><span class="n">registry</span><span class="p">)</span>
+
+<span class="c1"># Remove a defense</span>
+<span class="n">registry</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;rate_limiter&quot;</span><span class="p">)</span>
+
+<span class="c1"># Add a custom defense</span>
+<span class="n">registry</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">MyCustomDefense</span><span class="p">())</span>
+</code></pre></div>
+<h2 id="defense-verdicts">Defense Verdicts<a class="headerlink" href="#defense-verdicts" title="Permanent link">&para;</a></h2>
+<p>Each defense returns an <code>InlineVerdict</code> with:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>defense_name</code></td>
+<td>str</td>
+<td>Name of the defense</td>
+</tr>
+<tr>
+<td><code>blocked</code></td>
+<td>bool</td>
+<td>Whether the prompt was blocked</td>
+</tr>
+<tr>
+<td><code>sanitized</code></td>
+<td>bool</td>
+<td>Whether the prompt was modified</td>
+</tr>
+<tr>
+<td><code>filtered_prompt</code></td>
+<td>str</td>
+<td>The (potentially modified) prompt</td>
+</tr>
+<tr>
+<td><code>confidence</code></td>
+<td>float</td>
+<td>Confidence in the decision (0-1)</td>
+</tr>
+<tr>
+<td><code>threat_confidence</code></td>
+<td>float</td>
+<td>Confidence that this is an attack (0-1)</td>
+</tr>
+<tr>
+<td><code>details</code></td>
+<td>str</td>
+<td>Human-readable explanation</td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td>dict</td>
+<td>Additional structured data</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "content.code.copy", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

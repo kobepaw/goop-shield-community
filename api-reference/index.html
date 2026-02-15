@@ -1,0 +1,1833 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kobepaw.github.io/goop-shield-community/api-reference/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>API Reference - goop-shield</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="goop-shield" class="md-header__button md-logo" aria-label="goop-shield" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            goop-shield
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/kobepaw/goop-shield-community" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kobepaw/goop-shield-community
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../editions/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Editions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../contributing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="goop-shield" class="md-nav__button md-logo" aria-label="goop-shield" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    goop-shield
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/kobepaw/goop-shield-community" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kobepaw/goop-shield-community
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1defend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/defend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-debugdefend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /debug/defend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1scan-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/scan-response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#telemetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Telemetry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Telemetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1telemetryevents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/telemetry/events
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Audit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1auditevents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/audit/events
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1auditeventsrequest_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/audit/events/{request_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1auditsummary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/audit/summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1auditattackers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/audit/attackers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#websocket-streams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WebSocket Streams
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WebSocket Streams">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ws-apiv1shieldeventsstream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WS /api/v1/shield/events/stream
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ws-apiv1behaviorstream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WS /api/v1/behavior/stream
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#brorl-ranking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BroRL / Ranking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BroRL / Ranking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1brorlstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/brorl/state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1brorlload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/brorl/load
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1defenderstats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/defender/stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#red-team" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Red Team
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Red Team">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1redteamprobe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/redteam/probe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1redteamresults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/redteam/results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1redteamreport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/redteam/report
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1redteamalignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/redteam/alignment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#behavioral-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behavioral Monitoring
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Behavioral Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1behaviorevent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/behavior/event
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#policy-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Policy Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Policy Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1policyload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/policy/load
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1policyexport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/policy/export
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deception
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deception">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1deceptioncanaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/deception/canaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alignment-canaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alignment Canaries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alignment Canaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1alignmentpending-canary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/alignment/pending-canary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1alignmentcanary-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/alignment/canary-result
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1alignmentcanary-stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/alignment/canary-stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1alignmentcanary-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/alignment/canary-alerts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intelligence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intelligence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Intelligence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1intelactors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/intel/actors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1intelactorsactor_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/intel/actors/{actor_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1intelcampaigns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/intel/campaigns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1intelcampaignscampaign_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/intel/campaigns/{campaign_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1intelgeoip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/intel/geo/{ip}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1intelmitre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/intel/mitre
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1intelsummary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/intel/summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1sabotagetask-outcome" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/sabotage/task-outcome
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1trainingvalidate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/training/validate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1trainingvalidate-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/training/validate-batch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1trainingquarantine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/training/quarantine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1trainingquarantineitem_idrelease" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/training/quarantine/{item_id}/release
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1trainingquarantineitem_idreject" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/training/quarantine/{item_id}/reject
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1consistencycheck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/consistency/check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1consistencystats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/consistency/stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#experiment-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Experiment Dashboard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Experiment Dashboard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1experimentsattack-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/experiments/attack-log
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1experimentsdefense-heatmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/experiments/defense-heatmap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1experimentsbrorl-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/experiments/brorl-drift
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aggregation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggregation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Aggregation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1aggregationingest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/aggregation/ingest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1aggregationstats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/aggregation/stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAPI
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h1>
+<p>goop-shield exposes a FastAPI REST API with OpenAPI docs at <code>/api/docs</code>.</p>
+<h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
+<p>Set <code>SHIELD_API_KEY</code> env var to enable bearer token auth. Include <code>Authorization: Bearer &lt;key&gt;</code> on all requests. Health and metrics endpoints are exempt.</p>
+<hr />
+<h2 id="core-endpoints">Core Endpoints<a class="headerlink" href="#core-endpoints" title="Permanent link">&para;</a></h2>
+<h3 id="post-apiv1defend">POST /api/v1/defend<a class="headerlink" href="#post-apiv1defend" title="Permanent link">&para;</a></h3>
+<p>Classify and defend a prompt. Returns a minimal response (no defense names or per-verdict details) to prevent pipeline fingerprinting.</p>
+<p><strong>Request:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;prompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string (required, min 1 char)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;context&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Response:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;allow&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;filtered_prompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;latency_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Request blocked by security policy&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The <code>reason</code> field is only present when <code>allow</code> is <code>false</code>.</p>
+<h3 id="post-debugdefend">POST /debug/defend<a class="headerlink" href="#post-debugdefend" title="Permanent link">&para;</a></h3>
+<p>Full-telemetry defend endpoint. Returns complete <code>DefendResponse</code> with all defense names, verdicts, and confidence scores. Requires API key authentication.</p>
+<p><strong>Response:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;allow&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;filtered_prompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;defenses_applied&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;prompt_normalizer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;safety_filter&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;verdicts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;defense_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;injection_blocker&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;allow&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;details&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;latency_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;latency_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">3.2</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="post-apiv1scan-response">POST /api/v1/scan-response<a class="headerlink" href="#post-apiv1scan-response" title="Permanent link">&para;</a></h3>
+<p>Scan an LLM response for leaked secrets, canary tokens, and harmful content.</p>
+<p><strong>Request:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;response_text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string (required, min 1 char)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;original_prompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string (optional)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;context&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Response:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;safe&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;filtered_response&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;scanners_applied&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;secret_leak_scanner&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;verdicts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;latency_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.1</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="get-apiv1health">GET /api/v1/health<a class="headerlink" href="#get-apiv1health" title="Permanent link">&para;</a></h3>
+<p>Health check. Always accessible without authentication.</p>
+<p><strong>Response:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;healthy&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;defenses_loaded&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;scanners_loaded&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;brorl_ready&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;uptime_seconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">42.5</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;total_requests&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;total_blocked&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;active_defenses&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;prompt_normalizer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;safety_filter&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;active_scanners&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;secret_leak_scanner&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;canary_leak_scanner&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;harmful_content_scanner&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;audit_events_total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="get-apiv1metrics">GET /api/v1/metrics<a class="headerlink" href="#get-apiv1metrics" title="Permanent link">&para;</a></h3>
+<p>Prometheus-format metrics. Always accessible without authentication.</p>
+<p><strong>Response</strong> (text/plain):</p>
+<div class="highlight"><pre><span></span><code>shield_requests_total 150
+shield_blocked_total 12
+shield_defenses_loaded 21
+shield_scanners_loaded 3
+shield_uptime_seconds 42.5
+shield_defense_invocations_total{defense=&quot;injection_blocker&quot;} 150
+shield_defense_blocks_total{defense=&quot;injection_blocker&quot;} 8
+shield_brorl_alpha{technique=&quot;injection_blocker&quot;} 9.0
+shield_brorl_beta{technique=&quot;injection_blocker&quot;} 2.0
+shield_brorl_success_rate{technique=&quot;injection_blocker&quot;} 0.8182
+</code></pre></div>
+<hr />
+<h2 id="telemetry">Telemetry<a class="headerlink" href="#telemetry" title="Permanent link">&para;</a></h2>
+<h3 id="post-apiv1telemetryevents">POST /api/v1/telemetry/events<a class="headerlink" href="#post-apiv1telemetryevents" title="Permanent link">&para;</a></h3>
+<p>Report an external telemetry event.</p>
+<p><strong>Request:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;attack_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;prompt_injection&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;defense_action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;injection_blocker&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;outcome&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;block&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Response:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;received&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="audit">Audit<a class="headerlink" href="#audit" title="Permanent link">&para;</a></h2>
+<h3 id="get-apiv1auditevents">GET /api/v1/audit/events<a class="headerlink" href="#get-apiv1auditevents" title="Permanent link">&para;</a></h3>
+<p>Paginated audit event history with filters.</p>
+<p><strong>Query Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>since</code></td>
+<td>float</td>
+<td>None</td>
+<td>Unix timestamp lower bound</td>
+</tr>
+<tr>
+<td><code>until</code></td>
+<td>float</td>
+<td>None</td>
+<td>Unix timestamp upper bound</td>
+</tr>
+<tr>
+<td><code>source_ip</code></td>
+<td>str</td>
+<td>None</td>
+<td>Filter by source IP</td>
+</tr>
+<tr>
+<td><code>action</code></td>
+<td>str</td>
+<td>None</td>
+<td>Filter by action (allow/block/sanitize)</td>
+</tr>
+<tr>
+<td><code>classification</code></td>
+<td>str</td>
+<td>None</td>
+<td>Filter by attack classification</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>int</td>
+<td>100</td>
+<td>Results per page (1-1000)</td>
+</tr>
+<tr>
+<td><code>offset</code></td>
+<td>int</td>
+<td>0</td>
+<td>Pagination offset</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;events&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;offset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="get-apiv1auditeventsrequest_id">GET /api/v1/audit/events/{request_id}<a class="headerlink" href="#get-apiv1auditeventsrequest_id" title="Permanent link">&para;</a></h3>
+<p>Single audit event by request ID.</p>
+<h3 id="get-apiv1auditsummary">GET /api/v1/audit/summary<a class="headerlink" href="#get-apiv1auditsummary" title="Permanent link">&para;</a></h3>
+<p>Aggregate audit statistics.</p>
+<p><strong>Query Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>since</code></td>
+<td>float</td>
+<td>None</td>
+<td>Unix timestamp lower bound</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-apiv1auditattackers">GET /api/v1/audit/attackers<a class="headerlink" href="#get-apiv1auditattackers" title="Permanent link">&para;</a></h3>
+<p>Unique source IPs with block counts.</p>
+<p><strong>Query Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>limit</code></td>
+<td>int</td>
+<td>50</td>
+<td>Max results (1-500)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="websocket-streams">WebSocket Streams<a class="headerlink" href="#websocket-streams" title="Permanent link">&para;</a></h2>
+<h3 id="ws-apiv1shieldeventsstream">WS /api/v1/shield/events/stream<a class="headerlink" href="#ws-apiv1shieldeventsstream" title="Permanent link">&para;</a></h3>
+<p>Real-time audit event stream.</p>
+<p><strong>Query Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>severity</code></td>
+<td>str</td>
+<td><code>"all"</code></td>
+<td><code>"all"</code> or <code>"blocks"</code> (only block events)</td>
+</tr>
+<tr>
+<td><code>token</code></td>
+<td>str</td>
+<td><code>""</code></td>
+<td>Bearer token (alternative to Authorization header)</td>
+</tr>
+</tbody>
+</table>
+<p>Events are JSON objects matching the audit event schema.</p>
+<h3 id="ws-apiv1behaviorstream">WS /api/v1/behavior/stream<a class="headerlink" href="#ws-apiv1behaviorstream" title="Permanent link">&para;</a></h3>
+<p>Real-time behavioral monitoring stream. Send <code>BehaviorEvent</code> JSON, receive <code>BehaviorVerdict</code> JSON.</p>
+<p><strong>Send:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tool_call&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;execute_code&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;import os&quot;</span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;session_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sess-123&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Receive:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;decision&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;allow&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;low&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;matched_rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="brorl-ranking">BroRL / Ranking<a class="headerlink" href="#brorl-ranking" title="Permanent link">&para;</a></h2>
+<h3 id="get-apiv1brorlstate">GET /api/v1/brorl/state<a class="headerlink" href="#get-apiv1brorlstate" title="Permanent link">&para;</a></h3>
+<p>Export ranking backend weights (alpha/beta posteriors for BroRL).</p>
+<h3 id="post-apiv1brorlload">POST /api/v1/brorl/load<a class="headerlink" href="#post-apiv1brorlload" title="Permanent link">&para;</a></h3>
+<p>Load ranking backend weights.</p>
+<p><strong>Request:</strong> Dict of technique weights.</p>
+<h3 id="get-apiv1defenderstats">GET /api/v1/defender/stats<a class="headerlink" href="#get-apiv1defenderstats" title="Permanent link">&para;</a></h3>
+<p>Aggregated defender stats including per-defense invocation/block counts and BroRL weights.</p>
+<hr />
+<h2 id="red-team">Red Team<a class="headerlink" href="#red-team" title="Permanent link">&para;</a></h2>
+<h3 id="post-apiv1redteamprobe">POST /api/v1/redteam/probe<a class="headerlink" href="#post-apiv1redteamprobe" title="Permanent link">&para;</a></h3>
+<p>Trigger an immediate red-team probe run.</p>
+<p><strong>Request:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;probe_names&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;injection&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;exfil&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Response:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;total_probes&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;defenses_bypassed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;bypass_rate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;alignment_results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1707750000.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;latency_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">150.0</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="get-apiv1redteamresults">GET /api/v1/redteam/results<a class="headerlink" href="#get-apiv1redteamresults" title="Permanent link">&para;</a></h3>
+<p>Get the latest red-team probe results (same schema as above).</p>
+<h3 id="get-apiv1redteamreport">GET /api/v1/redteam/report<a class="headerlink" href="#get-apiv1redteamreport" title="Permanent link">&para;</a></h3>
+<p>Generate a vulnerability report from the latest probe results.</p>
+<h3 id="get-apiv1redteamalignment">GET /api/v1/redteam/alignment<a class="headerlink" href="#get-apiv1redteamalignment" title="Permanent link">&para;</a></h3>
+<p>Get alignment-specific probe results.</p>
+<hr />
+<h2 id="behavioral-monitoring">Behavioral Monitoring<a class="headerlink" href="#behavioral-monitoring" title="Permanent link">&para;</a></h2>
+<h3 id="post-apiv1behaviorevent">POST /api/v1/behavior/event<a class="headerlink" href="#post-apiv1behaviorevent" title="Permanent link">&para;</a></h3>
+<p>Evaluate a single behavioral event.</p>
+<p><strong>Request:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tool_call&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;execute_code&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rm -rf /&quot;</span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;session_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sess-123&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Response:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;decision&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;block&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;critical&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Destructive file system operation detected&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;matched_rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;destructive_command&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="policy-management">Policy Management<a class="headerlink" href="#policy-management" title="Permanent link">&para;</a></h2>
+<h3 id="post-apiv1policyload">POST /api/v1/policy/load<a class="headerlink" href="#post-apiv1policyload" title="Permanent link">&para;</a></h3>
+<p>Load a versioned policy bundle.</p>
+<h3 id="get-apiv1policyexport">GET /api/v1/policy/export<a class="headerlink" href="#get-apiv1policyexport" title="Permanent link">&para;</a></h3>
+<p>Export current policy as a versioned bundle.</p>
+<p><strong>Query Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>version</code></td>
+<td>str</td>
+<td><code>"latest"</code></td>
+<td>Policy version to export</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="deception">Deception<a class="headerlink" href="#deception" title="Permanent link">&para;</a></h2>
+<h3 id="get-apiv1deceptioncanaries">GET /api/v1/deception/canaries<a class="headerlink" href="#get-apiv1deceptioncanaries" title="Permanent link">&para;</a></h3>
+<p>List active canary tokens and their status.</p>
+<hr />
+<h2 id="alignment-canaries">Alignment Canaries<a class="headerlink" href="#alignment-canaries" title="Permanent link">&para;</a></h2>
+<h3 id="get-apiv1alignmentpending-canary">GET /api/v1/alignment/pending-canary<a class="headerlink" href="#get-apiv1alignmentpending-canary" title="Permanent link">&para;</a></h3>
+<p>Check if a canary is due for injection (used by client SDK).</p>
+<h3 id="post-apiv1alignmentcanary-result">POST /api/v1/alignment/canary-result<a class="headerlink" href="#post-apiv1alignmentcanary-result" title="Permanent link">&para;</a></h3>
+<p>Record an alignment canary check result.</p>
+<h3 id="get-apiv1alignmentcanary-stats">GET /api/v1/alignment/canary-stats<a class="headerlink" href="#get-apiv1alignmentcanary-stats" title="Permanent link">&para;</a></h3>
+<p>Get alignment canary pass/fail statistics per category.</p>
+<h3 id="get-apiv1alignmentcanary-alerts">GET /api/v1/alignment/canary-alerts<a class="headerlink" href="#get-apiv1alignmentcanary-alerts" title="Permanent link">&para;</a></h3>
+<p>Get alignment canary alerts for categories exceeding failure threshold.</p>
+<hr />
+<h2 id="intelligence">Intelligence<a class="headerlink" href="#intelligence" title="Permanent link">&para;</a></h2>
+<h3 id="get-apiv1intelactors">GET /api/v1/intel/actors<a class="headerlink" href="#get-apiv1intelactors" title="Permanent link">&para;</a></h3>
+<p>List threat actor profiles.</p>
+<p><strong>Query Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>limit</code></td>
+<td>int</td>
+<td>50</td>
+<td>Max results (1-500)</td>
+</tr>
+<tr>
+<td><code>sort</code></td>
+<td>str</td>
+<td><code>"risk_level"</code></td>
+<td>Sort field</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-apiv1intelactorsactor_id">GET /api/v1/intel/actors/{actor_id}<a class="headerlink" href="#get-apiv1intelactorsactor_id" title="Permanent link">&para;</a></h3>
+<p>Get full threat actor profile.</p>
+<h3 id="get-apiv1intelcampaigns">GET /api/v1/intel/campaigns<a class="headerlink" href="#get-apiv1intelcampaigns" title="Permanent link">&para;</a></h3>
+<p>List detected attack campaigns.</p>
+<p><strong>Query Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>limit</code></td>
+<td>int</td>
+<td>20</td>
+<td>Max results (1-100)</td>
+</tr>
+<tr>
+<td><code>window_hours</code></td>
+<td>int</td>
+<td>24</td>
+<td>Detection window (1-168)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-apiv1intelcampaignscampaign_id">GET /api/v1/intel/campaigns/{campaign_id}<a class="headerlink" href="#get-apiv1intelcampaignscampaign_id" title="Permanent link">&para;</a></h3>
+<p>Get campaign detail with event timeline.</p>
+<h3 id="get-apiv1intelgeoip">GET /api/v1/intel/geo/{ip}<a class="headerlink" href="#get-apiv1intelgeoip" title="Permanent link">&para;</a></h3>
+<p>GeoIP/ASN lookup for an IP address.</p>
+<h3 id="get-apiv1intelmitre">GET /api/v1/intel/mitre<a class="headerlink" href="#get-apiv1intelmitre" title="Permanent link">&para;</a></h3>
+<p>MITRE ATT&amp;CK technique coverage from audit data.</p>
+<h3 id="get-apiv1intelsummary">GET /api/v1/intel/summary<a class="headerlink" href="#get-apiv1intelsummary" title="Permanent link">&para;</a></h3>
+<p>Intelligence summary: top actors, active campaigns, geo distribution.</p>
+<hr />
+<h2 id="advanced-endpoints">Advanced Endpoints<a class="headerlink" href="#advanced-endpoints" title="Permanent link">&para;</a></h2>
+<p>These endpoints require advanced features to be enabled in config.</p>
+<h3 id="post-apiv1sabotagetask-outcome">POST /api/v1/sabotage/task-outcome<a class="headerlink" href="#post-apiv1sabotagetask-outcome" title="Permanent link">&para;</a></h3>
+<p>Record a task outcome for sandbagging detection. Requires <code>sandbag_detection_enabled=True</code>.</p>
+<h3 id="post-apiv1trainingvalidate">POST /api/v1/training/validate<a class="headerlink" href="#post-apiv1trainingvalidate" title="Permanent link">&para;</a></h3>
+<p>Validate a single training data item. Requires <code>training_gate_enabled=True</code>.</p>
+<h3 id="post-apiv1trainingvalidate-batch">POST /api/v1/training/validate-batch<a class="headerlink" href="#post-apiv1trainingvalidate-batch" title="Permanent link">&para;</a></h3>
+<p>Validate a batch of training data items.</p>
+<h3 id="get-apiv1trainingquarantine">GET /api/v1/training/quarantine<a class="headerlink" href="#get-apiv1trainingquarantine" title="Permanent link">&para;</a></h3>
+<p>List quarantined training data items.</p>
+<h3 id="post-apiv1trainingquarantineitem_idrelease">POST /api/v1/training/quarantine/{item_id}/release<a class="headerlink" href="#post-apiv1trainingquarantineitem_idrelease" title="Permanent link">&para;</a></h3>
+<p>Release a quarantined item for use.</p>
+<h3 id="post-apiv1trainingquarantineitem_idreject">POST /api/v1/training/quarantine/{item_id}/reject<a class="headerlink" href="#post-apiv1trainingquarantineitem_idreject" title="Permanent link">&para;</a></h3>
+<p>Permanently reject a quarantined item.</p>
+<h3 id="post-apiv1consistencycheck">POST /api/v1/consistency/check<a class="headerlink" href="#post-apiv1consistencycheck" title="Permanent link">&para;</a></h3>
+<p>Manually trigger a consistency check. Requires <code>consistency_check_enabled=True</code>.</p>
+<h3 id="get-apiv1consistencystats">GET /api/v1/consistency/stats<a class="headerlink" href="#get-apiv1consistencystats" title="Permanent link">&para;</a></h3>
+<p>Get consistency check statistics.</p>
+<hr />
+<h2 id="experiment-dashboard">Experiment Dashboard<a class="headerlink" href="#experiment-dashboard" title="Permanent link">&para;</a></h2>
+<h3 id="get-apiv1experimentsattack-log">GET /api/v1/experiments/attack-log<a class="headerlink" href="#get-apiv1experimentsattack-log" title="Permanent link">&para;</a></h3>
+<p>Paginated list of recent attack attempts with Shield verdicts.</p>
+<h3 id="get-apiv1experimentsdefense-heatmap">GET /api/v1/experiments/defense-heatmap<a class="headerlink" href="#get-apiv1experimentsdefense-heatmap" title="Permanent link">&para;</a></h3>
+<p>Matrix of defense_name x attack_classification with block counts.</p>
+<h3 id="get-apiv1experimentsbrorl-drift">GET /api/v1/experiments/brorl-drift<a class="headerlink" href="#get-apiv1experimentsbrorl-drift" title="Permanent link">&para;</a></h3>
+<p>Current BroRL weights with success rates for drift monitoring.</p>
+<hr />
+<h2 id="aggregation">Aggregation<a class="headerlink" href="#aggregation" title="Permanent link">&para;</a></h2>
+<h3 id="post-apiv1aggregationingest">POST /api/v1/aggregation/ingest<a class="headerlink" href="#post-apiv1aggregationingest" title="Permanent link">&para;</a></h3>
+<p>Ingest batched telemetry from Shield instances.</p>
+<h3 id="get-apiv1aggregationstats">GET /api/v1/aggregation/stats<a class="headerlink" href="#get-apiv1aggregationstats" title="Permanent link">&para;</a></h3>
+<p>Get aggregate statistics across all Shield instances.</p>
+<hr />
+<h2 id="openapi">OpenAPI<a class="headerlink" href="#openapi" title="Permanent link">&para;</a></h2>
+<p>Interactive API documentation is available at <code>/api/docs</code> when the server is running.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "content.code.copy", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

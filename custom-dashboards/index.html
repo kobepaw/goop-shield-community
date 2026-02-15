@@ -1,0 +1,1294 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kobepaw.github.io/goop-shield-community/custom-dashboards/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Custom Dashboards - goop-shield</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#custom-dashboards" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="goop-shield" class="md-header__button md-logo" aria-label="goop-shield" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            goop-shield
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Custom Dashboards
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/kobepaw/goop-shield-community" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kobepaw/goop-shield-community
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../editions/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Editions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../contributing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="goop-shield" class="md-nav__button md-logo" aria-label="goop-shield" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    goop-shield
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/kobepaw/goop-shield-community" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kobepaw/goop-shield-community
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview Panel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview Panel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#health-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defender-stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defender Stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attack-log-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attack Log Panel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attack Log Panel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recent-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recent Attacks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defense-heatmap-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defense Heatmap Panel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Defense Heatmap Panel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defense-vs-attack-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defense vs. Attack Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#brorl-drift-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BroRL Drift Panel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BroRL Drift Panel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defense-ranking-over-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defense Ranking Over Time
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit-summary-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit Summary Panel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Audit Summary Panel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggregate-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggregate Statistics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#top-attackers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Top Attackers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threat-intelligence-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Threat Intelligence Panel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Threat Intelligence Panel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#actor-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actor Profiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active-campaigns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Active Campaigns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geoip-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GeoIP Lookup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mitre-attck-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MITRE ATT&amp;CK Coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intelligence-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intelligence Summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-time-event-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-Time Event Stream
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real-Time Event Stream">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#websocket-audit-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WebSocket: Audit Events
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websocket-behavioral-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WebSocket: Behavioral Events
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prometheus-grafana-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prometheus / Grafana Integration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prometheus / Grafana Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prometheus-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prometheus Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grafana-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grafana Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-for-dashboard-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication for Dashboard APIs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#suggested-polling-intervals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suggested Polling Intervals
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="custom-dashboards">Custom Dashboards<a class="headerlink" href="#custom-dashboards" title="Permanent link">&para;</a></h1>
+<p>goop-shield does not ship a built-in dashboard UI. Instead, it provides a comprehensive API surface that you can use to build custom dashboards with your preferred tools (Grafana, Retool, custom React/Vue apps, etc.).</p>
+<p>This document catalogs every API endpoint relevant for dashboarding, organized by panel type.</p>
+<h2 id="overview-panel">Overview Panel<a class="headerlink" href="#overview-panel" title="Permanent link">&para;</a></h2>
+<h3 id="health-status">Health Status<a class="headerlink" href="#health-status" title="Permanent link">&para;</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /api/v1/health</code></p>
+<p><strong>Polling interval:</strong> 10-30 seconds</p>
+<p><strong>Response schema:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;healthy&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;defenses_loaded&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;scanners_loaded&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;brorl_ready&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;uptime_seconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">86400.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;total_requests&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15230</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;total_blocked&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">842</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;active_defenses&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;prompt_normalizer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;safety_filter&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;active_scanners&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;secret_leak_scanner&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;canary_leak_scanner&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;harmful_content_scanner&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;audit_events_total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15230</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Suggested panels:</strong>
+- Status badge (healthy/unhealthy)
+- Uptime counter
+- Block rate gauge: <code>total_blocked / total_requests</code>
+- Defense/scanner count badges</p>
+<h3 id="defender-stats">Defender Stats<a class="headerlink" href="#defender-stats" title="Permanent link">&para;</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /api/v1/defender/stats</code></p>
+<p><strong>Polling interval:</strong> 30-60 seconds</p>
+<p>Returns per-defense invocation counts, block counts, and BroRL weights. Use for:
+- Per-defense bar chart (invocations vs. blocks)
+- Defense effectiveness ranking</p>
+<hr />
+<h2 id="attack-log-panel">Attack Log Panel<a class="headerlink" href="#attack-log-panel" title="Permanent link">&para;</a></h2>
+<h3 id="recent-attacks">Recent Attacks<a class="headerlink" href="#recent-attacks" title="Permanent link">&para;</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /api/v1/experiments/attack-log</code></p>
+<p><strong>Query params:</strong> <code>limit</code>, <code>offset</code>, <code>classification</code></p>
+<p><strong>Polling interval:</strong> 5-15 seconds</p>
+<p><strong>Response schema:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;entries&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;request_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1707750000.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;source_ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.1.100&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;prompt_preview&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ignore all previous...&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;shield_action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;block&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.92</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;latency_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">3.2</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;attack_classification&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;prompt_injection&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;blocking_defense&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;injection_blocker&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;defenses_applied&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;prompt_normalizer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;injection_blocker&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;offset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Suggested panels:</strong>
+- Scrolling attack log table
+- Attack classification pie chart
+- Block vs. allow timeline</p>
+<hr />
+<h2 id="defense-heatmap-panel">Defense Heatmap Panel<a class="headerlink" href="#defense-heatmap-panel" title="Permanent link">&para;</a></h2>
+<h3 id="defense-vs-attack-matrix">Defense vs. Attack Matrix<a class="headerlink" href="#defense-vs-attack-matrix" title="Permanent link">&para;</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /api/v1/experiments/defense-heatmap</code></p>
+<p><strong>Query params:</strong> <code>since</code> (unix timestamp)</p>
+<p><strong>Polling interval:</strong> 60 seconds</p>
+<p><strong>Response schema:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;matrix&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;injection_blocker&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;prompt_injection&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;command_injection&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;exfil_detector&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;data_exfiltration&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;defense_names&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;exfil_detector&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;injection_blocker&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;attack_types&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;command_injection&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;data_exfiltration&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;prompt_injection&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Suggested panels:</strong>
+- Heatmap grid (defense rows x attack columns)
+- Color intensity = block count</p>
+<hr />
+<h2 id="brorl-drift-panel">BroRL Drift Panel<a class="headerlink" href="#brorl-drift-panel" title="Permanent link">&para;</a></h2>
+<h3 id="defense-ranking-over-time">Defense Ranking Over Time<a class="headerlink" href="#defense-ranking-over-time" title="Permanent link">&para;</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /api/v1/experiments/brorl-drift</code></p>
+<p><strong>Polling interval:</strong> 30-60 seconds (store history client-side)</p>
+<p><strong>Response schema:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1707750000.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;techniques&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;injection_blocker&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;alpha&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">45.2</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;beta&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5.8</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;success_rate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.886275</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;total_samples&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">49.0</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;exfil_detector&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;alpha&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">12.1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;beta&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">3.9</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;success_rate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.756250</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;total_samples&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">14.0</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;total_techniques&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Suggested panels:</strong>
+- Success rate line chart per defense (track over time)
+- Alpha/beta posterior distribution plots
+- Top-ranked defenses leaderboard</p>
+<hr />
+<h2 id="audit-summary-panel">Audit Summary Panel<a class="headerlink" href="#audit-summary-panel" title="Permanent link">&para;</a></h2>
+<h3 id="aggregate-statistics">Aggregate Statistics<a class="headerlink" href="#aggregate-statistics" title="Permanent link">&para;</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /api/v1/audit/summary</code></p>
+<p><strong>Query params:</strong> <code>since</code> (unix timestamp)</p>
+<p><strong>Polling interval:</strong> 30-60 seconds</p>
+<p>Returns aggregate counts by action, classification, and time bucket. Use for:
+- Time-series area chart (requests over time)
+- Action breakdown (allow/block/sanitize)
+- Classification distribution</p>
+<h3 id="top-attackers">Top Attackers<a class="headerlink" href="#top-attackers" title="Permanent link">&para;</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /api/v1/audit/attackers</code></p>
+<p><strong>Query params:</strong> <code>limit</code></p>
+<p><strong>Polling interval:</strong> 60 seconds</p>
+<p>Returns unique source IPs ranked by block count. Use for:
+- Top attackers table
+- Geographic distribution (combine with GeoIP)</p>
+<hr />
+<h2 id="threat-intelligence-panel">Threat Intelligence Panel<a class="headerlink" href="#threat-intelligence-panel" title="Permanent link">&para;</a></h2>
+<h3 id="actor-profiles">Actor Profiles<a class="headerlink" href="#actor-profiles" title="Permanent link">&para;</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /api/v1/intel/actors</code></p>
+<p><strong>Query params:</strong> <code>limit</code>, <code>sort</code></p>
+<p><strong>Polling interval:</strong> 60-300 seconds</p>
+<h3 id="active-campaigns">Active Campaigns<a class="headerlink" href="#active-campaigns" title="Permanent link">&para;</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /api/v1/intel/campaigns</code></p>
+<p><strong>Query params:</strong> <code>limit</code>, <code>window_hours</code></p>
+<p><strong>Polling interval:</strong> 60-300 seconds</p>
+<h3 id="geoip-lookup">GeoIP Lookup<a class="headerlink" href="#geoip-lookup" title="Permanent link">&para;</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /api/v1/intel/geo/{ip}</code></p>
+<p>Use to enrich source IPs with country, city, ASN.</p>
+<h3 id="mitre-attck-coverage">MITRE ATT&amp;CK Coverage<a class="headerlink" href="#mitre-attck-coverage" title="Permanent link">&para;</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /api/v1/intel/mitre</code></p>
+<p>Returns technique coverage matrix. Use for:
+- MITRE ATT&amp;CK navigator heatmap
+- Coverage gap analysis</p>
+<h3 id="intelligence-summary">Intelligence Summary<a class="headerlink" href="#intelligence-summary" title="Permanent link">&para;</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /api/v1/intel/summary</code></p>
+<p><strong>Polling interval:</strong> 60-300 seconds</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;top_actors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;active_campaigns&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;geo_distribution&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;US&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;CN&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;RU&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="real-time-event-stream">Real-Time Event Stream<a class="headerlink" href="#real-time-event-stream" title="Permanent link">&para;</a></h2>
+<h3 id="websocket-audit-events">WebSocket: Audit Events<a class="headerlink" href="#websocket-audit-events" title="Permanent link">&para;</a></h3>
+<p><strong>Endpoint:</strong> <code>WS /api/v1/shield/events/stream</code></p>
+<p><strong>Query params:</strong> <code>severity</code> (<code>all</code> or <code>blocks</code>), <code>token</code></p>
+<p>Connect via WebSocket for real-time event push. Each event is a JSON object:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;request_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1707750000.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;source_ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.1.100&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;shield_action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;block&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.92</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;attack_classification&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;prompt_injection&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;blocking_defense&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;injection_blocker&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;defenses_applied&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;geo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;US&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;city&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;San Francisco&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;asn&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">13335</span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Suggested panels:</strong>
+- Live event ticker
+- Real-time block rate sparkline</p>
+<h3 id="websocket-behavioral-events">WebSocket: Behavioral Events<a class="headerlink" href="#websocket-behavioral-events" title="Permanent link">&para;</a></h3>
+<p><strong>Endpoint:</strong> <code>WS /api/v1/behavior/stream</code></p>
+<p>Bidirectional stream. Send <code>BehaviorEvent</code>, receive <code>BehaviorVerdict</code>.</p>
+<hr />
+<h2 id="prometheus-grafana-integration">Prometheus / Grafana Integration<a class="headerlink" href="#prometheus-grafana-integration" title="Permanent link">&para;</a></h2>
+<h3 id="prometheus-metrics">Prometheus Metrics<a class="headerlink" href="#prometheus-metrics" title="Permanent link">&para;</a></h3>
+<p><strong>Endpoint:</strong> <code>GET /api/v1/metrics</code></p>
+<p>Returns Prometheus-format text metrics. Configure Prometheus to scrape:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># prometheus.yml</span>
+<span class="nt">scrape_configs</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;goop-shield&#39;</span>
+<span class="w">    </span><span class="nt">scrape_interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15s</span>
+<span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;shield:8787&#39;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">metrics_path</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;/api/v1/metrics&#39;</span>
+</code></pre></div>
+<h3 id="available-metrics">Available Metrics<a class="headerlink" href="#available-metrics" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>shield_requests_total</code></td>
+<td>counter</td>
+<td>Total requests processed</td>
+</tr>
+<tr>
+<td><code>shield_blocked_total</code></td>
+<td>counter</td>
+<td>Total requests blocked</td>
+</tr>
+<tr>
+<td><code>shield_defenses_loaded</code></td>
+<td>gauge</td>
+<td>Number of active defenses</td>
+</tr>
+<tr>
+<td><code>shield_scanners_loaded</code></td>
+<td>gauge</td>
+<td>Number of active scanners</td>
+</tr>
+<tr>
+<td><code>shield_uptime_seconds</code></td>
+<td>gauge</td>
+<td>Server uptime</td>
+</tr>
+<tr>
+<td><code>shield_defense_invocations_total{defense="..."}</code></td>
+<td>counter</td>
+<td>Per-defense invocation count</td>
+</tr>
+<tr>
+<td><code>shield_defense_blocks_total{defense="..."}</code></td>
+<td>counter</td>
+<td>Per-defense block count</td>
+</tr>
+<tr>
+<td><code>shield_brorl_alpha{technique="..."}</code></td>
+<td>gauge</td>
+<td>BroRL alpha posterior</td>
+</tr>
+<tr>
+<td><code>shield_brorl_beta{technique="..."}</code></td>
+<td>gauge</td>
+<td>BroRL beta posterior</td>
+</tr>
+<tr>
+<td><code>shield_brorl_success_rate{technique="..."}</code></td>
+<td>gauge</td>
+<td>Derived success rate</td>
+</tr>
+<tr>
+<td><code>shield_redteam_probes_total</code></td>
+<td>counter</td>
+<td>Total red team probes run</td>
+</tr>
+<tr>
+<td><code>shield_redteam_bypasses_total</code></td>
+<td>counter</td>
+<td>Total defense bypasses</td>
+</tr>
+<tr>
+<td><code>shield_redteam_bypass_rate{probe="..."}</code></td>
+<td>gauge</td>
+<td>Per-probe bypass rate</td>
+</tr>
+</tbody>
+</table>
+<h3 id="grafana-dashboard">Grafana Dashboard<a class="headerlink" href="#grafana-dashboard" title="Permanent link">&para;</a></h3>
+<p>Import the Prometheus data source and create panels:</p>
+<ol>
+<li><strong>Request Rate</strong>: <code>rate(shield_requests_total[5m])</code></li>
+<li><strong>Block Rate</strong>: <code>rate(shield_blocked_total[5m]) / rate(shield_requests_total[5m])</code></li>
+<li><strong>Defense Effectiveness</strong>: <code>shield_brorl_success_rate</code> per technique</li>
+<li><strong>Red Team Bypass Rate</strong>: <code>shield_redteam_bypass_rate</code> per probe</li>
+</ol>
+<hr />
+<h2 id="authentication-for-dashboard-apis">Authentication for Dashboard APIs<a class="headerlink" href="#authentication-for-dashboard-apis" title="Permanent link">&para;</a></h2>
+<p>All endpoints except <code>/api/v1/health</code> require authentication when <code>SHIELD_API_KEY</code> is set.</p>
+<p>For WebSocket connections, pass the token via the <code>Authorization</code> header (recommended):</p>
+<div class="highlight"><pre><span></span><code>Authorization: Bearer your-api-key
+</code></pre></div>
+<p>Alternatively, pass as a query parameter (not recommended -- query strings are logged by proxies and access logs):</p>
+<div class="highlight"><pre><span></span><code>ws://localhost:8787/api/v1/shield/events/stream?token=your-api-key
+</code></pre></div>
+<hr />
+<h2 id="suggested-polling-intervals">Suggested Polling Intervals<a class="headerlink" href="#suggested-polling-intervals" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Panel Type</th>
+<th>Endpoint</th>
+<th>Interval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Health badge</td>
+<td><code>/api/v1/health</code></td>
+<td>10-30s</td>
+</tr>
+<tr>
+<td>Live attack log</td>
+<td><code>/api/v1/experiments/attack-log</code></td>
+<td>5-15s</td>
+</tr>
+<tr>
+<td>Defense heatmap</td>
+<td><code>/api/v1/experiments/defense-heatmap</code></td>
+<td>60s</td>
+</tr>
+<tr>
+<td>BroRL drift</td>
+<td><code>/api/v1/experiments/brorl-drift</code></td>
+<td>30-60s</td>
+</tr>
+<tr>
+<td>Audit summary</td>
+<td><code>/api/v1/audit/summary</code></td>
+<td>30-60s</td>
+</tr>
+<tr>
+<td>Top attackers</td>
+<td><code>/api/v1/audit/attackers</code></td>
+<td>60s</td>
+</tr>
+<tr>
+<td>Intel actors</td>
+<td><code>/api/v1/intel/actors</code></td>
+<td>60-300s</td>
+</tr>
+<tr>
+<td>Campaigns</td>
+<td><code>/api/v1/intel/campaigns</code></td>
+<td>60-300s</td>
+</tr>
+<tr>
+<td>Real-time events</td>
+<td>WebSocket</td>
+<td>Push (no polling)</td>
+</tr>
+<tr>
+<td>Prometheus</td>
+<td><code>/api/v1/metrics</code></td>
+<td>15s (Prometheus scrape)</td>
+</tr>
+</tbody>
+</table>
+<p>For real-time use cases, prefer the WebSocket stream over polling.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "content.code.copy", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
