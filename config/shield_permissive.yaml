@@ -1,0 +1,22 @@
+# Shield Permissive Profile — Relaxed thresholds, core defenses only
+#
+# Usage:
+#   goop shield serve --config config/presets/shield_permissive.yaml
+#
+# Only heuristic + behavioral defenses active. Crypto, content-analysis,
+# and IOC defenses disabled. Suitable for low-risk internal deployments
+# or development environments.
+
+ranking_backend: auto
+max_prompt_length: 10000
+max_prompt_tokens: 4096
+injection_confidence_threshold: 0.9
+failure_policy: open
+disabled_defenses:
+  - prompt_signing
+  - output_watermark
+  - rag_verifier
+  - canary_token_detector
+  - semantic_filter
+  - obfuscation_detector
+audit_enabled: false

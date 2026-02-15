@@ -1,0 +1,44 @@
+site_name: goop-shield
+site_url: https://kobepaw.github.io/goop-shield-community
+repo_url: https://github.com/kobepaw/goop-shield-community
+repo_name: kobepaw/goop-shield-community
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - content.code.copy
+    - search.suggest
+
+nav:
+  - Home: quickstart.md
+  - Architecture: architecture.md
+  - Defense Pipeline: defense-pipeline.md
+  - Custom Defenses: custom-defenses.md
+  - Adapters: adapters.md
+  - Configuration: configuration.md
+  - API Reference: api-reference.md
+  - MCP Integration: mcp-integration.md
+  - Dashboards: custom-dashboards.md
+  - Editions: editions.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true

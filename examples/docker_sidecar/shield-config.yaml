@@ -1,0 +1,20 @@
+# Shield sidecar configuration
+host: "0.0.0.0"
+port: 8787
+workers: 1
+
+# Defense pipeline
+max_prompt_length: 4000
+injection_confidence_threshold: 0.7
+failure_policy: open
+
+# Telemetry
+telemetry_enabled: true
+telemetry_privacy_mode: true
+
+# Audit
+audit_enabled: true
+audit_db_path: /data/shield_audit.db
+
+# Disable threat intel (no GeoIP DB in container)
+intel_enabled: false

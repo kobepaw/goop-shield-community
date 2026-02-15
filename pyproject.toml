@@ -1,0 +1,96 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "goop-shield-community"
+version = "0.1.0"
+description = "Runtime defense for AI agents — 24 inline defenses, 3 output scanners, red team validation"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.11"
+authors = [
+    { name = "goop-shield contributors" },
+]
+keywords = ["ai-security", "llm-defense", "prompt-injection", "guardrails", "agent-security"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "pydantic>=2.0",
+    "pyyaml>=6.0",
+    "httpx>=0.25.0",
+    "fastapi>=0.100.0",
+]
+
+[project.optional-dependencies]
+server = ["uvicorn[standard]>=0.24.0", "websockets>=12.0"]
+mcp = ["mcp>=1.0.0"]
+cli = ["typer>=0.9.0", "rich>=13.0"]
+dev = [
+    "goop-shield-community[server,cli,mcp]",
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.4.0",
+    "mypy>=1.0",
+]
+docs = ["mkdocs-material>=9.0", "mkdocs-awesome-pages-plugin"]
+security = ["pip-audit>=2.7", "bandit[sarif]>=1.7", "cyclonedx-bom>=4.0"]
+release = ["git-cliff>=2.0"]
+all = ["goop-shield-community[server,cli,mcp]"]
+
+[project.scripts]
+goop-shield = "goop_shield.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/kobepaw/goop-shield-community"
+Repository = "https://github.com/kobepaw/goop-shield-community"
+Issues = "https://github.com/kobepaw/goop-shield-community/issues"
+Documentation = "https://github.com/kobepaw/goop-shield-community/tree/main/docs"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/goop_shield"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "A", "SIM"]
+ignore = [
+    "E501",   # line too long (handled by formatter)
+    "E402",   # module-level import not at top (conditional/lazy imports by design)
+    "B904",   # raise ... from err (existing code pattern)
+    "SIM105", # use contextlib.suppress (style preference)
+    "SIM108", # ternary instead of if/else (readability)
+    "SIM117", # multiple with statements (readability)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"src/goop_shield/adapters/__init__.py" = ["F401"]  # re-exports via __all__
+"tests/*" = ["E741", "B007", "N814", "F821"]  # test code style flexibility + enterprise skipped tests
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+markers = [
+    "enterprise: enterprise feature tests (skip by default)",
+]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.coverage.report]
+fail_under = 80

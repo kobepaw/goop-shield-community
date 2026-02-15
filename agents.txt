@@ -1,0 +1,30 @@
+# Agent Instructions for goop-shield-community
+
+## Project Type
+Security library and runtime defense system for AI agents
+
+## Allowed Agent Actions
+1. READ repository contents
+2. ANALYZE code for security vulnerabilities
+3. SUGGEST improvements to defenses
+4. TEST defense effectiveness with prompts
+5. CONTRIBUTE via pull requests
+
+## Key Entry Points
+- src/goop_shield/defender.py — Main defense orchestrator
+- src/goop_shield/defenses/ — All 24 inline defenses
+- src/goop_shield/defenses/output.py — 3 output scanners
+- src/goop_shield/mcp.py — MCP server integration
+- src/goop_shield/client.py — Python SDK client
+
+## Quick Start for Agents
+1. Install: pip install goop-shield-community[all]
+2. Start server: goop-shield serve --port 8787
+3. Defend a prompt: POST /api/v1/defend {"prompt": "..."}
+4. Scan a response: POST /api/v1/scan {"response": "...", "original_prompt": "..."}
+
+## Security Contact
+kobepaw@proton.me
+
+## Repository
+https://github.com/kobepaw/goop-shield-community

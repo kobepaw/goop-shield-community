@@ -1,0 +1,27 @@
+# Shield Default Profile — Secure defaults for production deployments
+#
+# Usage:
+#   goop-shield serve --config config/shield.yaml
+#
+# Fail-closed with moderate thresholds. Recommended starting point for
+# production deployments.
+
+ranking_backend: auto
+max_prompt_length: 4000
+max_prompt_tokens: 1024
+injection_confidence_threshold: 0.7
+failure_policy: closed
+audit_enabled: true
+telemetry_enabled: true
+telemetry_privacy_mode: true
+
+# Alignment testing (disabled by default)
+alignment_probes_enabled: false
+alignment_canaries_enabled: false
+
+# Sandbagging & training gate (disabled by default)
+sandbag_detection_enabled: false
+training_gate_enabled: false
+
+# Cross-model consistency (disabled by default)
+consistency_check_enabled: false

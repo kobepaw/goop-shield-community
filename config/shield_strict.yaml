@@ -1,0 +1,42 @@
+# Shield Strict Profile — Maximum security, all defenses enabled, tight thresholds
+#
+# Usage:
+#   goop shield serve --config config/presets/shield_strict.yaml
+#
+# All defenses active, low confidence thresholds, closed failure policy.
+# Suitable for high-security deployments where false positives are preferred
+# over missed threats.
+
+ranking_backend: auto
+max_prompt_length: 1000
+max_prompt_tokens: 512
+injection_confidence_threshold: 0.5
+brorl_epsilon: 0.01
+failure_policy: closed
+audit_enabled: true
+use_redteam: true
+redteam_probe_interval_seconds: 300
+
+# Threat intelligence (local MaxMind only — no external API calls)
+intel_enabled: true
+
+# Alignment testing
+deception_enabled: true
+alignment_probes_enabled: true
+alignment_canaries_enabled: true
+canary_injection_rate: 20
+canary_alert_threshold: 0.2
+
+# Sandbagging detection
+sandbag_detection_enabled: true
+sandbag_sigma_threshold: 1.5
+sandbag_min_samples: 20
+
+# Training data gate
+training_gate_enabled: true
+training_trust_threshold: 0.8
+
+# Cross-model consistency
+consistency_check_enabled: true
+consistency_check_rate: 0.1
+consistency_divergence_threshold: 0.25

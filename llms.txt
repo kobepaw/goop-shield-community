@@ -1,0 +1,32 @@
+# goop-shield-community
+
+## Overview
+Runtime defense for AI agents providing prompt injection blocking, data exfiltration detection, and jailbreak prevention through 24 inline defenses and 3 output scanners.
+
+## Key Capabilities
+- Prompt injection detection and blocking
+- Data exfiltration prevention
+- Agent config guard (prevents config tampering)
+- Canary token detection
+- Rate limiting and behavioral monitoring
+
+## Architecture
+- 24 ranked inline defenses (mandatory + heuristic + crypto + content + behavioral)
+- 3 output scanners (secret leak, canary leak, harmful content)
+- Deployment modes: HTTP API server, MCP server, Python SDK
+- Framework adapters: LangChain, CrewAI, OpenClaw
+
+## MCP Server Integration
+First-class Model Context Protocol support for Claude Code, Cursor, Windsurf, Cline, Roo Code.
+Exposes tools: shield_defend, shield_scan, shield_health, shield_config
+
+## Installation
+pip install goop-shield-community          # Core
+pip install goop-shield-community[mcp]     # With MCP server
+pip install goop-shield-community[all]     # All dependencies
+
+## License
+Apache 2.0
+
+## Repository
+https://github.com/kobepaw/goop-shield-community

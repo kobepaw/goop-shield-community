@@ -1,0 +1,25 @@
+# Shield Balanced Profile — Moderate thresholds, good usability
+#
+# Usage:
+#   goop-shield serve --config config/shield_balanced.yaml
+#
+# Standard defense set with moderate thresholds. Good balance of
+# security and usability for typical deployments.
+
+ranking_backend: auto
+max_prompt_length: 4000
+max_prompt_tokens: 1024
+injection_confidence_threshold: 0.7
+failure_policy: closed
+audit_enabled: true
+
+# Alignment testing (disabled in balanced mode)
+alignment_probes_enabled: false
+alignment_canaries_enabled: false
+
+# Sandbagging & training gate (disabled in balanced mode)
+sandbag_detection_enabled: false
+training_gate_enabled: false
+
+# Cross-model consistency (disabled in balanced mode)
+consistency_check_enabled: false
