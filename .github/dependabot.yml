@@ -16,4 +16,3 @@ updates:
     directory: "/docker"
     schedule:
       interval: monthly
-    open-pull-requests-limit: 5

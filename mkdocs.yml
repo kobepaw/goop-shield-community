@@ -23,16 +23,11 @@ theme:
     - search.suggest
 
 nav:
-  - Home: quickstart.md
-  - Architecture: architecture.md
-  - Defense Pipeline: defense-pipeline.md
-  - Custom Defenses: custom-defenses.md
-  - Adapters: adapters.md
-  - Configuration: configuration.md
-  - API Reference: api-reference.md
-  - MCP Integration: mcp-integration.md
-  - Dashboards: custom-dashboards.md
+  - Home: index.md
+  - Getting Started: getting-started.md
   - Editions: editions.md
+  - API Reference: api.md
+  - Contributing: contributing.md
 
 markdown_extensions:
   - admonition

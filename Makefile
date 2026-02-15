@@ -36,7 +36,7 @@ serve:  ## Start the Shield dev server with auto-reload
 	uvicorn goop_shield.app:app --reload
 
 load-test:  ## Run load tests against a running Shield instance
-	locust -f tests/load/locustfile.py --headless -u 50 -r 10 --run-time 60s --host ${HOST:-http://127.0.0.1:8787}
+	locust -f tests/load/locustfile.py --headless -u 50 -r 10 --run-time 60s --host http://127.0.0.1:8787
 
 help:  ## Show this help message
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}'

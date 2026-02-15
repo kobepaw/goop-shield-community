@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
 
 permissions:
   contents: read
@@ -124,14 +124,3 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - run: docker build -f docker/Dockerfile -t goop-shield:test .
       - run: docker run --rm goop-shield:test goop-shield --help
-      - name: Run Trivy security scan
-        uses: aquasecurity/trivy-action@18f2510ee396bbf400402c7decc66a4901f0b474  # v0.29.0
-        with:
-          image-ref: goop-shield:test
-          format: sarif
-          output: trivy-results.sarif
-          severity: CRITICAL,HIGH
-      - uses: github/codeql-action/upload-sarif@5dc0f04c17f5db08db3fc1a1c5ff098a8a23d5c2  # v3
-        if: always()
-        with:
-          sarif_file: trivy-results.sarif

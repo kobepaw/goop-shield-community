@@ -20,13 +20,6 @@ spec:
         prometheus.io/path: "/api/v1/metrics"
     spec:
       serviceAccountName: goop-shield
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        seccompProfile:
-          type: RuntimeDefault
       containers:
         - name: goop-shield
           image: ghcr.io/kobepaw/goop-shield-community:latest
@@ -34,35 +27,13 @@ spec:
             - name: http
               containerPort: 8787
               protocol: TCP
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
-            capabilities:
-              drop:
-                - ALL
           env:
             - name: SHIELD_CONFIG
               value: /config/shield.yaml
-            # REQUIRED: Create a Secret named goop-shield-api-key with key 'api-key'
-            # kubectl create secret generic goop-shield-api-key --namespace goop-shield --from-literal=api-key=YOUR-SECRET-KEY
-            - name: SHIELD_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: goop-shield-api-key
-                  key: api-key
-          securityContext:
-            runAsNonRoot: true
-            readOnlyRootFilesystem: true
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop: ["ALL"]
           volumeMounts:
             - name: config
               mountPath: /config
               readOnly: true
-            - name: tmp
-              mountPath: /tmp
           resources:
             requests:
               cpu: 250m
@@ -90,5 +61,3 @@ spec:
         - name: config
           configMap:
             name: goop-shield-config
-        - name: tmp
-          emptyDir: {}

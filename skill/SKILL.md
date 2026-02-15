@@ -9,7 +9,7 @@ license: Apache-2.0
 compatibility: Requires Python 3.11+ and pip/pipx/uvx for installation
 argument-hint: "[setup|config|status] [strict|balanced|permissive]"
 metadata:
-  author: kobepaw
+  author: brianwtaylor
   version: "0.1.0"
 ---
 
@@ -21,10 +21,11 @@ Runtime defense pipeline for AI agents. Intercepts prompts before they reach an 
 
 ```
 Run: pip install goop-shield[mcp]
-Run: goop-shield serve --port 8787
+Run: scripts/setup.sh balanced
+Run: python scripts/check.py
 ```
 
-This installs goop-shield with MCP support and starts the server with default settings.
+The setup script configures your MCP server entry and creates a default `shield.yaml`. The check script verifies the server starts and all defenses load.
 
 ## Core Workflow: Defending Prompts
 
@@ -191,7 +192,7 @@ Pass metadata in the `context` dict of `shield_defend`. Keys like `signing_key`,
   "prompt": "...",
   "session_id": "abc-123",
   "context": {
-    "signing_key": "<YOUR-SECRET-KEY-HERE>"
+    "signing_key": "my-hmac-key"
   }
 }
 ```
@@ -225,6 +226,6 @@ Example `.mcp.json` entry:
 
 ## References
 
-- [Defense Pipeline](docs/defense-pipeline.md) -- All 24 inline defenses and 3 output scanners
-- [Configuration](docs/configuration.md) -- Every config field with types and defaults
-- [API Reference](docs/api-reference.md) -- Full endpoint documentation
+- [Defense catalog](references/defenses.md) -- All 24 inline defenses and 3 output scanners
+- [Configuration reference](references/configuration.md) -- Every config field with types and defaults
+- [API reference](references/api-reference.md) -- MCP tool schemas and response formats
