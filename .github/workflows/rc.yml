@@ -39,6 +39,6 @@ jobs:
           python-version: "3.12"
       - run: pip install build
       - run: python -m build
-      - uses: pypa/gh-action-pypi-publish@76f52bc884231f62b54a0f576ce6b3764f2bdf2a # release/v1
+      - uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e  # v1.13.0
         with:
           repository-url: https://test.pypi.org/legacy/
