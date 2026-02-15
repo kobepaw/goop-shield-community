@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 Brian Taylor
+# Copyright 2026 goop-shield contributors
 """
 Session Tracker — Sliding-window session state for multi-turn attack detection.
 

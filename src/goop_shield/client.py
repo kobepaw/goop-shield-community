@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 Brian Taylor
+# Copyright 2026 goop-shield contributors
 """
 Shield Client SDK — Async HTTP Client for Shield REST API
 
