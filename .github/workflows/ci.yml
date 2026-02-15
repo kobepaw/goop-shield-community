@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [namster]
   pull_request:
-    branches: [main]
+    branches: [namster]
 
 permissions:
   contents: read
