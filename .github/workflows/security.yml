@@ -47,7 +47,7 @@ jobs:
       - name: Run Bandit
         run: bandit -r src/goop_shield/ -f sarif -o bandit.sarif --severity-level medium --exit-zero
       - name: Upload SARIF
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         if: always()
         with:
           sarif_file: bandit.sarif
