@@ -1,11 +1,11 @@
-FROM python:3.12-slim AS builder
+FROM python:3.14-slim AS builder
 
 WORKDIR /build
 COPY pyproject.toml README.md LICENSE ./
 COPY src/ src/
 RUN pip install --no-cache-dir --prefix=/install ".[server,cli]"
 
-FROM python:3.12-slim
+FROM python:3.14-slim
 
 LABEL org.opencontainers.image.source="https://github.com/kobepaw/goop-shield-community" \
       org.opencontainers.image.description="Runtime defense for AI agents" \
