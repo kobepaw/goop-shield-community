@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 Brian Taylor
+# Copyright 2026 goop-shield contributors
 """
 Sub-Agent Guard — Protects against agent-to-agent attacks and privilege escalation.
 
