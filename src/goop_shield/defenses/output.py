@@ -21,6 +21,8 @@ from typing import TYPE_CHECKING
 from goop_shield.defenses.base import InlineVerdict, OutputContext, OutputScanner
 from goop_shield.defenses.heuristic import (
     _detect_encoded_payloads,
+)
+from goop_shield.defenses.heuristic import (
     normalize_text as _normalize_text,
 )
 
