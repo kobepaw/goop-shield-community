@@ -59,8 +59,7 @@ class SandbagDetector:
         min_samples: int = 30,
     ) -> None:
         raise ImportError(
-            "SandbagDetector requires goop-ai Enterprise. "
-            "Not available in the community edition."
+            "SandbagDetector requires goop-ai Enterprise. Not available in the community edition."
         )
 
     def record_task_outcome(self, category: str, succeeded: bool) -> None:

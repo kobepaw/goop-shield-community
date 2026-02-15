@@ -31,8 +31,7 @@ class ValidationBridge:
         min_confidence: float = 0.8,
     ) -> None:
         raise ImportError(
-            "ValidationBridge requires goop-ai Enterprise. "
-            "Not available in the community edition."
+            "ValidationBridge requires goop-ai Enterprise. Not available in the community edition."
         )
 
     def maybe_record(self, **kwargs) -> bool:

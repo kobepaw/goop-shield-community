@@ -276,7 +276,9 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
             from goop_shield.red.scheduler import ProbeScheduler
 
             runner = RedTeamRunner(defender, config)
-            scheduler = ProbeScheduler(runner, interval_seconds=config.redteam_probe_interval_seconds)
+            scheduler = ProbeScheduler(
+                runner, interval_seconds=config.redteam_probe_interval_seconds
+            )
             await scheduler.start()
             app.state.redteam_runner = runner
             app.state.redteam_scheduler = scheduler
@@ -776,7 +778,9 @@ async def metrics(request: Request) -> str:
     lines.append("# TYPE shield_fusion_would_block_total counter")
     lines.append(f"shield_fusion_would_block_total {defender.fusion_would_block}")
 
-    lines.append("# HELP shield_fusion_session_adjusted_total Fusion evaluations adjusted by session context.")
+    lines.append(
+        "# HELP shield_fusion_session_adjusted_total Fusion evaluations adjusted by session context."
+    )
     lines.append("# TYPE shield_fusion_session_adjusted_total counter")
     lines.append(f"shield_fusion_session_adjusted_total {defender.fusion_session_adjusted}")
 

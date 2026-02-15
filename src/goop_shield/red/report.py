@@ -16,6 +16,4 @@ class VulnerabilityReport:
     """
 
     def __init__(self, *args, **kwargs) -> None:
-        raise ImportError(
-            "Vulnerability reporting requires goop-ai Enterprise."
-        )
+        raise ImportError("Vulnerability reporting requires goop-ai Enterprise.")

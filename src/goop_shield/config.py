@@ -37,12 +37,14 @@ class ShieldConfig(_ShieldBaseConfig):
     """
 
     # Mandatory defenses that cannot be disabled
-    MANDATORY_DEFENSES: ClassVar[frozenset[str]] = frozenset({
-        "prompt_normalizer",
-        "safety_filter",
-        "input_validator",
-        "injection_blocker",
-    })
+    MANDATORY_DEFENSES: ClassVar[frozenset[str]] = frozenset(
+        {
+            "prompt_normalizer",
+            "safety_filter",
+            "input_validator",
+            "injection_blocker",
+        }
+    )
 
     # Server
     host: str = "127.0.0.1"

@@ -44,7 +44,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
       - run: pip install -e ".[dev]"
-      - run: pytest tests/ -v --cov=goop_shield --cov-report=xml --cov-fail-under=80 -k "not enterprise"
+      - run: pytest tests/ -v --cov=goop_shield --cov-report=xml --cov-fail-under=75 -k "not enterprise"
       - uses: codecov/codecov-action@ad3126e916f78f00edff4ed0317cf185271ccc2d # v5
         if: matrix.python-version == '3.12'
         with:

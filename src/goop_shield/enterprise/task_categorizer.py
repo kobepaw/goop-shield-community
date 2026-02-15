@@ -18,8 +18,7 @@ class TaskCategorizer:
 
     def __init__(self) -> None:
         raise ImportError(
-            "TaskCategorizer requires goop-ai Enterprise. "
-            "Not available in the community edition."
+            "TaskCategorizer requires goop-ai Enterprise. Not available in the community edition."
         )
 
     def categorize(self, prompt: str, context: dict | None = None) -> str:
@@ -33,6 +32,5 @@ class TaskCategorizer:
             Category string (e.g. "safety_research", "general").
         """
         raise ImportError(
-            "TaskCategorizer requires goop-ai Enterprise. "
-            "Not available in the community edition."
+            "TaskCategorizer requires goop-ai Enterprise. Not available in the community edition."
         )

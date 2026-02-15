@@ -683,7 +683,10 @@ class TestSignalFusionSessionAware:
 
 @pytest.mark.skipif(
     len(__import__("goop_shield.red.probes", fromlist=["ProbeRegistry"]).ProbeRegistry()) == 0
-    and not hasattr(__import__("goop_shield.red.probes", fromlist=["FusionUrgencyReconProbe"]), "FusionUrgencyReconProbe"),
+    and not hasattr(
+        __import__("goop_shield.red.probes", fromlist=["FusionUrgencyReconProbe"]),
+        "FusionUrgencyReconProbe",
+    ),
     reason="Requires goop-ai Enterprise",
 )
 class TestFusionProbesEndToEnd:

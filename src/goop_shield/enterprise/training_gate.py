@@ -48,8 +48,7 @@ class TrainingDataGate:
         quarantine_store: Any | None = None,
     ) -> None:
         raise ImportError(
-            "TrainingDataGate requires goop-ai Enterprise. "
-            "Not available in the community edition."
+            "TrainingDataGate requires goop-ai Enterprise. Not available in the community edition."
         )
 
     def validate(

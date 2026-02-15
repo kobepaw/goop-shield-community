@@ -55,8 +55,7 @@ class SafetyClassifier:
 
     def __init__(self, check_rate: float = 0.05) -> None:
         raise ImportError(
-            "SafetyClassifier requires goop-ai Enterprise. "
-            "Not available in the community edition."
+            "SafetyClassifier requires goop-ai Enterprise. Not available in the community edition."
         )
 
     def is_safety_sensitive(self, prompt: str) -> bool:

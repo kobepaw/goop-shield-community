@@ -7,7 +7,9 @@ from unittest.mock import MagicMock
 
 import pytest
 
-pytestmark = pytest.mark.skipif(True, reason="Enterprise features not available in community edition")
+pytestmark = pytest.mark.skipif(
+    True, reason="Enterprise features not available in community edition"
+)
 
 from goop_shield.config import ShieldConfig
 from goop_shield.defender import Defender

@@ -17,7 +17,9 @@ import pytest
 
 from goop_shield.enterprise.brorl_ranking import BroRLRankingBackend
 
-pytestmark = pytest.mark.skipif(True, reason="Enterprise features not available in community edition")
+pytestmark = pytest.mark.skipif(
+    True, reason="Enterprise features not available in community edition"
+)
 from goop_shield.ranking.base import RankingBackend
 
 # ============================================================================
