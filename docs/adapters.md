@@ -17,6 +17,34 @@ This guide shows you how to integrate Shield into your agent framework with mini
 
 **All adapters require a running Shield server.** Start one with:
 
+### Which Adapter Should I Use?
+
+```
+                      Which adapter?
+                           │
+                  ┌────────┴────────┐
+                  │  Using a known  │
+                  │   framework?    │
+                  └───┬─────────┬───┘
+                    Yes         No
+                      │          │
+              ┌───────┴──┐   ┌──▼───────────────┐
+              │  Which?  │   │ GenericHTTPAdapter │
+              └──┬──┬──┬─┘   └──────────────────┘
+                 │  │  │
+      ┌──────────┘  │  └──────────┐
+      │             │             │
+┌─────▼─────┐ ┌────▼────┐ ┌──────▼─────┐
+│ LangChain │ │  CrewAI  │ │  OpenClaw  │
+│  Adapter  │ │ Adapter  │ │  Adapter   │
+└─────┬─────┘ └────┬────┘ └──────┬─────┘
+      │             │             │
+      ▼             ▼             ▼
+  Callback     wrap_tool     from_hook_event
+  Handler      Execution    from_jsonrpc_message
+```
+
+
 ```bash
 goop-shield serve --port 8787
 ```

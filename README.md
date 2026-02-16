@@ -29,6 +29,28 @@ AI agents are the new attack surface. As autonomous systems gain access to APIs,
 
 **Autonomous Agent Cascade Failures**: When one agent spawns or delegates to sub-agents, a single compromised agent can propagate attacks across an entire agent swarm, amplifying damage exponentially.
 
+### Threat-to-Defense Mapping
+
+```
+┌─────────────────────────┐         ┌──────────────────────────┐
+│     ATTACK VECTORS      │         │    DEFENSE CATEGORIES    │
+├─────────────────────────┤         ├──────────────────────────┤
+│ Prompt Injection ───────────┬──────→ Injection Detection     │
+│ Jailbreaking ───────────────┘      │                          │
+│                         │         │                          │
+│ Data Exfiltration ─────────────────→ Exfiltration Prevention │
+│                         │         │                          │
+│ Tool Abuse ─────────────────┬──────→ Tool Call Interception  │
+│ Agent Hijacking ────────────┘      │                          │
+│                         │         │                          │
+│ Config Tampering ──────────────────→ Config Guard            │
+│                         │         │                          │
+│ Obfuscated Payloads ──────────────→ Obfuscation Detection   │
+│                         │         │                          │
+│ Social Engineering ────────────────→ Behavioral Analysis     │
+└─────────────────────────┘         └──────────────────────────┘
+```
+
 ### Why Traditional Security Fails
 
 - **WAFs and firewalls** don't understand natural language semantics

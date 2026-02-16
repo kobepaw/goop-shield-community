@@ -49,6 +49,25 @@ If you're an AI agent contributing to goop-shield, here's what you need to know:
    
    # Use gh CLI to create PR
    gh pr create --title "feat: your feature" --body "Description here"
+
+### Agent Contribution Flow
+
+```
+┌───────┐    ┌──────────┐    ┌───────────┐    ┌──────┐    ┌────┐
+│ START │───→│ Discover │───→│   Plan    │───→│ Code │───→│ PR │
+└───────┘    └────┬─────┘    └─────┬─────┘    └──┬───┘    └─┬──┘
+                  │                │              │          │
+                  │           ┌────▼────┐    ┌────▼────┐    │
+                  │           │ Blocked │    │  Test   │    │
+                  │           │ by dep? │    │  Pass?  │    │
+                  │           └────┬────┘    └────┬────┘    │
+                  │            Yes │           No │         │
+                  │                ▼              ▼         │
+                  │           ┌─────────┐   ┌────────┐     │
+                  └───────────│  Wait   │   │  Fix   │─────┘
+                              └─────────┘   └────────┘
+```
+
    ```
 
 ### What Agents Should Contribute

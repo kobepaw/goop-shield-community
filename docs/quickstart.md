@@ -28,6 +28,45 @@ pip install goop-shield[all]
 
 ## Start the Server
 
+### How a Prompt Flows Through Shield
+
+```
+                        ┌─────────────┐
+                        │  Prompt In  │
+                        └──────┬──────┘
+                               │
+                        ┌──────▼──────┐
+                   ┌────│    Auth     │────┐
+                   │    └─────────────┘    │
+                 Valid                  Invalid
+                   │                       │
+            ┌──────▼──────┐         ┌──────▼──────┐
+            │  Normalize  │         │  401 Reject │
+            └──────┬──────┘         └─────────────┘
+                   │
+            ┌──────▼──────┐
+            │   Safety    │── Blocked ──→ {allow: false}
+            │   Filter    │
+            └──────┬──────┘
+                 Pass
+            ┌──────▼──────┐
+            │   Config    │── Blocked ──→ {allow: false}
+            │   Guard     │
+            └──────┬──────┘
+                 Pass
+            ┌──────▼──────┐
+            │   Ranked    │── Blocked ──→ {allow: false}
+            │  Defenses   │
+            │  (21 more)  │
+            └──────┬──────┘
+                 Pass
+            ┌──────▼──────┐
+            │   Allow     │
+            │ + Telemetry │
+            └─────────────┘
+```
+
+
 ```bash
 # Default: localhost:8787
 goop-shield serve
@@ -406,7 +445,7 @@ async with ShieldClient("http://localhost:8787", api_key="your-secret-key") as c
 }
 ```
 
-**Note:** The `/health` endpoint is always accessible without authentication. All other endpoints require a valid API key when `SHIELD_API_KEY` is set.
+**Note:** The `/health` endpoint is always accessible without authentication. All other endpoints — including `/metrics` — require a valid API key when `SHIELD_API_KEY` is set.
 
 ---
 
@@ -420,7 +459,7 @@ host: "0.0.0.0"
 port: 8787
 max_prompt_length: 4000
 injection_confidence_threshold: 0.7
-failure_policy: open  # open = allow on error, closed = block on error
+failure_policy: closed  # closed = block on error, open = allow on error
 telemetry_enabled: true
 audit_enabled: true
 

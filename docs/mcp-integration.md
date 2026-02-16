@@ -34,6 +34,37 @@ goop-shield's MCP server exposes four tools:
 
 ## Quick Start (Any Agent)
 
+### Request Lifecycle
+
+When an agent calls a Shield MCP tool, here's the full request flow:
+
+```
+  AI Agent            MCP Server           Shield API         Defense Pipeline
+     │                    │                    │                      │
+     │  shield_defend     │                    │                      │
+     │───────────────────→│                    │                      │
+     │                    │  POST /defend      │                      │
+     │                    │───────────────────→│                      │
+     │                    │                    │  Run Mandatory       │
+     │                    │                    │─────────────────────→│
+     │                    │                    │  PromptNormalizer    │
+     │                    │                    │  SafetyFilter        │
+     │                    │                    │  AgentConfigGuard    │
+     │                    │                    │                      │
+     │                    │                    │  Run Ranked          │
+     │                    │                    │─────────────────────→│
+     │                    │                    │  InjectionBlocker    │
+     │                    │                    │  ExfilDetector       │
+     │                    │                    │  ... 18 more         │
+     │                    │                    │                      │
+     │                    │                    │◀─────────────────────│
+     │                    │  ShieldResult      │                      │
+     │                    │◀───────────────────│                      │
+     │  {allow, filtered} │                    │                      │
+     │◀───────────────────│                    │                      │
+```
+
+
 ### 1. Install Shield with MCP support
 
 ```bash
@@ -354,7 +385,7 @@ View the active Shield configuration to understand which defenses are enabled.
   "port": 8787,
   "max_prompt_length": 4000,
   "injection_confidence_threshold": 0.7,
-  "failure_policy": "open",
+  "failure_policy": "closed",
   "enabled_defenses": null,
   "disabled_defenses": ["rate_limiter"],
   "active_defenses": [
