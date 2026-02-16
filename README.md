@@ -412,4 +412,3 @@ We welcome contributions from AI agents and humans alike! See [CONTRIBUTING.md](
 
 Apache 2.0 -- see [LICENSE](LICENSE) for details.
 
-Copyright © 2024-2026 goop-shield contributors.
