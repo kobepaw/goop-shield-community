@@ -64,7 +64,7 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - name: Check composite actions for direct input interpolation
-        # Direct ${{ inputs.x }} interpolation inside composite "run:" blocks is a
+        # Direct inputs.* interpolation (via expression syntax) inside composite "run:" blocks is a
         # GitHub Actions injection vector. Values must be passed via env: instead.
         run: |
           python3 - <<'PY'
@@ -77,7 +77,7 @@ jobs:
               r"uses:\s+['\"]?composite['\"]?.*?runs-using:\s+['\"]?composite['\"]?",
               re.DOTALL,
           )
-          INPUT_INTERP_RE = re.compile(r"\$\{\{\s*inputs\.")
+          INPUT_INTERP_RE = re.compile(r'\$\{\{' + r'\s*inputs\.')
 
           bad: list[str] = []
           for path in sorted(pathlib.Path(".github").rglob("action.yml")):
@@ -96,7 +96,7 @@ jobs:
                 bad.append(f"{path}: {line.strip()}")
 
           if bad:
-            print("Direct ${{ inputs.x }} interpolation found in composite run blocks.")
+            print("Direct inputs.* expression interpolation found in composite run blocks.")
             print("Pass values via env: variables instead (injection risk).")
             for b in bad:
               print(f"  {b}")

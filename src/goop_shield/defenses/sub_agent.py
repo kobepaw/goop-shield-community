@@ -328,10 +328,7 @@ class SubAgentGuard(InlineDefense):
             all_patterns = all_patterns + _OPENCLAW_PATTERNS
             # Event-handler XSS patterns only activate for external/untrusted
             # content to avoid false positives in coding conversations.
-            is_external = (
-                uc.get("has_external_content")
-                or uc.get("trust_level") == "untrusted"
-            )
+            is_external = uc.get("has_external_content") or uc.get("trust_level") == "untrusted"
             if is_external:
                 all_patterns = all_patterns + _OPENCLAW_EXTERNAL_PATTERNS
 

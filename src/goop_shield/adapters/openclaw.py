@@ -56,9 +56,7 @@ class OpenClawAdapter(BaseShieldAdapter):
         # Allowed WebSocket origins for gateway URL validation (CVE-2026-25253).
         # When None, origin validation is skipped (backwards-compat).
         self._allowed_origins = (
-            {self._normalize_origin(o) for o in allowed_origins}
-            if allowed_origins
-            else None
+            {self._normalize_origin(o) for o in allowed_origins} if allowed_origins else None
         )
         self._max_agent_depth = max_agent_depth
 

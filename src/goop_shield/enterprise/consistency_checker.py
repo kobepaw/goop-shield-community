@@ -17,9 +17,10 @@ Requires goop-ai Enterprise. Not available in community edition.
 
 from __future__ import annotations
 
-from typing import Any, Callable
 import time
+from collections.abc import Callable
 from dataclasses import dataclass, field
+from typing import Any
 
 
 @dataclass

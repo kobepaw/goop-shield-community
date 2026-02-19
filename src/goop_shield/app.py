@@ -679,7 +679,6 @@ async def redteam_results() -> RedTeamReport | JSONResponse:
     return runner.latest_report
 
 
-
 @app.get("/api/v1/brorl/state")
 async def brorl_state() -> dict[str, Any]:
     """Export ranking backend weights (alpha/beta posteriors for BroRL)."""
