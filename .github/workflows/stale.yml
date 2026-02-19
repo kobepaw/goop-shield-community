@@ -1,0 +1,51 @@
+name: Stale
+
+on:
+  schedule:
+    - cron: "17 3 * * *"  # 3:17 AM UTC daily
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  stale:
+    permissions:
+      issues: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mark stale issues and pull requests
+        uses: actions/stale@5bef64f19d7facfed25e7b7b909aeb12a36ac34b # v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          days-before-issue-stale: 14
+          days-before-issue-close: 7
+          days-before-pr-stale: 10
+          days-before-pr-close: 5
+          stale-issue-label: stale
+          stale-pr-label: stale
+          exempt-issue-labels: enhancement,pinned,security,no-stale
+          exempt-pr-labels: no-stale
+          operations-per-run: 5000
+          exempt-all-assignees: true
+          remove-stale-when-updated: true
+          stale-issue-message: |
+            This issue has been automatically marked as stale due to inactivity.
+            Please add an update or it will be closed in 7 days.
+
+            If this is a security issue, please use our private disclosure process instead:
+            open a GitHub Security Advisory or email the address in SECURITY.md.
+          stale-pr-message: |
+            This pull request has been automatically marked as stale due to inactivity.
+            Please add an update or it will be closed in 5 days.
+
+            If you'd like to revive a high-quality PR that was auto-closed, open a
+            GitHub Discussion or leave a comment explaining the motivation — a maintainer
+            can reopen it.
+          close-issue-message: |
+            Closing due to inactivity. If this is still an issue on the latest release,
+            please open a new issue with fresh reproduction steps.
+          close-issue-reason: not_planned
+          close-pr-message: |
+            Closing due to inactivity. If you'd like to revive this PR, please rebase it
+            onto the latest master and leave a comment — a maintainer can reopen it.

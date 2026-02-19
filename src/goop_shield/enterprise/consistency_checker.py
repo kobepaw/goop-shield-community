@@ -17,6 +17,7 @@ Requires goop-ai Enterprise. Not available in community edition.
 
 from __future__ import annotations
 
+from typing import Any, Callable
 import time
 from dataclasses import dataclass, field
 
@@ -84,7 +85,7 @@ class ConsistencyChecker:
         divergence_threshold: float = 0.3,
         embedding_engine: object | None = None,
         timeout_seconds: float = 30.0,
-        provider_factory: callable | None = None,
+        provider_factory: Callable[..., Any] | None = None,
     ) -> None:
         raise ImportError(
             "ConsistencyChecker requires goop-ai Enterprise. "
