@@ -245,12 +245,14 @@ class TestOpenClawAdapterSubAgentContext:
         assert ctx == {}
 
     def test_full_event_all_fields(self):
-        ctx = OpenClawAdapter._extract_agent_context({
-            "session_id": "s1",
-            "parent_session_id": "p1",
-            "agent_depth": 2,
-            "task_content": "analyze data",
-        })
+        ctx = OpenClawAdapter._extract_agent_context(
+            {
+                "session_id": "s1",
+                "parent_session_id": "p1",
+                "agent_depth": 2,
+                "task_content": "analyze data",
+            }
+        )
         assert ctx["session_id"] == "s1"
         assert ctx["parent_agent_id"] == "p1"
         assert ctx["sub_agent"] is True
@@ -258,10 +260,12 @@ class TestOpenClawAdapterSubAgentContext:
         assert ctx["task_content"] == "analyze data"
 
     def test_snake_case_takes_precedence_over_camel_case_for_session_id(self):
-        ctx = OpenClawAdapter._extract_agent_context({
-            "session_id": "snake",
-            "sessionId": "camel",
-        })
+        ctx = OpenClawAdapter._extract_agent_context(
+            {
+                "session_id": "snake",
+                "sessionId": "camel",
+            }
+        )
         assert ctx["session_id"] == "snake"
 
 
@@ -360,19 +364,13 @@ class TestOpenClawExternalContentMarkers:
     """Tests for external content marker detection."""
 
     def test_has_external_markers_detects_marker(self):
-        assert OpenClawAdapter._has_external_markers(
-            "<<< EXTERNAL UNTRUSTED CONTENT >>>"
-        )
+        assert OpenClawAdapter._has_external_markers("<<< EXTERNAL UNTRUSTED CONTENT >>>")
 
     def test_has_external_markers_detects_underscore_variant(self):
-        assert OpenClawAdapter._has_external_markers(
-            "<<<EXTERNAL_UNTRUSTED_CONTENT>>>"
-        )
+        assert OpenClawAdapter._has_external_markers("<<<EXTERNAL_UNTRUSTED_CONTENT>>>")
 
     def test_has_external_markers_case_insensitive(self):
-        assert OpenClawAdapter._has_external_markers(
-            "<<<external_untrusted_content>>>"
-        )
+        assert OpenClawAdapter._has_external_markers("<<<external_untrusted_content>>>")
 
     def test_has_external_markers_returns_false_for_clean_text(self):
         assert not OpenClawAdapter._has_external_markers("Hello world")
@@ -433,10 +431,12 @@ class TestOpenClawLlmHooks:
     def test_from_llm_input_event_sends_concatenated_prompt(self, mock_httpx):
         mock_client = _allow_mock_httpx(mock_httpx)
         adapter = OpenClawAdapter()
-        adapter.from_llm_input_event({
-            "prompt": "user question",
-            "system_prompt": "You are helpful.",
-        })
+        adapter.from_llm_input_event(
+            {
+                "prompt": "user question",
+                "system_prompt": "You are helpful.",
+            }
+        )
         call_json = mock_client.post.call_args[1]["json"]
         assert call_json["prompt"] == "You are helpful.\nuser question"
 
@@ -462,12 +462,14 @@ class TestOpenClawLlmHooks:
     def test_from_llm_input_event_propagates_agent_context(self, mock_httpx):
         mock_client = _allow_mock_httpx(mock_httpx)
         adapter = OpenClawAdapter()
-        adapter.from_llm_input_event({
-            "prompt": "question",
-            "session_id": "sess-1",
-            "parent_session_id": "parent-1",
-            "agent_depth": 2,
-        })
+        adapter.from_llm_input_event(
+            {
+                "prompt": "question",
+                "session_id": "sess-1",
+                "parent_session_id": "parent-1",
+                "agent_depth": 2,
+            }
+        )
         call_json = mock_client.post.call_args[1]["json"]
         ctx = call_json["context"]
         assert ctx["hook"] == "llm_input"
@@ -480,9 +482,11 @@ class TestOpenClawLlmHooks:
     def test_from_llm_input_event_detects_external_markers(self, mock_httpx):
         mock_client = _allow_mock_httpx(mock_httpx)
         adapter = OpenClawAdapter()
-        adapter.from_llm_input_event({
-            "prompt": "<<<EXTERNAL_UNTRUSTED_CONTENT>>> payload",
-        })
+        adapter.from_llm_input_event(
+            {
+                "prompt": "<<<EXTERNAL_UNTRUSTED_CONTENT>>> payload",
+            }
+        )
         call_json = mock_client.post.call_args[1]["json"]
         assert call_json["context"]["has_external_content"] is True
 
@@ -490,10 +494,12 @@ class TestOpenClawLlmHooks:
     def test_from_llm_output_event_scans_response(self, mock_httpx):
         mock_client = _allow_mock_httpx(mock_httpx)
         adapter = OpenClawAdapter()
-        result = adapter.from_llm_output_event({
-            "response": "Here is the answer.",
-            "original_prompt": "What is 2+2?",
-        })
+        result = adapter.from_llm_output_event(
+            {
+                "response": "Here is the answer.",
+                "original_prompt": "What is 2+2?",
+            }
+        )
         assert result.safe is True
         mock_client.post.assert_called_once()
 
@@ -518,20 +524,24 @@ class TestOpenClawSubagentSpawn:
 
     def test_intercept_subagent_spawn_blocks_when_depth_exceeds_max(self):
         adapter = OpenClawAdapter(max_agent_depth=3)
-        result = adapter.intercept_subagent_spawn({
-            "agent_depth": 4,
-            "parent_session_id": "p1",
-            "task_content": "do something",
-        })
+        result = adapter.intercept_subagent_spawn(
+            {
+                "agent_depth": 4,
+                "parent_session_id": "p1",
+                "task_content": "do something",
+            }
+        )
         assert result.allowed is False
         assert result.blocked_by == "openclaw_depth_limit"
 
     def test_intercept_subagent_spawn_blocks_at_default_max_depth(self):
         adapter = OpenClawAdapter()
-        result = adapter.intercept_subagent_spawn({
-            "agent_depth": 6,
-            "parent_session_id": "p1",
-        })
+        result = adapter.intercept_subagent_spawn(
+            {
+                "agent_depth": 6,
+                "parent_session_id": "p1",
+            }
+        )
         assert result.allowed is False
         assert result.blocked_by == "openclaw_depth_limit"
 
@@ -539,22 +549,26 @@ class TestOpenClawSubagentSpawn:
     def test_intercept_subagent_spawn_allows_at_exact_max_depth(self, mock_httpx):
         _allow_mock_httpx(mock_httpx)
         adapter = OpenClawAdapter(max_agent_depth=3)
-        result = adapter.intercept_subagent_spawn({
-            "agent_depth": 3,
-            "parent_session_id": "p1",
-            "task_content": "summarize",
-        })
+        result = adapter.intercept_subagent_spawn(
+            {
+                "agent_depth": 3,
+                "parent_session_id": "p1",
+                "task_content": "summarize",
+            }
+        )
         assert result.allowed is True
 
     @patch("goop_shield.adapters.generic.httpx")
     def test_intercept_subagent_spawn_passes_clean_task_content(self, mock_httpx):
         mock_client = _allow_mock_httpx(mock_httpx)
         adapter = OpenClawAdapter()
-        adapter.intercept_subagent_spawn({
-            "agent_depth": 1,
-            "parent_session_id": "p1",
-            "task_content": "Summarize the document.",
-        })
+        adapter.intercept_subagent_spawn(
+            {
+                "agent_depth": 1,
+                "parent_session_id": "p1",
+                "task_content": "Summarize the document.",
+            }
+        )
         call_json = mock_client.post.call_args[1]["json"]
         assert call_json["context"]["sub_agent_spawn"] is True
         assert call_json["context"]["sub_agent"] is True
@@ -563,12 +577,14 @@ class TestOpenClawSubagentSpawn:
     def test_intercept_subagent_spawn_builds_correct_synthetic_prompt(self, mock_httpx):
         mock_client = _allow_mock_httpx(mock_httpx)
         adapter = OpenClawAdapter()
-        adapter.intercept_subagent_spawn({
-            "agent_depth": 2,
-            "parent_session_id": "p1",
-            "task_content": "Find the answer.",
-            "args": {"model": "gpt-4"},
-        })
+        adapter.intercept_subagent_spawn(
+            {
+                "agent_depth": 2,
+                "parent_session_id": "p1",
+                "task_content": "Find the answer.",
+                "args": {"model": "gpt-4"},
+            }
+        )
         call_json = mock_client.post.call_args[1]["json"]
         prompt = call_json["prompt"]
         assert "[OpenClaw SubAgent Spawn] depth=2" in prompt
@@ -579,10 +595,12 @@ class TestOpenClawSubagentSpawn:
     def test_intercept_subagent_spawn_no_task_no_args(self, mock_httpx):
         mock_client = _allow_mock_httpx(mock_httpx)
         adapter = OpenClawAdapter()
-        adapter.intercept_subagent_spawn({
-            "agent_depth": 1,
-            "parent_session_id": "p1",
-        })
+        adapter.intercept_subagent_spawn(
+            {
+                "agent_depth": 1,
+                "parent_session_id": "p1",
+            }
+        )
         call_json = mock_client.post.call_args[1]["json"]
         prompt = call_json["prompt"]
         assert "[OpenClaw SubAgent Spawn] depth=1" in prompt
@@ -608,11 +626,13 @@ class TestOpenClawFromHookEventWithAgentContext:
     def test_from_hook_event_propagates_session_id(self, mock_httpx):
         mock_client = _allow_mock_httpx(mock_httpx)
         adapter = OpenClawAdapter()
-        adapter.from_hook_event({
-            "tool": "read_file",
-            "args": {"path": "/tmp/test"},
-            "session_id": "sess-42",
-        })
+        adapter.from_hook_event(
+            {
+                "tool": "read_file",
+                "args": {"path": "/tmp/test"},
+                "session_id": "sess-42",
+            }
+        )
         call_json = mock_client.post.call_args[1]["json"]
         assert call_json["context"]["session_id"] == "sess-42"
 
@@ -620,14 +640,16 @@ class TestOpenClawFromHookEventWithAgentContext:
     def test_from_hook_event_propagates_sub_agent_context(self, mock_httpx):
         mock_client = _allow_mock_httpx(mock_httpx)
         adapter = OpenClawAdapter()
-        adapter.from_hook_event({
-            "tool": "write_file",
-            "args": {},
-            "session_id": "child-1",
-            "parent_session_id": "parent-1",
-            "agent_depth": 2,
-            "task_content": "write the summary",
-        })
+        adapter.from_hook_event(
+            {
+                "tool": "write_file",
+                "args": {},
+                "session_id": "child-1",
+                "parent_session_id": "parent-1",
+                "agent_depth": 2,
+                "task_content": "write the summary",
+            }
+        )
         call_json = mock_client.post.call_args[1]["json"]
         ctx = call_json["context"]
         assert ctx["sub_agent"] is True
@@ -650,10 +672,12 @@ class TestOpenClawFromHookEventWithAgentContext:
     def test_from_hook_event_camel_case_session_id(self, mock_httpx):
         mock_client = _allow_mock_httpx(mock_httpx)
         adapter = OpenClawAdapter()
-        adapter.from_hook_event({
-            "tool": "read_file",
-            "args": {},
-            "sessionId": "camel-sess",
-        })
+        adapter.from_hook_event(
+            {
+                "tool": "read_file",
+                "args": {},
+                "sessionId": "camel-sess",
+            }
+        )
         call_json = mock_client.post.call_args[1]["json"]
         assert call_json["context"]["session_id"] == "camel-sess"
