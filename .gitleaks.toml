@@ -1,0 +1,16 @@
+# gitleaks configuration
+# https://github.com/gitleaks/gitleaks?tab=readme-ov-file#configuration
+title = "goop-shield-community gitleaks config"
+
+[allowlist]
+description = "Test fixtures and documentation examples"
+# Paths containing intentional secret-shaped strings for testing detectors.
+# All of these are fake credentials used to validate that goop-shield's own
+# detection patterns work correctly, or doc/example placeholders.
+paths = [
+    '''tests/''',
+    '''docs/''',
+    '''examples/''',
+    '''README\.md''',
+    '''\.secrets\.baseline''',
+]
