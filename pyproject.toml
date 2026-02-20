@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "goop-shield-community"
-version = "0.1.0"
+version = "0.2.0"
 description = "Runtime defense for AI agents — 24 inline defenses, 3 output scanners, red team validation"
 readme = "README.md"
 license = "Apache-2.0"
