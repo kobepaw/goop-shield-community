@@ -249,3 +249,45 @@ SHIELD_API_KEY=your-secret-key goop-shield serve
 Exempt endpoints (no auth required):
 - `GET /api/v1/health`
 - `GET /api/v1/metrics`
+
+## Adapter Configuration
+
+Adapters accept configuration at instantiation time, not through the YAML config file.
+
+### OpenClawAdapter
+
+```python
+from goop_shield.adapters.openclaw import OpenClawAdapter
+
+adapter = OpenClawAdapter(
+    # Shield server URL (required)
+    shield_url="http://localhost:8787",
+
+    # Origin allowlist for WebSocket connections (CVE-2026-25253).
+    # Connections from origins not in this list are rejected before processing.
+    # Default: [] (no restriction — set this in production)
+    allowed_origins=["http://localhost:3000"],
+
+    # Maximum agent recursion depth. Spawn requests that would create an agent
+    # at depth > max_agent_depth are blocked. Default: 5
+    max_agent_depth=5,
+
+    # Enable llm_input / llm_output plugin hooks.
+    # Intercepts the assembled prompt before the LLM and scans responses on egress.
+    # Default: True
+    llm_hooks_enabled=True,
+
+    # Enable sub-agent spawn interception.
+    # Scans sessions_spawn task content as an independent input.
+    # Default: True
+    spawn_interception_enabled=True,
+)
+```
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `shield_url` | `str` | `"http://localhost:8787"` | Shield server URL |
+| `allowed_origins` | `list[str]` | `[]` | WebSocket origin allowlist (CVE-2026-25253) |
+| `max_agent_depth` | `int` | `5` | Maximum agent recursion depth |
+| `llm_hooks_enabled` | `bool` | `True` | Enable LLM input/output hooks |
+| `spawn_interception_enabled` | `bool` | `True` | Enable spawn interception |

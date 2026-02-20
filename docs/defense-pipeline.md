@@ -166,6 +166,54 @@ Detects harmful, toxic, or policy-violating content in LLM responses. Catches co
 
 ---
 
+## SubAgentGuard
+
+SubAgentGuard is an inline defense purpose-built for multi-agent environments. It activates when the defense context indicates an agent-depth > 0 (spawned child), or when task delegation content is present.
+
+### Base Patterns
+
+| Pattern | What it catches |
+|---|---|
+| `agent_impersonation` | Prompts claiming to be a system/parent agent with elevated authority |
+| `prompt_hijacking` | Attempts to override the agent's instructions mid-task |
+| `scope_escalation` | Requests for permissions or capabilities beyond the agent's granted scope |
+| `covert_channel` | Attempts to establish out-of-band communication channels |
+| `memory_poisoning` | Instructions to corrupt or selectively alter persistent memory |
+
+### Task Delegation Attacks
+
+Scans task content passed to `sessions_spawn` as an independent input — separate from the main prompt. An injection string embedded in a delegation task bypasses upstream scanning that only watches the system+user context window.
+
+| Pattern | What it catches |
+|---|---|
+| `task_instruction_override` | `ignore previous instructions` / `disregard your system prompt` in task content |
+| `privilege_laundering` | Delegating to a child agent with elevated scope to bypass parent-level controls |
+| `task_exfiltration` | Exfiltration requests embedded inside otherwise-legitimate task descriptions |
+
+### OpenClaw-Specific Threats
+
+Applied when the OpenClaw adapter is active. These patterns target the OpenClaw runtime surface directly.
+
+| Pattern | What it catches |
+|---|---|
+| `openclaw_cwd_injection` | Working directory manipulation via tool arguments |
+| `openclaw_cross_session_targeting` | References to other agent sessions in tool payloads |
+| `openclaw_gateway_url_override` | Gateway endpoint redirection in config or tool arguments |
+| `openclaw_bind_mount_escape` | Container breakout via bind mount manipulation |
+
+### XSS Patterns (Canvas Injection)
+
+Two-pattern split that eliminates false positives on internal coding content while preserving 100% detection on external attacks.
+
+| Pattern | Gate | What it catches |
+|---|---|---|
+| `openclaw_xss_script_tag` | Always active | `<script>` tags, `javascript:` URIs |
+| `openclaw_xss_event_handler` | External/untrusted content only | `onclick=`, `onerror=`, `onload=` etc. in external payloads |
+
+The event handler pattern only fires when `has_external_content=True` or `trust_level=untrusted` — set automatically by the OpenClaw adapter when `<<<EXTERNAL_UNTRUSTED_CONTENT>>>` markers are present. Real XSS always arrives from external sources; internal coding discussions involving event handler syntax are not affected.
+
+---
+
 ## Enabling and Disabling Defenses
 
 ### Via Configuration
