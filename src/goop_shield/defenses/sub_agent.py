@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 goop-shield contributors
 """
 Sub-Agent Guard — Protects against agent-to-agent attacks and privilege escalation.
 
@@ -10,6 +8,9 @@ Detects:
 - Agent impersonation (claiming to be a different agent)
 - Covert channel attempts (hidden communication between agents)
 - Persistence attempts (agents trying to survive across sessions)
+- Task delegation attacks (malicious instructions in spawned task content)
+- OpenClaw-specific threats (CWD injection, gateway override, cross-session,
+  bind mount escape, XSS in response)
 
 Activated when user_context contains ``sub_agent=True`` or ``agent_depth`` > 0.
 """
@@ -145,6 +146,111 @@ _LATERAL_PATTERNS: list[tuple[re.Pattern, str, float]] = [
     ),
 ]
 
+# --- Task delegation attack patterns ---
+_TASK_DELEGATION_PATTERNS: list[tuple[re.Pattern, str, float]] = [
+    # Instruction override in task content
+    (
+        re.compile(
+            r"(?:ignore|disregard|forget|override)\s+(?:all\s+)?(?:previous|prior|above|original)"
+            r"\s+(?:instructions?|rules?|constraints?|policies?)",
+            re.I,
+        ),
+        "task_instruction_override",
+        0.5,
+    ),
+    # Privilege laundering via delegation
+    (
+        re.compile(
+            r"(?:spawn|create|start)\s+(?:a\s+)?(?:new\s+)?(?:sub[-_\s]?agent|child|worker)"
+            r"\s+(?:with|that\s+has)\s+(?:admin|root|full|elevated|unrestricted)",
+            re.I,
+        ),
+        "privilege_laundering",
+        0.5,
+    ),
+    # Data exfiltration via task
+    (
+        re.compile(
+            r"(?:send|post|upload|exfiltrate|transmit|leak)\s+(?:\w+\s+)*"
+            r"(?:to|via)\s+(?:https?://|webhook|external|remote)",
+            re.I,
+        ),
+        "task_exfiltration",
+        0.5,
+    ),
+]
+
+# --- OpenClaw-specific threat patterns ---
+_OPENCLAW_PATTERNS: list[tuple[re.Pattern, str, float]] = [
+    # CWD injection — attempting to manipulate working directory context
+    (
+        re.compile(
+            r"(?:(?:change|set|override|modify)\s+(?:the\s+)?(?:cwd|working[_\s]?dir(?:ectory)?)"
+            r"|(?:cwd|working[_\s]?dir(?:ectory)?)\s*[:=])",
+            re.I,
+        ),
+        "openclaw_cwd_injection",
+        0.5,
+    ),
+    # Cross-session targeting — references to other sessions
+    (
+        re.compile(
+            r"(?:session[_\s]?id\s*[:=]\s*(?![\s,}\]])).*(?:other|target|victim|different)",
+            re.I,
+        ),
+        "openclaw_cross_session_targeting",
+        0.5,
+    ),
+    # Gateway URL override — attempting to redirect the gateway endpoint
+    (
+        re.compile(
+            r"(?:gateway[_\s]?url|ws[_\s]?url|websocket[_\s]?endpoint)\s*[:=]\s*"
+            r"(?:https?://|wss?://)",
+            re.I,
+        ),
+        "openclaw_gateway_url_override",
+        0.5,
+    ),
+    # Bind mount escape — container breakout via mount manipulation
+    (
+        re.compile(
+            r"(?:bind[_\s]?mount|volume[_\s]?mount|docker[_\s]?(?:run|exec))"
+            r".*(?:/(?:etc|proc|sys|dev|root|home)|--privileged|--pid\s*=\s*host)",
+            re.I,
+        ),
+        "openclaw_bind_mount_escape",
+        0.5,
+    ),
+    # XSS in response — high-confidence script injection patterns.
+    # Always active; rare in legitimate coding discussions.
+    (
+        re.compile(
+            r"<script[\s>]|javascript\s*:",
+            re.I,
+        ),
+        "openclaw_xss_script_tag",
+        0.5,
+    ),
+]
+
+# OpenClaw XSS patterns that only apply to external/untrusted content.
+# HTML event handler attributes (onclick=, onerror=, etc.) are extremely
+# common in legitimate coding conversations — 79% false-positive rate when
+# applied broadly. Scoping to external content (has_external_content=True or
+# trust_level="untrusted") eliminates false positives while preserving full
+# detection on real attack vectors (fetched web pages, tool outputs, emails,
+# social posts) which always carry the untrusted content marker.
+_OPENCLAW_EXTERNAL_PATTERNS: list[tuple[re.Pattern, str, float]] = [
+    (
+        re.compile(
+            r"on(?:error|load|click|mouseover|focus|blur|submit)\s*=",
+            re.I,
+        ),
+        "openclaw_xss_event_handler",
+        0.5,
+    ),
+]
+
 # Depth limit for nested sub-agent chains
 _MAX_AGENT_DEPTH = 5
 _DEFAULT_THRESHOLD = 0.4
@@ -155,6 +261,10 @@ class SubAgentGuard(InlineDefense):
 
     Activated when user_context includes ``sub_agent=True`` or
     ``agent_depth`` > 0. Also enforces depth limits for nested agents.
+
+    When ``user_context`` contains a ``task_content`` field (set by the
+    OpenClawAdapter for sub-agent spawn events), it is scanned for task
+    delegation attacks.
     """
 
     def __init__(
@@ -203,14 +313,26 @@ class SubAgentGuard(InlineDefense):
                 metadata={"reason": "depth_exceeded", "depth": depth, "limit": self._max_depth},
             )
 
-        # Scan all pattern groups against both original and normalized text
+        # Build the combined pattern list.  Always include core patterns;
+        # add OpenClaw-specific patterns when the framework is "openclaw"
+        # or the event came from a sub-agent spawn.
         all_patterns = (
             _ESCALATION_PATTERNS
             + _IMPERSONATION_PATTERNS
             + _PERSISTENCE_PATTERNS
             + _LATERAL_PATTERNS
+            + _TASK_DELEGATION_PATTERNS
         )
+        is_openclaw = uc.get("framework") == "openclaw" or uc.get("sub_agent_spawn")
+        if is_openclaw:
+            all_patterns = all_patterns + _OPENCLAW_PATTERNS
+            # Event-handler XSS patterns only activate for external/untrusted
+            # content to avoid false positives in coding conversations.
+            is_external = uc.get("has_external_content") or uc.get("trust_level") == "untrusted"
+            if is_external:
+                all_patterns = all_patterns + _OPENCLAW_EXTERNAL_PATTERNS
 
+        # Scan both original and normalized prompt text
         score_cur, matched_cur = self._scan_patterns(context.current_prompt, all_patterns)
         score_orig, matched_orig = self._scan_patterns(context.original_prompt, all_patterns)
 
@@ -218,6 +340,13 @@ class SubAgentGuard(InlineDefense):
             score, matched = score_orig, matched_orig
         else:
             score, matched = score_cur, matched_cur
+
+        # Also scan task_content when present (sub-agent delegation payload)
+        task_content = uc.get("task_content", "")
+        if task_content:
+            score_task, matched_task = self._scan_patterns(task_content, all_patterns)
+            score += score_task
+            matched.extend(matched_task)
 
         if score >= self._threshold:
             return InlineVerdict(
