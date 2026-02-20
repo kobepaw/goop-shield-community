@@ -1,0 +1,104 @@
+name: Workflow Sanity
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+concurrency:
+  group: workflow-sanity-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  no-tabs:
+    name: No Tabs in Workflows
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - name: Fail on tabs in workflow files
+        run: |
+          python3 - <<'PY'
+          from __future__ import annotations
+          import pathlib
+          import sys
+
+          root = pathlib.Path(".github/workflows")
+          bad: list[str] = []
+          for path in sorted(root.rglob("*.yml")):
+            if b"\t" in path.read_bytes():
+              bad.append(str(path))
+          for path in sorted(root.rglob("*.yaml")):
+            if b"\t" in path.read_bytes():
+              bad.append(str(path))
+
+          if bad:
+            print("Tabs found in workflow file(s):")
+            for p in bad:
+              print(f"  - {p}")
+            sys.exit(1)
+          PY
+
+  actionlint:
+    name: Lint GitHub Actions Workflows
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - name: Install actionlint
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACTIONLINT_VERSION="1.7.11"
+          archive="actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz"
+          base_url="https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}"
+          curl -sSfL -o "${archive}" "${base_url}/${archive}"
+          curl -sSfL -o checksums.txt "${base_url}/actionlint_${ACTIONLINT_VERSION}_checksums.txt"
+          grep " ${archive}\$" checksums.txt | sha256sum -c -
+          tar -xzf "${archive}" actionlint
+          sudo install -m 0755 actionlint /usr/local/bin/actionlint
+      - name: Lint workflows
+        run: actionlint
+
+  no-input-interpolation:
+    name: Block Composite Action Input Interpolation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - name: Check composite actions for direct input interpolation
+        # Direct inputs.* interpolation (via expression syntax) inside composite "run:" blocks is a
+        # GitHub Actions injection vector. Values must be passed via env: instead.
+        run: |
+          python3 - <<'PY'
+          from __future__ import annotations
+          import pathlib
+          import re
+          import sys
+
+          COMPOSITE_RUN_RE = re.compile(
+              r"uses:\s+['\"]?composite['\"]?.*?runs-using:\s+['\"]?composite['\"]?",
+              re.DOTALL,
+          )
+          INPUT_INTERP_RE = re.compile(r'\$\{\{' + r'\s*inputs\.')
+
+          bad: list[str] = []
+          for path in sorted(pathlib.Path(".github").rglob("action.yml")):
+            content = path.read_text()
+            if "using: composite" not in content and "using: 'composite'" not in content:
+              continue
+            # Find all run: blocks and check for direct input interpolation
+            in_run = False
+            for line in content.splitlines():
+              stripped = line.lstrip()
+              if re.match(r"run\s*:", stripped):
+                in_run = True
+              elif in_run and (stripped.startswith("uses:") or stripped.startswith("id:")):
+                in_run = False
+              if in_run and INPUT_INTERP_RE.search(line):
+                bad.append(f"{path}: {line.strip()}")
+
+          if bad:
+            print("Direct inputs.* expression interpolation found in composite run blocks.")
+            print("Pass values via env: variables instead (injection risk).")
+            for b in bad:
+              print(f"  {b}")
+            sys.exit(1)
+          PY

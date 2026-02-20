@@ -206,12 +206,12 @@ def get_mitre_coverage(audit_events: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def get_mitre_matrix() -> dict[str, list[dict[str, str]]]:
+def get_mitre_matrix() -> dict[str, list[dict[str, Any]]]:
     """Full tactic -> techniques structure for display.
 
     Returns a dict mapping tactic names to lists of technique dicts.
     """
-    matrix: dict[str, list[dict[str, str]]] = {}
+    matrix: dict[str, list[dict[str, Any]]] = {}
 
     # Collect unique techniques (avoid duplicates from multiple defenses)
     seen: set[str] = set()

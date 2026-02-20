@@ -263,7 +263,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
                 min_confidence=config.validation_bridge_min_confidence,
             )
         except (ImportError, NotImplementedError):
-            from goop_shield.validation_bridge import ValidationBridge
+            from goop_shield.validation_bridge import ValidationBridge  # type: ignore[assignment]
 
             app.state.validation_bridge = ValidationBridge(
                 min_confidence=config.validation_bridge_min_confidence,
@@ -279,7 +279,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
             scheduler = ProbeScheduler(
                 runner, interval_seconds=config.redteam_probe_interval_seconds
             )
-            await scheduler.start()
+            await scheduler.start()  # type: ignore[attr-defined]
             app.state.redteam_runner = runner
             app.state.redteam_scheduler = scheduler
         except (ImportError, NotImplementedError):
@@ -472,7 +472,7 @@ async def _defend_core(body: DefendRequest, request: Request) -> DefendResponse:
 
 
 @app.post("/api/v1/defend")
-async def defend(body: DefendRequest, request: Request) -> dict:
+async def defend(body: DefendRequest, request: Request) -> dict[str, Any]:
     """Classify and defend a prompt.
 
     Returns a minimal response with allow/block decision and filtered prompt.
@@ -611,7 +611,7 @@ async def scan_memory(body: MemoryScanRequest, request: Request) -> ToolOutputSc
 
 
 @app.post("/api/v1/telemetry/events")
-async def report_telemetry(event: TelemetryEvent) -> dict[str, bool]:
+async def report_telemetry(event: TelemetryEvent) -> dict[str, Any]:
     """Report an external telemetry event."""
     defender: Defender = app.state.defender
     telemetry: TelemetryBuffer = app.state.telemetry
@@ -662,7 +662,7 @@ async def redteam_probe(request: ProbeRequest) -> RedTeamReport | JSONResponse:
             status_code=404,
             content={"error": "Red team not enabled (use_redteam=False)"},
         )
-    return runner.run_probes(probe_names=request.probe_names)
+    return dict(runner.run_probes(probe_names=request.probe_names))
 
 
 @app.get("/api/v1/redteam/results", response_model=RedTeamReport)
@@ -680,14 +680,14 @@ async def redteam_results() -> RedTeamReport | JSONResponse:
 
 
 @app.get("/api/v1/brorl/state")
-async def brorl_state() -> dict:
+async def brorl_state() -> dict[str, Any]:
     """Export ranking backend weights (alpha/beta posteriors for BroRL)."""
     defender: Defender = app.state.defender
     return defender.ranking.get_weights()
 
 
 @app.post("/api/v1/brorl/load")
-async def brorl_load(weights: dict) -> dict:
+async def brorl_load(weights: dict) -> dict[str, Any]:
     """Load ranking backend weights."""
     # Validate structure before passing to the ranking backend
     if not isinstance(weights, dict):
@@ -724,7 +724,7 @@ async def brorl_load(weights: dict) -> dict:
 
 
 @app.get("/api/v1/defender/stats")
-async def defender_stats() -> dict:
+async def defender_stats() -> dict[str, Any]:
     """Get aggregated defender stats including BroRL weights."""
     defender: Defender = app.state.defender
     return defender.get_stats()
@@ -989,7 +989,7 @@ async def behavior_stream(
 
 
 @app.post("/api/v1/policy/load")
-async def policy_load(body: dict) -> dict:
+async def policy_load(body: dict) -> dict[str, Any]:
     """Load a versioned policy bundle."""
     from goop_shield.policy import PolicyBundle
 
@@ -1005,7 +1005,7 @@ async def policy_load(body: dict) -> dict:
 @app.get("/api/v1/policy/export")
 async def policy_export(
     version: str = Query(default="latest"),
-) -> dict:
+) -> dict[str, Any]:
     """Export current policy as a versioned bundle."""
     manager = app.state.policy_manager
     bundle = manager.export_policy(version)
@@ -1018,7 +1018,7 @@ async def policy_export(
 
 
 @app.get("/api/v1/deception/canaries")
-async def deception_canaries() -> dict:
+async def deception_canaries() -> dict[str, Any]:
     """List active canary tokens and their status."""
     defender: Defender = app.state.defender
     if defender.deception is None:
@@ -1156,7 +1156,7 @@ async def alignment_canary_alerts():
 
 
 @app.get("/api/v1/redteam/report")
-async def redteam_report() -> dict:
+async def redteam_report() -> dict[str, Any]:
     """Generate a vulnerability report from the latest probe results."""
     from goop_shield.red.report import VulnerabilityReport
 
@@ -1169,7 +1169,7 @@ async def redteam_report() -> dict:
     if runner.latest_report is None:
         return {"error": "No probe results yet. Run probes first."}
 
-    report = VulnerabilityReport.from_probe_results(runner.latest_report.results)
+    report = VulnerabilityReport.from_probe_results(runner.latest_report.results)  # type: ignore[attr-defined]
     return report.to_dict()
 
 
@@ -1179,7 +1179,7 @@ async def redteam_report() -> dict:
 
 
 @app.post("/api/v1/aggregation/ingest")
-async def aggregation_ingest(body: dict) -> dict:
+async def aggregation_ingest(body: dict) -> dict[str, Any]:
     """Ingest batched telemetry from Shield instances."""
     from goop_shield.aggregation import TelemetryAggregator
 
@@ -1202,7 +1202,7 @@ async def aggregation_ingest(body: dict) -> dict:
 @app.get("/api/v1/aggregation/stats")
 async def aggregation_stats(
     since: float | None = Query(default=None),
-) -> dict:
+) -> dict[str, Any]:
     """Get aggregate statistics across all Shield instances."""
     if not hasattr(app.state, "aggregator") or app.state.aggregator is None:
         return JSONResponse(
@@ -1332,7 +1332,7 @@ async def intel_summary() -> dict[str, Any]:
 
 
 @app.post("/api/v1/sabotage/task-outcome")
-async def sabotage_task_outcome(body: dict, request: Request) -> dict:
+async def sabotage_task_outcome(body: dict, request: Request) -> dict[str, Any]:
     """Record a task outcome for sandbagging detection.
 
     Automatically categorizes the task if no explicit category is provided.
@@ -1410,7 +1410,7 @@ async def sabotage_task_outcome(body: dict, request: Request) -> dict:
 
 
 @app.post("/api/v1/training/validate")
-async def training_validate(body: dict, request: Request) -> dict:
+async def training_validate(body: dict, request: Request) -> dict[str, Any]:
     """Validate a single training data item."""
     training_gate = app.state.training_gate
     if training_gate is None:
@@ -1452,7 +1452,7 @@ async def training_validate(body: dict, request: Request) -> dict:
 
 
 @app.post("/api/v1/training/validate-batch")
-async def training_validate_batch(body: dict, request: Request) -> dict:
+async def training_validate_batch(body: dict, request: Request) -> dict[str, Any]:
     """Validate a batch of training data items."""
     training_gate = app.state.training_gate
     if training_gate is None:
@@ -1480,7 +1480,7 @@ async def training_validate_batch(body: dict, request: Request) -> dict:
 async def training_quarantine_list(
     pipeline: str | None = Query(default=None),
     limit: int = Query(default=100, ge=1, le=1000),
-) -> dict:
+) -> dict[str, Any]:
     """List quarantined training data items."""
     quarantine_store = app.state.quarantine_store
     if quarantine_store is None:
@@ -1494,7 +1494,7 @@ async def training_quarantine_list(
 
 
 @app.post("/api/v1/training/quarantine/{item_id:path}/release")
-async def training_quarantine_release(item_id: str) -> dict:
+async def training_quarantine_release(item_id: str) -> dict[str, Any]:
     """Release a quarantined item for use."""
     quarantine_store = app.state.quarantine_store
     if quarantine_store is None:
@@ -1516,7 +1516,7 @@ async def training_quarantine_release(item_id: str) -> dict:
 
 
 @app.post("/api/v1/training/quarantine/{item_id:path}/reject")
-async def training_quarantine_reject(item_id: str) -> dict:
+async def training_quarantine_reject(item_id: str) -> dict[str, Any]:
     """Permanently reject a quarantined item."""
     quarantine_store = app.state.quarantine_store
     if quarantine_store is None:
@@ -1543,7 +1543,7 @@ async def training_quarantine_reject(item_id: str) -> dict:
 
 
 @app.post("/api/v1/consistency/check")
-async def consistency_check(body: dict) -> dict:
+async def consistency_check(body: dict) -> dict[str, Any]:
     """Manually trigger a consistency check for a prompt/response pair."""
     checker = app.state.consistency_checker
     if checker is None:
@@ -1595,7 +1595,7 @@ async def consistency_check(body: dict) -> dict:
 
 
 @app.get("/api/v1/consistency/stats")
-async def consistency_stats() -> dict:
+async def consistency_stats() -> dict[str, Any]:
     """Get consistency check statistics."""
     checker = app.state.consistency_checker
     if checker is None:

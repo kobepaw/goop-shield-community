@@ -209,7 +209,7 @@ class ShieldClient:
         except (httpx.ConnectError, httpx.TimeoutException) as exc:
             raise ShieldUnavailableError(str(exc)) from exc
         self._check_status(resp)
-        return resp.json()
+        return dict(resp.json())
 
     async def _get(self, path: str) -> dict:
         try:
@@ -217,7 +217,7 @@ class ShieldClient:
         except (httpx.ConnectError, httpx.TimeoutException) as exc:
             raise ShieldUnavailableError(str(exc)) from exc
         self._check_status(resp)
-        return resp.json()
+        return dict(resp.json())
 
     @staticmethod
     def _check_status(resp: httpx.Response) -> None:
