@@ -12,7 +12,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 
 from audit_clawhavoc import (  # noqa: E402
     CLAWHAVOC_C2_IPS,
-    CLAWHAVOC_HASHES,
     scan_directory,
 )
 

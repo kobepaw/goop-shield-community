@@ -177,7 +177,7 @@ def register_defaults(registry: DefenseRegistry, *, config: object | None = None
 
     domain_defense = DomainReputationDefense()
     ioc_defense = IOCMatcherDefense()
-    ioc_file = getattr(config, 'ioc_file', '')
+    ioc_file = getattr(config, "ioc_file", "")
     if ioc_file:
         ioc_defense.load_iocs(ioc_file)
         domain_defense.load_ioc_feed(ioc_file)
