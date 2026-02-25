@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
@@ -926,6 +926,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#subagentguard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SubAgentGuard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SubAgentGuard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Base Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-delegation-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task Delegation Attacks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openclaw-specific-threats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenClaw-Specific Threats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xss-patterns-canvas-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XSS Patterns (Canvas Injection)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#enabling-and-disabling-defenses" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1093,6 +1154,116 @@
 <p>Detects canary tokens that were planted by the deception engine. If an LLM response contains a canary, it indicates the model has been tricked into revealing planted traps.</p>
 <h3 id="harmfulcontentscanner">HarmfulContentScanner<a class="headerlink" href="#harmfulcontentscanner" title="Permanent link">&para;</a></h3>
 <p>Detects harmful, toxic, or policy-violating content in LLM responses. Catches content that passed the prompt-side defenses but resulted in a harmful output.</p>
+<hr />
+<h2 id="subagentguard">SubAgentGuard<a class="headerlink" href="#subagentguard" title="Permanent link">&para;</a></h2>
+<p>SubAgentGuard is an inline defense purpose-built for multi-agent environments. It activates when the defense context indicates an agent-depth &gt; 0 (spawned child), or when task delegation content is present.</p>
+<h3 id="base-patterns">Base Patterns<a class="headerlink" href="#base-patterns" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>What it catches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>agent_impersonation</code></td>
+<td>Prompts claiming to be a system/parent agent with elevated authority</td>
+</tr>
+<tr>
+<td><code>prompt_hijacking</code></td>
+<td>Attempts to override the agent's instructions mid-task</td>
+</tr>
+<tr>
+<td><code>scope_escalation</code></td>
+<td>Requests for permissions or capabilities beyond the agent's granted scope</td>
+</tr>
+<tr>
+<td><code>covert_channel</code></td>
+<td>Attempts to establish out-of-band communication channels</td>
+</tr>
+<tr>
+<td><code>memory_poisoning</code></td>
+<td>Instructions to corrupt or selectively alter persistent memory</td>
+</tr>
+</tbody>
+</table>
+<h3 id="task-delegation-attacks">Task Delegation Attacks<a class="headerlink" href="#task-delegation-attacks" title="Permanent link">&para;</a></h3>
+<p>Scans task content passed to <code>sessions_spawn</code> as an independent input — separate from the main prompt. An injection string embedded in a delegation task bypasses upstream scanning that only watches the system+user context window.</p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>What it catches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>task_instruction_override</code></td>
+<td><code>ignore previous instructions</code> / <code>disregard your system prompt</code> in task content</td>
+</tr>
+<tr>
+<td><code>privilege_laundering</code></td>
+<td>Delegating to a child agent with elevated scope to bypass parent-level controls</td>
+</tr>
+<tr>
+<td><code>task_exfiltration</code></td>
+<td>Exfiltration requests embedded inside otherwise-legitimate task descriptions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="openclaw-specific-threats">OpenClaw-Specific Threats<a class="headerlink" href="#openclaw-specific-threats" title="Permanent link">&para;</a></h3>
+<p>Applied when the OpenClaw adapter is active. These patterns target the OpenClaw runtime surface directly.</p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>What it catches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>openclaw_cwd_injection</code></td>
+<td>Working directory manipulation via tool arguments</td>
+</tr>
+<tr>
+<td><code>openclaw_cross_session_targeting</code></td>
+<td>References to other agent sessions in tool payloads</td>
+</tr>
+<tr>
+<td><code>openclaw_gateway_url_override</code></td>
+<td>Gateway endpoint redirection in config or tool arguments</td>
+</tr>
+<tr>
+<td><code>openclaw_bind_mount_escape</code></td>
+<td>Container breakout via bind mount manipulation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xss-patterns-canvas-injection">XSS Patterns (Canvas Injection)<a class="headerlink" href="#xss-patterns-canvas-injection" title="Permanent link">&para;</a></h3>
+<p>Two-pattern split that eliminates false positives on internal coding content while preserving 100% detection on external attacks.</p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Gate</th>
+<th>What it catches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>openclaw_xss_script_tag</code></td>
+<td>Always active</td>
+<td><code>&lt;script&gt;</code> tags, <code>javascript:</code> URIs</td>
+</tr>
+<tr>
+<td><code>openclaw_xss_event_handler</code></td>
+<td>External/untrusted content only</td>
+<td><code>onclick=</code>, <code>onerror=</code>, <code>onload=</code> etc. in external payloads</td>
+</tr>
+</tbody>
+</table>
+<p>The event handler pattern only fires when <code>has_external_content=True</code> or <code>trust_level=untrusted</code> — set automatically by the OpenClaw adapter when <code>&lt;&lt;&lt;EXTERNAL_UNTRUSTED_CONTENT&gt;&gt;&gt;</code> markers are present. Real XSS always arrives from external sources; internal coding discussions involving event handler syntax are not affected.</p>
 <hr />
 <h2 id="enabling-and-disabling-defenses">Enabling and Disabling Defenses<a class="headerlink" href="#enabling-and-disabling-defenses" title="Permanent link">&para;</a></h2>
 <h3 id="via-configuration">Via Configuration<a class="headerlink" href="#via-configuration" title="Permanent link">&para;</a></h3>

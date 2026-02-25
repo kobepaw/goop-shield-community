@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
@@ -851,6 +851,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#adapter-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adapter Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adapter Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openclawadapter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenClawAdapter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1510,6 +1538,77 @@
 <p>Exempt endpoints (no auth required):
 - <code>GET /api/v1/health</code>
 - <code>GET /api/v1/metrics</code></p>
+<h2 id="adapter-configuration">Adapter Configuration<a class="headerlink" href="#adapter-configuration" title="Permanent link">&para;</a></h2>
+<p>Adapters accept configuration at instantiation time, not through the YAML config file.</p>
+<h3 id="openclawadapter">OpenClawAdapter<a class="headerlink" href="#openclawadapter" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">goop_shield.adapters.openclaw</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenClawAdapter</span>
+
+<span class="n">adapter</span> <span class="o">=</span> <span class="n">OpenClawAdapter</span><span class="p">(</span>
+    <span class="c1"># Shield server URL (required)</span>
+    <span class="n">shield_url</span><span class="o">=</span><span class="s2">&quot;http://localhost:8787&quot;</span><span class="p">,</span>
+
+    <span class="c1"># Origin allowlist for WebSocket connections (CVE-2026-25253).</span>
+    <span class="c1"># Connections from origins not in this list are rejected before processing.</span>
+    <span class="c1"># Default: [] (no restriction — set this in production)</span>
+    <span class="n">allowed_origins</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;http://localhost:3000&quot;</span><span class="p">],</span>
+
+    <span class="c1"># Maximum agent recursion depth. Spawn requests that would create an agent</span>
+    <span class="c1"># at depth &gt; max_agent_depth are blocked. Default: 5</span>
+    <span class="n">max_agent_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+
+    <span class="c1"># Enable llm_input / llm_output plugin hooks.</span>
+    <span class="c1"># Intercepts the assembled prompt before the LLM and scans responses on egress.</span>
+    <span class="c1"># Default: True</span>
+    <span class="n">llm_hooks_enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+
+    <span class="c1"># Enable sub-agent spawn interception.</span>
+    <span class="c1"># Scans sessions_spawn task content as an independent input.</span>
+    <span class="c1"># Default: True</span>
+    <span class="n">spawn_interception_enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>shield_url</code></td>
+<td><code>str</code></td>
+<td><code>"http://localhost:8787"</code></td>
+<td>Shield server URL</td>
+</tr>
+<tr>
+<td><code>allowed_origins</code></td>
+<td><code>list[str]</code></td>
+<td><code>[]</code></td>
+<td>WebSocket origin allowlist (CVE-2026-25253)</td>
+</tr>
+<tr>
+<td><code>max_agent_depth</code></td>
+<td><code>int</code></td>
+<td><code>5</code></td>
+<td>Maximum agent recursion depth</td>
+</tr>
+<tr>
+<td><code>llm_hooks_enabled</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>Enable LLM input/output hooks</td>
+</tr>
+<tr>
+<td><code>spawn_interception_enabled</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>Enable spawn interception</td>
+</tr>
+</tbody>
+</table>
 
 
 
