@@ -21,6 +21,18 @@ logger = logging.getLogger(__name__)
 _ETH_WALLET_RE = re.compile(r"0x[a-fA-F0-9]{40}")
 _BTC_WALLET_RE = re.compile(r"\b[13][a-zA-Z0-9]{25,34}\b")
 
+# IPv4 address pattern for C2 detection
+_IPV4_RE = re.compile(r"\b(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b")
+
+# Known ClawHavoc C2 IPs (Antiy/Koi reports, Feb 2026)
+_CLAWHAVOC_C2_IPS: set[str] = {
+    "91.92.242.30",
+    "95.92.242.30",
+    "96.92.242.30",
+    "202.161.50.59",
+    "54.91.154.110",
+}
+
 # Default injection signatures (from field analysis)
 _DEFAULT_SIGNATURES: list[str] = [
     "SYSTEM OVERRIDE",
@@ -39,6 +51,7 @@ class IOCMatcherDefense(InlineDefense):
     - Cryptocurrency wallet addresses (ETH, BTC)
     - Known injection signatures
     - Known exfil endpoints
+    - Known C2 IP addresses
     """
 
     def __init__(self) -> None:
@@ -46,6 +59,7 @@ class IOCMatcherDefense(InlineDefense):
         self._signatures: list[str] = list(_DEFAULT_SIGNATURES)
         self._signature_patterns: list[re.Pattern] = []
         self._exfil_endpoints: set[str] = set()
+        self._bad_ips: set[str] = set(_CLAWHAVOC_C2_IPS)
         self._compile_patterns()
 
     def _compile_patterns(self) -> None:
@@ -82,12 +96,17 @@ class IOCMatcherDefense(InlineDefense):
             if isinstance(endpoint, str):
                 self._exfil_endpoints.add(endpoint.lower())
 
+        for ip in data.get("c2_ips", []):
+            if isinstance(ip, str):
+                self._bad_ips.add(ip)
+
         self._compile_patterns()
         logger.info(
-            "Loaded IOCs: %d wallets, %d signatures, %d endpoints",
+            "Loaded IOCs: %d wallets, %d signatures, %d endpoints, %d c2_ips",
             len(self._bad_wallets),
             len(self._signatures),
             len(self._exfil_endpoints),
+            len(self._bad_ips),
         )
 
     def execute(self, context: DefenseContext) -> InlineVerdict:
@@ -110,6 +129,21 @@ class IOCMatcherDefense(InlineDefense):
                         threat_confidence=0.95,
                         details=f"Matched IOC injection signature: {pattern.pattern}",
                     )
+
+        # Check C2 IPs against both texts
+        if self._bad_ips:
+            for text in texts_to_check:
+                for match in _IPV4_RE.finditer(text):
+                    ip = match.group(1)
+                    if ip in self._bad_ips:
+                        return InlineVerdict(
+                            defense_name=self.name,
+                            blocked=True,
+                            filtered_prompt=prompt,
+                            confidence=0.95,
+                            threat_confidence=0.95,
+                            details=f"Matched ClawHavoc C2 IP: {ip}",
+                        )
 
         # Check wallet addresses against both texts
         if self._bad_wallets:

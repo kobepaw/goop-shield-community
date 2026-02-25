@@ -171,12 +171,18 @@ def register_defaults(registry: DefenseRegistry, *, config: object | None = None
             SubAgentGuard(confidence_threshold=sa_threshold, max_agent_depth=sa_max_depth)
         )
 
-    # IOC-based (2)
+    # IOC-based (2) — load feed if configured
     from goop_shield.defenses.domain_reputation import DomainReputationDefense
     from goop_shield.defenses.ioc_matcher import IOCMatcherDefense
 
-    registry.register(DomainReputationDefense())
-    registry.register(IOCMatcherDefense())
+    domain_defense = DomainReputationDefense()
+    ioc_defense = IOCMatcherDefense()
+    ioc_file = getattr(config, "ioc_file", "")
+    if ioc_file:
+        ioc_defense.load_iocs(ioc_file)
+        domain_defense.load_ioc_feed(ioc_file)
+    registry.register(domain_defense)
+    registry.register(ioc_defense)
 
     # Output scanners (3) — pass shared canary tokens to leak scanner
     register_default_scanners(registry, canary_tokens=canary_tokens)

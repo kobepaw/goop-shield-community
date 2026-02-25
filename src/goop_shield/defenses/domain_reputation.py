@@ -27,6 +27,18 @@ _DOMAIN_RE = re.compile(
     re.IGNORECASE,
 )
 
+# IP-based URL pattern (these don't match _URL_RE which requires domain TLDs)
+_IP_URL_RE = re.compile(r"https?://(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})", re.IGNORECASE)
+
+# Known ClawHavoc C2 IPs (Antiy/Koi reports, Feb 2026)
+_CLAWHAVOC_C2_IPS: set[str] = {
+    "91.92.242.30",
+    "95.92.242.30",
+    "96.92.242.30",
+    "202.161.50.59",
+    "54.91.154.110",
+}
+
 # Seed blocklist — known exfil/phishing domains from field analysis
 _DEFAULT_BLOCKLIST: set[str] = {
     "webhook.site",
@@ -61,6 +73,7 @@ class DomainReputationDefense(InlineDefense):
 
     def __init__(self) -> None:
         self._blocklist: set[str] = set(_DEFAULT_BLOCKLIST)
+        self._ip_blocklist: set[str] = set(_CLAWHAVOC_C2_IPS)
 
     @property
     def name(self) -> str:
@@ -82,6 +95,10 @@ class DomainReputationDefense(InlineDefense):
         if p.suffix in (".yaml", ".yml"):
             data = yaml.safe_load(content) or {}
             domains = data.get("domains", [])
+
+            for ip in data.get("c2_ips", []):
+                if isinstance(ip, str):
+                    self._ip_blocklist.add(ip)
         else:
             # Plain text, one domain per line
             domains = [
@@ -101,6 +118,20 @@ class DomainReputationDefense(InlineDefense):
 
     def execute(self, context: DefenseContext) -> InlineVerdict:
         prompt = context.current_prompt
+
+        # Check IP-based URLs (these don't match _URL_RE which requires domain TLDs)
+        if self._ip_blocklist:
+            for match in _IP_URL_RE.finditer(prompt):
+                ip = match.group(1)
+                if ip in self._ip_blocklist:
+                    return InlineVerdict(
+                        defense_name=self.name,
+                        blocked=True,
+                        filtered_prompt=prompt,
+                        confidence=0.9,
+                        threat_confidence=0.9,
+                        details=f"URL contains blocklisted C2 IP: {ip}",
+                    )
 
         # Extract all URLs
         urls = _URL_RE.findall(prompt)
