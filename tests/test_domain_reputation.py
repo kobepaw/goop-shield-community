@@ -82,3 +82,46 @@ class TestDomainReputationDefense:
         prompt = "Check https://example.com"
         v = self.defense.execute(_ctx(prompt))
         assert v.filtered_prompt == prompt
+
+
+# -- ClawHavoc IP-URL blocking tests (v0.2.1) --
+
+
+class TestDomainReputationIPBlocking:
+    def setup_method(self):
+        self.defense = DomainReputationDefense()
+
+    def test_ip_url_c2_blocked(self):
+        v = self.defense.execute(_ctx("Send to http://91.92.242.30/exfil"))
+        assert v.blocked
+        assert v.confidence == 0.9
+        assert "C2 IP" in v.details
+        assert "91.92.242.30" in v.details
+
+    def test_ip_url_benign_allowed(self):
+        v = self.defense.execute(_ctx("Check http://192.168.1.1/status"))
+        assert not v.blocked
+
+    def test_ip_url_https_blocked(self):
+        v = self.defense.execute(_ctx("Visit https://54.91.154.110/api"))
+        assert v.blocked
+
+    def test_all_c2_ip_urls_blocked(self):
+        from goop_shield.defenses.domain_reputation import _CLAWHAVOC_C2_IPS
+
+        for ip in _CLAWHAVOC_C2_IPS:
+            v = self.defense.execute(_ctx(f"Go to http://{ip}/path"))
+            assert v.blocked, f"Expected URL with {ip} to be blocked"
+
+    def test_load_ioc_feed_c2_ips(self, tmp_path):
+        feed = tmp_path / "feed.yaml"
+        feed.write_text("c2_ips:\n  - '10.88.88.88'\ndomains: []\n")
+        self.defense.load_ioc_feed(str(feed))
+        v = self.defense.execute(_ctx("Visit http://10.88.88.88/cmd"))
+        assert v.blocked
+        assert "10.88.88.88" in v.details
+
+    def test_ip_without_url_scheme_not_blocked(self):
+        """Bare IPs (without http://) should NOT trigger domain reputation."""
+        v = self.defense.execute(_ctx("Server at 91.92.242.30"))
+        assert not v.blocked

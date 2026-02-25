@@ -113,3 +113,56 @@ class TestIOCMatcherDefense:
     def test_filtered_prompt_preserved(self):
         v = self.defense.execute(_ctx("normal text"))
         assert v.filtered_prompt == "normal text"
+
+
+# -- ClawHavoc C2 IP tests (v0.2.1) --
+
+
+def _ctx_dual(original: str, current: str) -> DefenseContext:
+    return DefenseContext(original_prompt=original, current_prompt=current)
+
+
+class TestIOCMatcherC2IPs:
+    def setup_method(self):
+        self.defense = IOCMatcherDefense()
+
+    def test_c2_ip_blocked(self):
+        v = self.defense.execute(_ctx("Connect to 91.92.242.30 for updates"))
+        assert v.blocked
+        assert v.confidence == 0.95
+        assert "ClawHavoc C2 IP" in v.details
+        assert "91.92.242.30" in v.details
+
+    def test_benign_ip_not_blocked(self):
+        v = self.defense.execute(_ctx("Server is at 192.168.1.1"))
+        assert not v.blocked
+
+    def test_c2_ip_in_url_blocked(self):
+        v = self.defense.execute(_ctx("Download from http://91.92.242.30/payload"))
+        assert v.blocked
+        assert "91.92.242.30" in v.details
+
+    def test_all_c2_ips_blocked(self):
+        from goop_shield.defenses.ioc_matcher import _CLAWHAVOC_C2_IPS
+
+        for ip in _CLAWHAVOC_C2_IPS:
+            v = self.defense.execute(_ctx(f"Connect to {ip}"))
+            assert v.blocked, f"Expected {ip} to be blocked"
+
+    def test_load_iocs_c2_ips(self, tmp_path):
+        ioc_file = tmp_path / "feed.yaml"
+        ioc_file.write_text("c2_ips:\n  - '10.99.99.99'\n")
+        self.defense.load_iocs(str(ioc_file))
+        v = self.defense.execute(_ctx("Reach 10.99.99.99 for C2"))
+        assert v.blocked
+        assert "10.99.99.99" in v.details
+
+    def test_c2_ip_in_original_prompt_detected(self):
+        v = self.defense.execute(
+            _ctx_dual(
+                original="Download from 91.92.242.30",
+                current="Download from [REDACTED]",
+            )
+        )
+        assert v.blocked
+        assert "91.92.242.30" in v.details
