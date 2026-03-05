@@ -81,6 +81,79 @@ class OutputContext:
     user_context: dict[str, Any] = field(default_factory=dict)
 
 
+# ============================================================================
+# Shared weights for pattern-based defenses
+# ============================================================================
+
+STRONG_WEIGHT: float = 0.5
+MEDIUM_WEIGHT: float = 0.35
+WEAK_WEIGHT: float = 0.2
+DEFAULT_THRESHOLD: float = 0.4
+
+
+class PatternBasedDefense(InlineDefense):
+    """Base class for pattern-matching defenses with weighted scoring.
+
+    Subclasses define ``_strong_patterns``, ``_medium_patterns``, and
+    ``_weak_patterns`` as lists of ``(compiled_regex, label)`` tuples.
+    The base class provides the shared ``_scan_text`` and ``execute``
+    logic with dual-prompt scanning.
+    """
+
+    _strong_patterns: list[tuple[Any, str]] = []
+    _medium_patterns: list[tuple[Any, str]] = []
+    _weak_patterns: list[tuple[Any, str]] = []
+    _block_detail_prefix: str = "Threat detected"
+
+    def __init__(self, confidence_threshold: float = DEFAULT_THRESHOLD) -> None:
+        self._threshold = confidence_threshold
+
+    def _scan_text(self, text: str) -> tuple[float, list[str]]:
+        """Run all pattern lists against text, return (score, matched_labels)."""
+        score = 0.0
+        matched: list[str] = []
+        for pattern, label in self._strong_patterns:
+            if pattern.search(text):
+                score += STRONG_WEIGHT
+                matched.append(label)
+        for pattern, label in self._medium_patterns:
+            if pattern.search(text):
+                score += MEDIUM_WEIGHT
+                matched.append(label)
+        for pattern, label in self._weak_patterns:
+            if pattern.search(text):
+                score += WEAK_WEIGHT
+                matched.append(label)
+        return score, matched
+
+    def execute(self, context: DefenseContext) -> InlineVerdict:
+        # Scan both original and normalized to survive PromptNormalizer transforms
+        score_cur, matched_cur = self._scan_text(context.current_prompt)
+        score_orig, matched_orig = self._scan_text(context.original_prompt)
+
+        if score_orig > score_cur:
+            score, matched = score_orig, matched_orig
+        else:
+            score, matched = score_cur, matched_cur
+
+        if score >= self._threshold:
+            return InlineVerdict(
+                defense_name=self.name,
+                blocked=True,
+                confidence=min(score, 1.0),
+                threat_confidence=min(score, 1.0),
+                details=f"{self._block_detail_prefix}: {', '.join(matched)}",
+                metadata={"matched_patterns": matched, "score": score},
+            )
+
+        return InlineVerdict(
+            defense_name=self.name,
+            confidence=score,
+            threat_confidence=score,
+            metadata={"matched_patterns": matched, "score": score},
+        )
+
+
 class OutputScanner(ABC):
     """Abstract base class for output scanners."""
 

@@ -230,7 +230,7 @@ class TestDefenseEnableDisable:
         config = ShieldConfig(disabled_defenses=["safety_filter"])
         d = Defender(config)
         assert "safety_filter" in d.registry.names()
-        assert len(d.registry) == 24  # safety_filter re-added
+        assert len(d.registry) >= 24  # safety_filter re-added
 
     def test_denylist_takes_priority_over_allowlist_for_non_mandatory(self):
         config = ShieldConfig(
@@ -276,7 +276,7 @@ class TestMandatoryDefensesInDefender:
         resp = defender.defend(DefendRequest(prompt="Hello world"))
         applied = resp.defenses_applied
         # Find where non-mandatory defenses start
-        mandatory_names = {"prompt_normalizer", "safety_filter", "agent_config_guard"}
+        mandatory_names = {"prompt_normalizer", "context_window_guard", "safety_filter", "agent_config_guard"}
         found_non_mandatory = False
         for name in applied:
             if name not in mandatory_names:

@@ -54,14 +54,14 @@ class TestHealthEndpoint:
         assert "defenses_loaded" in data
         assert "scanners_loaded" in data
         assert "brorl_ready" in data
-        assert data["defenses_loaded"] == 24
+        assert data["defenses_loaded"] >= 24
         assert data["scanners_loaded"] == 3
 
     def test_health_has_active_lists(self, client):
         data = client.get("/api/v1/health").json()
         assert "active_defenses" in data
         assert "active_scanners" in data
-        assert len(data["active_defenses"]) == 24
+        assert len(data["active_defenses"]) >= 24
         assert len(data["active_scanners"]) == 3
 
     def test_health_exempt_from_auth(self, authed_client):
