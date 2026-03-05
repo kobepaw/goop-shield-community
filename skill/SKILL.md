@@ -3,19 +3,19 @@ name: shield
 description: >-
   AI agent guardrails — defends prompts against injection attacks, jailbreaks,
   and evasion; scans LLM responses for leaked secrets and harmful content.
-  24 inline defenses, 3 output scanners, BroRL-ranked pipeline.
+  Up to 36 inline defenses (24 default), 3 output scanners, and adaptive ranking.
   Keywords: shield, guardrails, prompt injection, defense, security, scan.
 license: Apache-2.0
 compatibility: Requires Python 3.11+ and pip/pipx/uvx for installation
 argument-hint: "[setup|config|status] [strict|balanced|permissive]"
 metadata:
   author: brianwtaylor
-  version: "0.1.0"
+  version: "0.3.0"
 ---
 
 # Shield
 
-Runtime defense pipeline for AI agents. Intercepts prompts before they reach an LLM and scans responses before they reach the user. 24 inline defenses and 3 output scanners, ranked by a BroRL (Thompson sampling) backend that learns which defenses are most effective.
+Runtime defense pipeline for AI agents. Intercepts prompts before they reach an LLM and scans responses before they reach the user. Up to 36 inline defenses (24 enabled by default) and 3 output scanners, ranked by an adaptive Thompson-sampling backend.
 
 ## Quick Start
 

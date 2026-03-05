@@ -12,7 +12,7 @@ Security library and runtime defense system for AI agents
 
 ## Key Entry Points
 - src/goop_shield/defender.py — Main defense orchestrator
-- src/goop_shield/defenses/ — All 24 inline defenses
+- src/goop_shield/defenses/ — 24 default inline defenses + 12 opt-in defenses (36 total available)
 - src/goop_shield/defenses/output.py — 3 output scanners
 - src/goop_shield/mcp.py — MCP server integration
 - src/goop_shield/client.py — Python SDK client

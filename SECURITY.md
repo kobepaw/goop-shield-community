@@ -24,6 +24,8 @@ Include:
 
 | Version | Supported |
 |---------|-----------|
+| 0.3.x   | Yes       |
+| 0.2.x   | Yes       |
 | 0.1.x   | Yes       |
 
 ## Security Best Practices

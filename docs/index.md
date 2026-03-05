@@ -1,6 +1,6 @@
 # goop-shield
 
-**Runtime defense for AI agents** — 24 inline defenses, 3 output scanners, red team validation
+**Runtime defense for AI agents** — up to 36 inline defenses (24 default), 3 output scanners, red team validation
 
 ## Overview
 
@@ -8,7 +8,7 @@ goop-shield is an open-source security framework that provides runtime defense f
 
 ## Key Features
 
-- **24 inline defenses** — Protect against prompt injection, jailbreak, exfiltration, unicode evasion, memory poisoning, and more
+- **Up to 36 inline defenses (24 default)** — Protect against prompt injection, jailbreak, exfiltration, unicode evasion, memory poisoning, MCP abuse, plugin supply-chain attacks, and more
 - **3 output scanners** — Detect secret leaks, canary tokens, and harmful content in LLM responses
 - **Multiple deployment modes** — HTTP API, MCP server, or Python SDK
 - **Memory protection** — Integrity validation and write guards for agent memory

@@ -100,10 +100,10 @@ curl http://localhost:8787/api/v1/health
 ```json
 {
   "status": "healthy",
-  "defenses_loaded": 21,
+  "defenses_loaded": 24,
   "scanners_loaded": 3,
   "brorl_ready": true,
-  "version": "0.1.0",
+  "version": "0.3.0",
   "uptime_seconds": 42.5,
   "total_requests": 0,
   "total_blocked": 0,
@@ -180,7 +180,7 @@ The health endpoint (`/api/v1/health`) is always accessible without authenticati
 ## Next Steps
 
 - [Architecture](architecture.md) -- understand how Shield works
-- [Defense Pipeline](defense-pipeline.md) -- learn about all 24 defenses
+- [Defense Pipeline](defense-pipeline.md) -- learn about all 36 available defenses (24 enabled by default)
 - [Configuration](configuration.md) -- customize Shield for your use case
 - [Custom Defenses](custom-defenses.md) -- add your own defenses
 - [API Reference](api-reference.md) -- full endpoint documentation

@@ -20,7 +20,6 @@ from goop_shield.red.probes import (
     register_fusion_probes,
 )
 
-
 # ============================================================================
 # Fixtures
 # ============================================================================
@@ -121,9 +120,7 @@ class TestMultiTurnCompat:
 
     def test_num_turns_matches_build_turns(self, multi_turn_registry):
         for probe in multi_turn_registry.get_all():
-            assert probe.num_turns == len(probe.build_turns()), (
-                f"{probe.name}: num_turns mismatch"
-            )
+            assert probe.num_turns == len(probe.build_turns()), f"{probe.name}: num_turns mismatch"
 
     def test_multi_turn_is_probe_subclass(self, multi_turn_registry):
         from goop_shield.red.probes import Probe

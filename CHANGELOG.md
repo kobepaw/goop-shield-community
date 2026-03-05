@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-03-05
+
+### Added
+
+#### New Inline Defenses (12)
+- **MCPGuard** — MCP tool schema validation for dangerous parameters
+- **CircuitBreaker** — per-session tool-call loop detection
+- **ToolCallFirewall** — dangerous tool-call argument filtering
+- **ApprovalFlowMonitor** — approval/escalation manipulation detection
+- **ChannelImpersonationGuard** — channel spoofing detection
+- **ConfigMutationGuard** — runtime config tampering detection
+- **CredentialPathGuard** — credential path traversal detection
+- **AlignmentInlineDefense** — alignment/persona override detection
+- **PluginSupplyChainGuard** — plugin integrity verification
+- **PluginHookGuard** — plugin lifecycle hook injection detection
+- **ContextWindowGuard** — long-context injection detection
+- **BayesianRankingBackend** — Thompson-sampling adaptive ranking backend
+
+#### New Red Team Capabilities
+- **MultiTurnProbe framework** + 4 concrete multi-turn probes
+- **5 advanced encoding/obfuscation probes**
+- **CompositionEngine** with 3 example correlation rules
+
+### Changed
+- Inline defense capacity increased from 24 to 36 (24 enabled by default, 12 opt-in)
+- Output scanners remain at 3
+- Broader agent-native hardening for MCP, plugin supply chain, and operational attack paths
+
 ## [0.1.0] - 2026-02-12
 
 Initial public release of goop-shield.

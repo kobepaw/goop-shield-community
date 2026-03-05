@@ -276,7 +276,12 @@ class TestMandatoryDefensesInDefender:
         resp = defender.defend(DefendRequest(prompt="Hello world"))
         applied = resp.defenses_applied
         # Find where non-mandatory defenses start
-        mandatory_names = {"prompt_normalizer", "context_window_guard", "safety_filter", "agent_config_guard"}
+        mandatory_names = {
+            "prompt_normalizer",
+            "context_window_guard",
+            "safety_filter",
+            "agent_config_guard",
+        }
         found_non_mandatory = False
         for name in applied:
             if name not in mandatory_names:

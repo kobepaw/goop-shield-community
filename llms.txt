@@ -1,7 +1,7 @@
 # goop-shield-community
 
 ## Overview
-Runtime defense for AI agents providing prompt injection blocking, data exfiltration detection, and jailbreak prevention through 24 inline defenses and 3 output scanners.
+Runtime defense for AI agents providing prompt injection blocking, data exfiltration detection, and jailbreak prevention through up to 36 inline defenses (24 default) and 3 output scanners.
 
 ## Key Capabilities
 - Prompt injection detection and blocking
@@ -11,7 +11,7 @@ Runtime defense for AI agents providing prompt injection blocking, data exfiltra
 - Rate limiting and behavioral monitoring
 
 ## Architecture
-- 24 ranked inline defenses (mandatory + heuristic + crypto + content + behavioral)
+- Up to 36 ranked inline defenses (24 default; mandatory + heuristic + crypto + content + behavioral + MCP/supply-chain/operational)
 - 3 output scanners (secret leak, canary leak, harmful content)
 - Deployment modes: HTTP API server, MCP server, Python SDK
 - Framework adapters: LangChain, CrewAI, OpenClaw

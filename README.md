@@ -2,16 +2,31 @@
 
 **Runtime defense for AI agents.**
 
-goop-shield intercepts prompts and LLM responses through a ranked pipeline of 24 inline defenses and 3 output scanners. It protects AI agents from prompt injection, data exfiltration, config tampering, and other adversarial attacks -- deployable as an HTTP API server, MCP server, or Python SDK.
+goop-shield intercepts prompts and LLM responses through a ranked pipeline of up to 36 inline defenses (24 enabled by default) and 3 output scanners. It protects AI agents from prompt injection, data exfiltration, config tampering, and other adversarial attacks -- deployable as an HTTP API server, MCP server, or Python SDK.
 
 ## Features
 
-- **24 Inline Defenses** -- prompt injection blocking, exfiltration detection, agent config guarding, obfuscation detection, rate limiting, and more
+- **Up to 36 Inline Defenses** -- 24 default defenses plus 12 new v0.3.0 defenses for MCP safety, tool-call abuse, plugin supply-chain threats, and context-window attacks
 - **3 Output Scanners** -- secret leak detection, canary leak detection, harmful content scanning
 - **Red Team Validation** -- built-in adversarial probe framework to continuously test your defenses
 - **MCP Server** -- first-class Model Context Protocol support for Claude Code, Cursor, Windsurf, and other AI agents
 - **Framework Adapters** -- drop-in integrations for LangChain, CrewAI, and OpenClaw
 - **Audit & Telemetry** -- full request audit trail with WebSocket streaming and Prometheus metrics
+
+### New in v0.3.0
+
+- MCPGuard — MCP tool schema validation
+- CircuitBreaker — per-session tool-call loop detection
+- ToolCallFirewall — dangerous tool-call blocking
+- ApprovalFlowMonitor — approval/escalation manipulation detection
+- ChannelImpersonationGuard — channel spoofing detection
+- ConfigMutationGuard — runtime config tampering detection
+- CredentialPathGuard — credential path traversal detection
+- AlignmentInlineDefense — alignment/persona override detection
+- PluginSupplyChainGuard — plugin integrity verification
+- PluginHookGuard — lifecycle hook injection detection
+- ContextWindowGuard — long-context injection detection
+- BayesianRankingBackend — adaptive defense ranking via Thompson sampling
 
 ## Quick Install
 
@@ -119,7 +134,7 @@ async with ShieldClient("http://localhost:8787", api_key="sk-...") as client:
         +---------------+
 ```
 
-## Inline Defenses
+## Inline Defenses (24 default, 36 available)
 
 | # | Defense | Category | Description |
 |---|---------|----------|-------------|

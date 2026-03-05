@@ -13,7 +13,6 @@ from __future__ import annotations
 
 from goop_shield.red.probes import Probe, ProbeRegistry
 
-
 # ============================================================================
 # Tier 3 -- Encoding & Obfuscation (5 probes)
 # ============================================================================

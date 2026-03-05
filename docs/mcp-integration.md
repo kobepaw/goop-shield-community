@@ -185,7 +185,7 @@ Check Shield server status.
 ```json
 {
   "status": "healthy",
-  "defenses_loaded": 21,
+  "defenses_loaded": 24,
   "scanners_loaded": 3,
   "uptime_seconds": 42.5
 }

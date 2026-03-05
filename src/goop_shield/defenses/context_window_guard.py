@@ -206,7 +206,9 @@ class ContextWindowGuard(InlineDefense):
 
         # Head window
         head_text = prompt[:ws]
-        score, matched = _scan_window(head_text, is_deep=False, deep_multiplier=self._deep_multiplier)
+        score, matched = _scan_window(
+            head_text, is_deep=False, deep_multiplier=self._deep_multiplier
+        )
         total_score += score
         all_matched.extend(matched)
         windows_scanned += 1
@@ -215,7 +217,9 @@ class ContextWindowGuard(InlineDefense):
         tail_text = prompt[-ws:] if prompt_len > ws else ""
         if tail_text:
             is_tail_deep = (prompt_len - ws) > head_boundary
-            score, matched = _scan_window(tail_text, is_deep=is_tail_deep, deep_multiplier=self._deep_multiplier)
+            score, matched = _scan_window(
+                tail_text, is_deep=is_tail_deep, deep_multiplier=self._deep_multiplier
+            )
             total_score += score
             all_matched.extend(matched)
             windows_scanned += 1
@@ -225,7 +229,9 @@ class ContextWindowGuard(InlineDefense):
         for offset in offsets:
             window_text = prompt[offset : offset + ws]
             is_deep = offset > head_boundary
-            score, matched = _scan_window(window_text, is_deep=is_deep, deep_multiplier=self._deep_multiplier)
+            score, matched = _scan_window(
+                window_text, is_deep=is_deep, deep_multiplier=self._deep_multiplier
+            )
             total_score += score
             all_matched.extend(matched)
             windows_scanned += 1
