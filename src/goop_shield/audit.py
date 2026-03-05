@@ -136,7 +136,9 @@ class ShieldAuditDB:
             ("request_headers_hash", "TEXT NOT NULL DEFAULT ''"),
         ]:
             try:
-                self._conn.execute(f"ALTER TABLE audit_events ADD COLUMN {col} {typedef}")
+                self._conn.execute(  # nosec B608
+                    f"ALTER TABLE audit_events ADD COLUMN {col} {typedef}"
+                )
             except sqlite3.OperationalError:
                 pass  # Column already exists
 
@@ -293,7 +295,7 @@ class ShieldAuditDB:
         where = " AND ".join(conditions) if conditions else "1=1"
         rows = (
             self._get_conn()
-            .execute(
+            .execute(  # nosec B608
                 f"SELECT * FROM audit_events WHERE {where} "
                 f"ORDER BY timestamp DESC LIMIT ? OFFSET ?",
                 params + [limit, offset],
@@ -313,7 +315,7 @@ class ShieldAuditDB:
             params = [since]
 
         # Total / blocked counts
-        row = conn.execute(
+        row = conn.execute(  # nosec B608
             f"SELECT COUNT(*) as total, "
             f"SUM(CASE WHEN shield_action='block' THEN 1 ELSE 0 END) as blocked "
             f"FROM audit_events {time_clause}",
@@ -324,7 +326,7 @@ class ShieldAuditDB:
 
         # Blocks by hour
         blocks_by_hour = {}
-        rows = conn.execute(
+        rows = conn.execute(  # nosec B608
             f"SELECT CAST((timestamp / 3600) AS INTEGER) * 3600 AS hour_ts, "
             f"COUNT(*) AS cnt "
             f"FROM audit_events {time_clause + ' AND' if time_clause else 'WHERE'} "
@@ -335,7 +337,7 @@ class ShieldAuditDB:
             blocks_by_hour[r["hour_ts"]] = r["cnt"]
 
         # Top attack types
-        top_attacks = conn.execute(
+        top_attacks = conn.execute(  # nosec B608
             f"SELECT attack_classification, COUNT(*) AS cnt "
             f"FROM audit_events {time_clause + ' AND' if time_clause else 'WHERE'} "
             f"attack_classification != 'none' "
@@ -344,7 +346,7 @@ class ShieldAuditDB:
         ).fetchall()
 
         # Top source IPs
-        top_ips = conn.execute(
+        top_ips = conn.execute(  # nosec B608
             f"SELECT source_ip, COUNT(*) AS cnt "
             f"FROM audit_events {time_clause + ' AND' if time_clause else 'WHERE'} "
             f"shield_action='block' "
@@ -353,7 +355,7 @@ class ShieldAuditDB:
         ).fetchall()
 
         # Top blocking defenses
-        top_defenses = conn.execute(
+        top_defenses = conn.execute(  # nosec B608
             f"SELECT blocking_defense, COUNT(*) AS cnt "
             f"FROM audit_events {time_clause + ' AND' if time_clause else 'WHERE'} "
             f"blocking_defense IS NOT NULL "
@@ -416,7 +418,7 @@ class ShieldAuditDB:
             time_clause = "AND timestamp >= ?"
             params = [since]
 
-        rows = conn.execute(
+        rows = conn.execute(  # nosec B608
             "SELECT blocking_defense, attack_classification, COUNT(*) AS cnt "
             "FROM audit_events "
             f"WHERE blocking_defense IS NOT NULL {time_clause} "

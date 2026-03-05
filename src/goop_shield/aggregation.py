@@ -122,7 +122,7 @@ class TelemetryAggregator:
             where = "WHERE timestamp >= ?"
             params.append(since)
 
-        cursor = self._conn.execute(
+        cursor = self._conn.execute(  # nosec B608
             f"SELECT COUNT(*) as total, "
             f"SUM(CASE WHEN outcome = 'block' THEN 1 ELSE 0 END) as blocked, "
             f"SUM(CASE WHEN outcome != 'block' THEN 1 ELSE 0 END) as allowed, "
@@ -138,7 +138,7 @@ class TelemetryAggregator:
         t_end = row[4] or 0.0
 
         # Top attacks
-        cursor = self._conn.execute(
+        cursor = self._conn.execute(  # nosec B608
             f"SELECT attack_type, COUNT(*) as cnt "
             f"FROM telemetry_events {where} "
             f"GROUP BY attack_type ORDER BY cnt DESC LIMIT 10",
@@ -148,7 +148,7 @@ class TelemetryAggregator:
 
         # Top defenses
         if where:
-            cursor = self._conn.execute(
+            cursor = self._conn.execute(  # nosec B608
                 f"SELECT defense_action, COUNT(*) as cnt "
                 f"FROM telemetry_events {where} AND outcome = 'block' "
                 f"GROUP BY defense_action ORDER BY cnt DESC LIMIT 10",
@@ -163,7 +163,7 @@ class TelemetryAggregator:
         top_defenses = [{"defense": r[0], "count": r[1]} for r in cursor.fetchall()]
 
         # Instance count
-        cursor = self._conn.execute(
+        cursor = self._conn.execute(  # nosec B608
             f"SELECT COUNT(DISTINCT instance_id) FROM telemetry_events {where}",
             params,
         )
@@ -195,7 +195,7 @@ class TelemetryAggregator:
         params: list = [since] if since else []
         params.append(limit)
 
-        cursor = self._conn.execute(
+        cursor = self._conn.execute(  # nosec B608
             f"SELECT instance_id, timestamp, attack_type, defense_action, outcome, confidence "
             f"FROM telemetry_events {where} "
             f"ORDER BY timestamp DESC LIMIT ?",

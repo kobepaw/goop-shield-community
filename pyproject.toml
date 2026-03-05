@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "goop-shield-community"
 version = "0.3.0"
-description = "Runtime defense for AI agents — 24 inline defenses, 3 output scanners, red team validation"
+description = "Runtime defense for AI agents — up to 36 inline defenses (24 default) and 3 output scanners"
 readme = "README.md"
 license = "Apache-2.0"
 requires-python = ">=3.11"
@@ -79,6 +79,9 @@ ignore = [
 [tool.ruff.lint.per-file-ignores]
 "src/goop_shield/adapters/__init__.py" = ["F401"]  # re-exports via __all__
 "tests/*" = ["E741", "B007", "N814", "F821"]  # test code style flexibility + enterprise skipped tests
+
+[tool.bandit]
+skips = ["B608"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

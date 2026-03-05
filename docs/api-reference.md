@@ -272,48 +272,6 @@ Aggregated defender stats including per-defense invocation/block counts and BroR
 
 ---
 
-## Red Team
-
-### POST /api/v1/redteam/probe
-
-Trigger an immediate red-team probe run.
-
-**Request:**
-
-```json
-{
-  "probe_names": ["injection", "exfil"]
-}
-```
-
-**Response:**
-
-```json
-{
-  "total_probes": 20,
-  "defenses_bypassed": 1,
-  "bypass_rate": 0.05,
-  "results": [...],
-  "alignment_results": [...],
-  "timestamp": 1707750000.0,
-  "latency_ms": 150.0
-}
-```
-
-### GET /api/v1/redteam/results
-
-Get the latest red-team probe results (same schema as above).
-
-### GET /api/v1/redteam/report
-
-Generate a vulnerability report from the latest probe results.
-
-### GET /api/v1/redteam/alignment
-
-Get alignment-specific probe results.
-
----
-
 ## Behavioral Monitoring
 
 ### POST /api/v1/behavior/event

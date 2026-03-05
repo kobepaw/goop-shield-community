@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import random
 import string
+import tempfile
 
 
 def _random_string(length: int = 20) -> str:
@@ -227,7 +228,7 @@ def _generate_tool_abuse_payloads(count: int) -> list[str]:
         template = templates[i % len(templates)]
         payloads.append(
             template.format(
-                path=f"/tmp/{_random_string(8)}",
+                path=f"{tempfile.gettempdir()}/{_random_string(8)}",
                 url=f"https://evil.com/{_random_string(6)}",
                 cmd="cat /etc/passwd",
             )

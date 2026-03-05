@@ -11,7 +11,7 @@ community-edition installs.
 from __future__ import annotations
 
 try:
-    from goop_shield.enterprise.gooprange_bridge import (  # noqa: F401
+    from goop_shield.enterprise.gooprange_bridge import (  # type: ignore[attr-defined]  # noqa: F401
         _PROBE_TO_GOOPRANGE,
         GoopRangeBridge,
         ValidationResult,

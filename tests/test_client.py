@@ -84,18 +84,6 @@ def health_json():
     }
 
 
-@pytest.fixture
-def probe_json():
-    return {
-        "total_probes": 5,
-        "defenses_bypassed": 1,
-        "bypass_rate": 0.2,
-        "results": [],
-        "timestamp": 1000.0,
-        "latency_ms": 50.0,
-    }
-
-
 def _mock_response(status_code: int, json_data: dict) -> httpx.Response:
     """Build a fake httpx.Response."""
     return httpx.Response(
@@ -164,17 +152,6 @@ class TestShieldClient:
         assert result.status == "healthy"
         assert result.defenses_loaded == 20
         assert result.scanners_loaded == 3
-
-    @pytest.mark.asyncio
-    async def test_probe(self, probe_json):
-        mock_resp = _mock_response(200, probe_json)
-        with patch.object(
-            httpx.AsyncClient, "post", new_callable=AsyncMock, return_value=mock_resp
-        ):
-            async with ShieldClient() as client:
-                result = await client.probe()
-        assert result.total_probes == 5
-        assert result.bypass_rate == 0.2
 
     @pytest.mark.asyncio
     async def test_auth_header_sent(self, defend_allowed_json):

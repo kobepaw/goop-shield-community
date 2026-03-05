@@ -268,15 +268,14 @@ class TestEndpointsViaTestClient:
             resp = client.get("/api/v1/aggregation/stats")
             assert resp.status_code == 404
 
-    def test_redteam_report_disabled(self):
+    def test_redteam_report_removed(self):
         from starlette.testclient import TestClient
 
         from goop_shield.app import app
 
         with TestClient(app) as client:
-            # Admin endpoints are gated when SHIELD_API_KEY is not set -> 403
             resp = client.get("/api/v1/redteam/report")
-            assert resp.status_code == 403
+            assert resp.status_code == 404
 
 
 # ============================================================================

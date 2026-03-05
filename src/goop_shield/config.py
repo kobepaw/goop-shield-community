@@ -118,12 +118,6 @@ class ShieldConfig(_ShieldBaseConfig):
     validation_bridge_enabled: bool = False
     validation_bridge_min_confidence: float = Field(default=0.8, ge=0.0, le=1.0)
 
-    # Red team
-    use_redteam: bool = False
-    redteam_probe_interval_seconds: int = Field(default=900, ge=60, le=86400)
-    redteam_probe_categories: list[str] | None = None
-    redteam_alert_success_threshold: float = Field(default=0.3, ge=0.0, le=1.0)
-
     # Defense profile
     profile: str = "balanced"
 
@@ -169,15 +163,6 @@ class ShieldConfig(_ShieldBaseConfig):
     deception_enabled: bool = False
     deception_canary_count: int = Field(default=5, ge=0, le=50)
     deception_honeypot_count: int = Field(default=3, ge=0, le=20)
-
-    # Alignment probes
-    alignment_probes_enabled: bool = False
-
-    # CMDI probes (command injection probes for defenses with zero coverage)
-    cmdi_probes_enabled: bool = False
-
-    # Advanced SOTA probes (stress-test probes targeting confirmed Shield gaps)
-    advanced_probes_enabled: bool = False
 
     # Alignment canaries
     alignment_canaries_enabled: bool = False

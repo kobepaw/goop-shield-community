@@ -1,6 +1,6 @@
 # goop-shield
 
-**Runtime defense for AI agents** — up to 36 inline defenses (24 default), 3 output scanners, red team validation
+**Runtime defense for AI agents** — up to 36 inline defenses (24 default), 3 output scanners
 
 ## Overview
 

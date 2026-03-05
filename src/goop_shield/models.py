@@ -146,40 +146,6 @@ class TelemetryEvent(BaseModel):
     outcome: str
 
 
-class ProbeRequest(BaseModel):
-    """Request to trigger red-team probes."""
-
-    probe_names: list[str] | None = None
-
-
-class ProbeResult(BaseModel):
-    """Result from executing a single red-team probe."""
-
-    probe_name: str
-    target_defense: str
-    payload_blocked: bool
-    expected_blocked: bool
-    defense_bypassed: bool
-    target_missed: bool = False
-    caught_by: str | None = None
-    confidence: float = Field(default=0.0, ge=0.0, le=1.0)
-    latency_ms: float = Field(default=0.0, ge=0.0)
-
-
-class RedTeamReport(BaseModel):
-    """Aggregated report from a red-team probe run."""
-
-    total_probes: int = 0
-    defenses_bypassed: int = 0
-    target_misses: int = 0
-    bypass_rate: float = Field(default=0.0, ge=0.0, le=1.0)
-    target_miss_rate: float = Field(default=0.0, ge=0.0, le=1.0)
-    results: list[ProbeResult] = Field(default_factory=list)
-    alignment_results: list[ProbeResult] = Field(default_factory=list)
-    timestamp: float = 0.0
-    latency_ms: float = Field(default=0.0, ge=0.0)
-
-
 class ShieldHealth(BaseModel):
     """Health check response."""
 

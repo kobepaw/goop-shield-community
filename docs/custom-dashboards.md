@@ -306,9 +306,6 @@ scrape_configs:
 | `shield_brorl_alpha{technique="..."}` | gauge | BroRL alpha posterior |
 | `shield_brorl_beta{technique="..."}` | gauge | BroRL beta posterior |
 | `shield_brorl_success_rate{technique="..."}` | gauge | Derived success rate |
-| `shield_redteam_probes_total` | counter | Total red team probes run |
-| `shield_redteam_bypasses_total` | counter | Total defense bypasses |
-| `shield_redteam_bypass_rate{probe="..."}` | gauge | Per-probe bypass rate |
 
 ### Grafana Dashboard
 
@@ -317,7 +314,6 @@ Import the Prometheus data source and create panels:
 1. **Request Rate**: `rate(shield_requests_total[5m])`
 2. **Block Rate**: `rate(shield_blocked_total[5m]) / rate(shield_requests_total[5m])`
 3. **Defense Effectiveness**: `shield_brorl_success_rate` per technique
-4. **Red Team Bypass Rate**: `shield_redteam_bypass_rate` per probe
 
 ---
 

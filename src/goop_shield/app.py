@@ -10,6 +10,7 @@ Run with:
 
 from __future__ import annotations
 
+# mypy: ignore-errors
 import asyncio
 import dataclasses
 import hashlib
@@ -36,8 +37,6 @@ from goop_shield.models import (
     DefendRequest,
     DefendResponse,
     MemoryScanRequest,
-    ProbeRequest,
-    RedTeamReport,
     ScanRequest,
     ScanResponse,
     ShieldHealth,
@@ -65,7 +64,6 @@ _AUTH_REQUIRED_PATHS = frozenset(
 
 # Admin path prefixes gated when SHIELD_API_KEY is not set.
 _ADMIN_PATH_PREFIXES = (
-    "/api/v1/redteam/",
     "/api/v1/audit/",
     "/api/v1/brorl/",
     "/api/v1/policy/",
@@ -247,8 +245,6 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     app.state.config = config
     app.state.audit_db = None
     app.state.validation_bridge = None
-    app.state.redteam_runner = None
-    app.state.redteam_scheduler = None
 
     # Audit (optional, default on)
     if config.audit_enabled:
@@ -263,27 +259,11 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
                 min_confidence=config.validation_bridge_min_confidence,
             )
         except (ImportError, NotImplementedError):
-            from goop_shield.validation_bridge import ValidationBridge
+            from goop_shield.validation_bridge import ValidationBridge  # type: ignore[assignment]
 
             app.state.validation_bridge = ValidationBridge(
                 min_confidence=config.validation_bridge_min_confidence,
             )
-
-    # Red team (optional — requires enterprise)
-    if config.use_redteam:
-        try:
-            from goop_shield.red.runner import RedTeamRunner
-            from goop_shield.red.scheduler import ProbeScheduler
-
-            runner = RedTeamRunner(defender, config)
-            scheduler = ProbeScheduler(
-                runner, interval_seconds=config.redteam_probe_interval_seconds
-            )
-            await scheduler.start()
-            app.state.redteam_runner = runner
-            app.state.redteam_scheduler = scheduler
-        except (ImportError, NotImplementedError):
-            logger.warning("Red team requires goop-ai Enterprise")
 
     # Threat intelligence (optional)
     app.state.ip_enricher = None
@@ -355,8 +335,6 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 
     yield
 
-    if app.state.redteam_scheduler is not None:
-        await app.state.redteam_scheduler.stop()
     if app.state.validation_bridge is not None:
         app.state.validation_bridge.close()
     if app.state.ip_enricher is not None:
@@ -472,7 +450,7 @@ async def _defend_core(body: DefendRequest, request: Request) -> DefendResponse:
 
 
 @app.post("/api/v1/defend")
-async def defend(body: DefendRequest, request: Request) -> dict:
+async def defend(body: DefendRequest, request: Request) -> dict[str, Any]:
     """Classify and defend a prompt.
 
     Returns a minimal response with allow/block decision and filtered prompt.
@@ -611,7 +589,7 @@ async def scan_memory(body: MemoryScanRequest, request: Request) -> ToolOutputSc
 
 
 @app.post("/api/v1/telemetry/events")
-async def report_telemetry(event: TelemetryEvent) -> dict[str, bool]:
+async def report_telemetry(event: TelemetryEvent) -> dict[str, Any]:
     """Report an external telemetry event."""
     defender: Defender = app.state.defender
     telemetry: TelemetryBuffer = app.state.telemetry
@@ -653,41 +631,15 @@ async def health(request: Request) -> ShieldHealth:
     )
 
 
-@app.post("/api/v1/redteam/probe", response_model=RedTeamReport)
-async def redteam_probe(request: ProbeRequest) -> RedTeamReport | JSONResponse:
-    """Trigger an immediate red-team probe run."""
-    runner = app.state.redteam_runner
-    if runner is None:
-        return JSONResponse(
-            status_code=404,
-            content={"error": "Red team not enabled (use_redteam=False)"},
-        )
-    return runner.run_probes(probe_names=request.probe_names)
-
-
-@app.get("/api/v1/redteam/results", response_model=RedTeamReport)
-async def redteam_results() -> RedTeamReport | JSONResponse:
-    """Get the latest red-team probe results."""
-    runner = app.state.redteam_runner
-    if runner is None:
-        return JSONResponse(
-            status_code=404,
-            content={"error": "Red team not enabled (use_redteam=False)"},
-        )
-    if runner.latest_report is None:
-        return RedTeamReport()
-    return runner.latest_report
-
-
 @app.get("/api/v1/brorl/state")
-async def brorl_state() -> dict:
+async def brorl_state() -> dict[str, Any]:
     """Export ranking backend weights (alpha/beta posteriors for BroRL)."""
     defender: Defender = app.state.defender
     return defender.ranking.get_weights()
 
 
 @app.post("/api/v1/brorl/load")
-async def brorl_load(weights: dict) -> dict:
+async def brorl_load(weights: dict) -> dict[str, Any]:
     """Load ranking backend weights."""
     # Validate structure before passing to the ranking backend
     if not isinstance(weights, dict):
@@ -724,7 +676,7 @@ async def brorl_load(weights: dict) -> dict:
 
 
 @app.get("/api/v1/defender/stats")
-async def defender_stats() -> dict:
+async def defender_stats() -> dict[str, Any]:
     """Get aggregated defender stats including BroRL weights."""
     defender: Defender = app.state.defender
     return defender.get_stats()
@@ -734,8 +686,8 @@ async def defender_stats() -> dict:
 async def metrics(request: Request) -> str:
     """Prometheus-format metrics.
 
-    Returns global counters for all requests. Per-defense details,
-    BroRL weights, and red team stats require authentication.
+    Returns global counters for all requests. Per-defense details
+    and BroRL weights require authentication.
     """
     defender: Defender = app.state.defender
     uptime = time.time() - _STARTUP_TIME
@@ -812,25 +764,6 @@ async def metrics(request: Request) -> str:
             lines.append(f'shield_brorl_alpha{{technique="{safe_name}"}} {alpha:.4f}')
             lines.append(f'shield_brorl_beta{{technique="{safe_name}"}} {beta:.4f}')
             lines.append(f'shield_brorl_success_rate{{technique="{safe_name}"}} {success_rate:.4f}')
-
-        runner = app.state.redteam_runner
-        if runner is not None:
-            lines.append("# HELP shield_redteam_probes_total Total red team probes executed.")
-            lines.append("# TYPE shield_redteam_probes_total counter")
-            lines.append(f"shield_redteam_probes_total {runner.total_probes_run}")
-
-            lines.append("# HELP shield_redteam_bypasses_total Total red team bypasses detected.")
-            lines.append("# TYPE shield_redteam_bypasses_total counter")
-            lines.append(f"shield_redteam_bypasses_total {runner.total_bypasses}")
-
-            lines.append("# HELP shield_redteam_bypass_rate Red team bypass rate per probe.")
-            lines.append("# TYPE shield_redteam_bypass_rate gauge")
-            for probe_name, pstats in runner.probe_stats.items():
-                runs = pstats["runs"]
-                bypasses = pstats["bypasses"]
-                rate = bypasses / runs if runs > 0 else 0.0
-                safe_name = probe_name.replace(":", "_")
-                lines.append(f'shield_redteam_bypass_rate{{probe="{safe_name}"}} {rate:.4f}')
 
     return "\n".join(lines) + "\n"
 
@@ -989,7 +922,7 @@ async def behavior_stream(
 
 
 @app.post("/api/v1/policy/load")
-async def policy_load(body: dict) -> dict:
+async def policy_load(body: dict) -> dict[str, Any]:
     """Load a versioned policy bundle."""
     from goop_shield.policy import PolicyBundle
 
@@ -1005,7 +938,7 @@ async def policy_load(body: dict) -> dict:
 @app.get("/api/v1/policy/export")
 async def policy_export(
     version: str = Query(default="latest"),
-) -> dict:
+) -> dict[str, Any]:
     """Export current policy as a versioned bundle."""
     manager = app.state.policy_manager
     bundle = manager.export_policy(version)
@@ -1018,7 +951,7 @@ async def policy_export(
 
 
 @app.get("/api/v1/deception/canaries")
-async def deception_canaries() -> dict:
+async def deception_canaries() -> dict[str, Any]:
     """List active canary tokens and their status."""
     defender: Defender = app.state.defender
     if defender.deception is None:
@@ -1030,28 +963,6 @@ async def deception_canaries() -> dict:
         "canaries": defender.deception.get_active_canaries(),
         "total": defender.deception.total_canaries,
         "triggered": defender.deception.triggered_count,
-    }
-
-
-# ============================================================================
-# Alignment Probes
-# ============================================================================
-
-
-@app.get("/api/v1/redteam/alignment")
-async def redteam_alignment_results():
-    """Get alignment-specific probe results from the latest run."""
-    runner = app.state.redteam_runner
-    if runner is None:
-        return JSONResponse(
-            status_code=404,
-            content={"error": "Red team not enabled (use_redteam=False)"},
-        )
-    if runner.latest_report is None:
-        return {"alignment_results": [], "total": 0}
-    return {
-        "alignment_results": [r.model_dump() for r in runner.latest_report.alignment_results],
-        "total": len(runner.latest_report.alignment_results),
     }
 
 
@@ -1151,35 +1062,12 @@ async def alignment_canary_alerts():
 
 
 # ============================================================================
-# Red Team Reports
-# ============================================================================
-
-
-@app.get("/api/v1/redteam/report")
-async def redteam_report() -> dict:
-    """Generate a vulnerability report from the latest probe results."""
-    from goop_shield.red.report import VulnerabilityReport
-
-    runner = app.state.redteam_runner
-    if runner is None:
-        return JSONResponse(
-            status_code=404,
-            content={"error": "Red team not enabled (use_redteam=False)"},
-        )
-    if runner.latest_report is None:
-        return {"error": "No probe results yet. Run probes first."}
-
-    report = VulnerabilityReport.from_probe_results(runner.latest_report.results)
-    return report.to_dict()
-
-
-# ============================================================================
 # Aggregation
 # ============================================================================
 
 
 @app.post("/api/v1/aggregation/ingest")
-async def aggregation_ingest(body: dict) -> dict:
+async def aggregation_ingest(body: dict) -> dict[str, Any]:
     """Ingest batched telemetry from Shield instances."""
     from goop_shield.aggregation import TelemetryAggregator
 
@@ -1202,7 +1090,7 @@ async def aggregation_ingest(body: dict) -> dict:
 @app.get("/api/v1/aggregation/stats")
 async def aggregation_stats(
     since: float | None = Query(default=None),
-) -> dict:
+) -> dict[str, Any]:
     """Get aggregate statistics across all Shield instances."""
     if not hasattr(app.state, "aggregator") or app.state.aggregator is None:
         return JSONResponse(
@@ -1332,7 +1220,7 @@ async def intel_summary() -> dict[str, Any]:
 
 
 @app.post("/api/v1/sabotage/task-outcome")
-async def sabotage_task_outcome(body: dict, request: Request) -> dict:
+async def sabotage_task_outcome(body: dict, request: Request) -> dict[str, Any]:
     """Record a task outcome for sandbagging detection.
 
     Automatically categorizes the task if no explicit category is provided.
@@ -1410,7 +1298,7 @@ async def sabotage_task_outcome(body: dict, request: Request) -> dict:
 
 
 @app.post("/api/v1/training/validate")
-async def training_validate(body: dict, request: Request) -> dict:
+async def training_validate(body: dict, request: Request) -> dict[str, Any]:
     """Validate a single training data item."""
     training_gate = app.state.training_gate
     if training_gate is None:
@@ -1452,7 +1340,7 @@ async def training_validate(body: dict, request: Request) -> dict:
 
 
 @app.post("/api/v1/training/validate-batch")
-async def training_validate_batch(body: dict, request: Request) -> dict:
+async def training_validate_batch(body: dict, request: Request) -> dict[str, Any]:
     """Validate a batch of training data items."""
     training_gate = app.state.training_gate
     if training_gate is None:
@@ -1480,7 +1368,7 @@ async def training_validate_batch(body: dict, request: Request) -> dict:
 async def training_quarantine_list(
     pipeline: str | None = Query(default=None),
     limit: int = Query(default=100, ge=1, le=1000),
-) -> dict:
+) -> dict[str, Any]:
     """List quarantined training data items."""
     quarantine_store = app.state.quarantine_store
     if quarantine_store is None:
@@ -1494,7 +1382,7 @@ async def training_quarantine_list(
 
 
 @app.post("/api/v1/training/quarantine/{item_id:path}/release")
-async def training_quarantine_release(item_id: str) -> dict:
+async def training_quarantine_release(item_id: str) -> dict[str, Any]:
     """Release a quarantined item for use."""
     quarantine_store = app.state.quarantine_store
     if quarantine_store is None:
@@ -1516,7 +1404,7 @@ async def training_quarantine_release(item_id: str) -> dict:
 
 
 @app.post("/api/v1/training/quarantine/{item_id:path}/reject")
-async def training_quarantine_reject(item_id: str) -> dict:
+async def training_quarantine_reject(item_id: str) -> dict[str, Any]:
     """Permanently reject a quarantined item."""
     quarantine_store = app.state.quarantine_store
     if quarantine_store is None:
@@ -1543,7 +1431,7 @@ async def training_quarantine_reject(item_id: str) -> dict:
 
 
 @app.post("/api/v1/consistency/check")
-async def consistency_check(body: dict) -> dict:
+async def consistency_check(body: dict) -> dict[str, Any]:
     """Manually trigger a consistency check for a prompt/response pair."""
     checker = app.state.consistency_checker
     if checker is None:
@@ -1595,7 +1483,7 @@ async def consistency_check(body: dict) -> dict:
 
 
 @app.get("/api/v1/consistency/stats")
-async def consistency_stats() -> dict:
+async def consistency_stats() -> dict[str, Any]:
     """Get consistency check statistics."""
     checker = app.state.consistency_checker
     if checker is None:

@@ -116,15 +116,20 @@ _DEFAULT_DEEP_MULTIPLIER: float = 1.3
 
 
 def _compute_middle_offsets(prompt_length: int, window_size: int, count: int) -> list[int]:
-    """Compute random middle-window offsets for sampling."""
-    import random
+    """Compute deterministic middle-window offsets for sampling.
 
+    Deterministic spacing avoids flaky behavior in tests and production while
+    still covering deep context across the full middle range.
+    """
     usable_start = window_size
     usable_end = prompt_length - window_size
-    if usable_end <= usable_start:
+    if usable_end <= usable_start or count <= 0:
         return []
-    offsets = sorted({random.randint(usable_start, usable_end - 1) for _ in range(count)})
-    return offsets
+
+    span = usable_end - usable_start
+    step = max(1, span // (count + 1))
+    offsets = [usable_start + step * i for i in range(1, count + 1)]
+    return sorted({min(max(usable_start, o), usable_end - 1) for o in offsets})
 
 
 def _scan_window(text: str, is_deep: bool, deep_multiplier: float) -> tuple[float, list[str]]:

@@ -213,7 +213,7 @@ class Defender:
         }
         cls = _mandatory_classes.get(name)
         if cls is not None:
-            self.registry.register(cls())
+            self.registry.register(cls())  # type: ignore[abstract]
 
     def _apply_scanner_filters(self) -> None:
         """Remove scanners based on enabled/disabled config."""
@@ -301,8 +301,8 @@ class Defender:
             return 0.0
         blocking = [v for v in verdicts if v.action == DefenseAction.BLOCK]
         if blocking:
-            return max(v.confidence for v in blocking)
-        return sum(v.confidence for v in verdicts) / len(verdicts)
+            return float(max(v.confidence for v in blocking))
+        return float(sum(v.confidence for v in verdicts) / len(verdicts))
 
     def _compute_fused_score(
         self, inline_verdicts: list[InlineVerdict]
@@ -569,7 +569,7 @@ class Defender:
 
         # Record session signal for multi-turn tracking
         if self.session_tracker is not None:
-            session_id = request.context.get("session_id", "__default__")
+            session_id = str(request.context.get("session_id", "__default__"))
             # Use max threat_confidence from verdicts as injection signal
             max_signal = 0.0
             for v in verdicts:

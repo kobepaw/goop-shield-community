@@ -22,7 +22,6 @@ import httpx
 
 from goop_shield.models import (
     DefendResponse,
-    RedTeamReport,
     ScanResponse,
     ShieldHealth,
 )
@@ -127,17 +126,6 @@ class ShieldClient:
         data = await self._get("/api/v1/health")
         return ShieldHealth.model_validate(data)
 
-    async def probe(
-        self,
-        probe_names: list[str] | None = None,
-    ) -> RedTeamReport:
-        """Trigger red-team probes and return the report."""
-        payload: dict = {}
-        if probe_names is not None:
-            payload["probe_names"] = probe_names
-        data = await self._post("/api/v1/redteam/probe", payload)
-        return RedTeamReport.model_validate(data)
-
     async def get_brorl_state(self) -> dict:
         """Get BroRL technique weights (alpha/beta posteriors)."""
         return await self._get("/api/v1/brorl/state")
@@ -209,7 +197,7 @@ class ShieldClient:
         except (httpx.ConnectError, httpx.TimeoutException) as exc:
             raise ShieldUnavailableError(str(exc)) from exc
         self._check_status(resp)
-        return resp.json()
+        return dict(resp.json())
 
     async def _get(self, path: str) -> dict:
         try:
@@ -217,7 +205,7 @@ class ShieldClient:
         except (httpx.ConnectError, httpx.TimeoutException) as exc:
             raise ShieldUnavailableError(str(exc)) from exc
         self._check_status(resp)
-        return resp.json()
+        return dict(resp.json())
 
     @staticmethod
     def _check_status(resp: httpx.Response) -> None:

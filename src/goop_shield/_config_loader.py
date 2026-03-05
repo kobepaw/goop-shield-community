@@ -110,14 +110,14 @@ class ConfigLoader:
                         "Blocked env var substitution for non-SHIELD_ variable: %s", var_name
                     )
                     if default is not None:
-                        return default
-                    return match.group(0)
+                        return str(default)
+                    return str(match.group(0))
                 value = os.environ.get(var_name)
                 if value is not None:
-                    return value
+                    return str(value)
                 if default is not None:
-                    return default
-                return match.group(0)
+                    return str(default)
+                return str(match.group(0))
 
             return self.ENV_PATTERN.sub(_replace, obj)
         if isinstance(obj, dict):

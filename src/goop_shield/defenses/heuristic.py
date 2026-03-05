@@ -369,10 +369,10 @@ class PromptNormalizer(InlineDefense):
         text = unicodedata.normalize("NFC", text)
 
         # 4. Map confusable characters to ASCII equivalents
-        text = text.translate(str.maketrans(_CONFUSABLE_MAP))
+        text = text.translate(_CONFUSABLE_TRANS)
 
         # 4.5. Leetspeak normalization (only within word context)
-        text = text.translate(str.maketrans(_LEETSPEAK_MAP))
+        text = text.translate(_LEETSPEAK_TRANS)
 
         # 5. Collapse whitespace runs to single space
         text = _WHITESPACE_RUN_RE.sub(" ", text).strip()

@@ -115,15 +115,6 @@ audit_db_path: ${SHIELD_AUDIT_DB:-data/shield_audit.db}
 | `audit_max_prompt_chars` | int | `200` | Max chars stored per prompt (0-10000) |
 | `audit_websocket_enabled` | bool | `True` | Enable real-time WebSocket audit stream |
 
-### Red Team
-
-| Field | Type | Default | Description |
-|-------|------|---------|-------------|
-| `use_redteam` | bool | `False` | Enable built-in red team probing |
-| `redteam_probe_interval_seconds` | int | `900` | Auto-probe interval (60-86400) |
-| `redteam_probe_categories` | list[str] \| None | `None` | Probe categories to run |
-| `redteam_alert_success_threshold` | float | `0.3` | Alert when bypass rate exceeds this |
-
 ### Defense Profile
 
 | Field | Type | Default | Description |
@@ -220,8 +211,6 @@ telemetry_privacy_mode: true
 audit_enabled: true
 audit_websocket_enabled: true
 intel_enabled: true
-use_redteam: true
-redteam_probe_interval_seconds: 3600
 ```
 
 ### Strict (High Security)
