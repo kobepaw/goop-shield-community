@@ -14,8 +14,6 @@ injection_confidence_threshold: 0.5
 brorl_epsilon: 0.01
 failure_policy: closed
 audit_enabled: true
-use_redteam: true
-redteam_probe_interval_seconds: 300
 
 # Threat intelligence (local MaxMind only — no external API calls)
 intel_enabled: true

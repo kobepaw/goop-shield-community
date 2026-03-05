@@ -35,14 +35,8 @@ class TestShieldStrictProfile:
     def test_audit_enabled(self):
         assert self.data["audit_enabled"] is True
 
-    def test_redteam_enabled(self):
-        assert self.data["use_redteam"] is True
-
     def test_brorl_epsilon(self):
         assert self.data["brorl_epsilon"] == 0.01
-
-    def test_redteam_probe_interval(self):
-        assert self.data["redteam_probe_interval_seconds"] == 300
 
 
 class TestShieldBalancedProfile:
