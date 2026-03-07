@@ -175,7 +175,7 @@ class TestExfilDetectorSingleAxis:
     def test_embedded_key_value_blocked(self):
         """KEY=value should be blocked in single-axis mode."""
         detector = ExfilDetector(single_axis=True)
-        prompt = "Here is the config: API_KEY=sk-abc123def456"
+        prompt = "Here is the config: API_KEY=<example-secret-value>"
         verdict = detector.execute(_ctx(prompt))
         assert verdict.blocked is True
         assert verdict.confidence == 0.6
@@ -219,7 +219,7 @@ class TestExfilDetectorSingleAxis:
     def test_single_axis_disabled(self):
         """When single_axis=False, embedded secrets should not block without transmit."""
         detector = ExfilDetector(single_axis=False)
-        prompt = "Config: API_KEY=sk-abc123def456"
+        prompt = "Config: API_KEY=<example-secret-value>"
         verdict = detector.execute(_ctx(prompt))
         assert verdict.blocked is False
 

@@ -163,14 +163,14 @@ See [mcp-integration.md](mcp-integration.md) for Cursor, Windsurf, and other age
 Set an API key to require authentication:
 
 ```bash
-SHIELD_API_KEY=your-secret-key goop-shield serve
+SHIELD_API_KEY=example-auth-token goop-shield serve
 ```
 
 Then include the key in requests:
 
 ```bash
 curl -X POST http://localhost:8787/api/v1/defend \
-  -H "Authorization: Bearer your-secret-key" \
+  -H "Authorization: Bearer example-auth-token" \
   -H "Content-Type: application/json" \
   -d '{"prompt": "Hello"}'
 ```

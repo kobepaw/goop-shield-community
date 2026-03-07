@@ -83,13 +83,13 @@ class TestSecretLeakScanner:
         assert "[REDACTED]" in v.filtered_prompt
 
     def test_github_token_redacted(self):
-        v = self.scanner.scan(_make_ctx("Token ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghij"))
+        v = self.scanner.scan(_make_ctx("Token ghp_AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"))
         assert v.sanitized
         assert "[REDACTED]" in v.filtered_prompt
 
     def test_jwt_redacted(self):
         v = self.scanner.scan(
-            _make_ctx("Auth: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.abc123def456ghi")
+            _make_ctx("Auth: eyJAAAAAAAAAA.BBBBBBBBBB.CCCCCCCCCC")
         )
         assert v.sanitized
         assert "[REDACTED]" in v.filtered_prompt
@@ -105,7 +105,7 @@ class TestSecretLeakScanner:
         assert "[REDACTED]" in v.filtered_prompt
 
     def test_google_api_key_redacted(self):
-        v = self.scanner.scan(_make_ctx("Key AIzaSyA1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6Q"))
+        v = self.scanner.scan(_make_ctx("Key AIzaSyAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"))
         assert v.sanitized
         assert "[REDACTED]" in v.filtered_prompt
 
