@@ -755,11 +755,11 @@ goop-shield<span class="w"> </span>serve<span class="w"> </span>--host<span clas
 <p>See <a href="../mcp-integration/">mcp-integration.md</a> for Cursor, Windsurf, and other agent setups.</p>
 <h2 id="with-authentication">With Authentication<a class="headerlink" href="#with-authentication" title="Permanent link">&para;</a></h2>
 <p>Set an API key to require authentication:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">SHIELD_API_KEY</span><span class="o">=</span>your-secret-key<span class="w"> </span>goop-shield<span class="w"> </span>serve
+<div class="highlight"><pre><span></span><code><span class="nv">SHIELD_API_KEY</span><span class="o">=</span>example-auth-token<span class="w"> </span>goop-shield<span class="w"> </span>serve
 </code></pre></div>
 <p>Then include the key in requests:</p>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8787/api/v1/defend<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer your-secret-key&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer example-auth-token&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;prompt&quot;: &quot;Hello&quot;}&#39;</span>
 </code></pre></div>
