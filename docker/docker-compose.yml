@@ -1,0 +1,39 @@
+services:
+  shield:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8787:8787"
+    environment:
+      # REQUIRED for production: set SHIELD_API_KEY to enable authentication
+      # Without this, all endpoints are unauthenticated.
+      # Example: SHIELD_API_KEY=your-secret-key docker compose up
+      - SHIELD_API_KEY=${SHIELD_API_KEY:?Set SHIELD_API_KEY for production use}
+      - SHIELD_CONFIG=${SHIELD_CONFIG:-}
+    volumes:
+      - shield-data:/app/data
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=64M
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "2.0"
+        reservations:
+          memory: 128M
+          cpus: "0.25"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  shield-data:

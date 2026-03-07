@@ -1,0 +1,8 @@
+# Default — repo owner reviews everything
+* @kobepaw
+
+# Security-sensitive paths require explicit review
+src/goop_shield/app.py @kobepaw
+src/goop_shield/defenses/ @kobepaw
+src/goop_shield/session_tracker.py @kobepaw
+.github/workflows/ @kobepaw

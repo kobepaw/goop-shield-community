@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: goop-shield
+  labels:
+    app.kubernetes.io/name: goop-shield
+    app.kubernetes.io/part-of: goop-shield

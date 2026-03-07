@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  # Your application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    ports:
+      - "8000:8000"
+    environment:
+      SHIELD_URL: http://shield:8787
+    depends_on:
+      shield:
+        condition: service_healthy
+
+  # Shield sidecar
+  shield:
+    image: goop-shield:latest
+    ports:
+      - "8787:8787"
+    environment:
+      SHIELD_API_KEY: ${SHIELD_API_KEY:-}
+      SHIELD_CONFIG: /etc/shield/config.yaml
+    volumes:
+      - ./shield-config.yaml:/etc/shield/config.yaml:ro
+      - shield-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8787/api/v1/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  shield-data:

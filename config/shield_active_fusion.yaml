@@ -1,0 +1,20 @@
+# Signal Fusion Phase 3: Active blocking for staging
+ranking_backend: auto
+failure_policy: open
+audit_enabled: true
+telemetry_enabled: true
+
+# Fusion: compute + block when fused score exceeds threshold
+signal_fusion_enabled: true
+signal_fusion_blocking_enabled: true
+signal_fusion_threshold: 0.45
+signal_fusion_min_signal: 0.05
+
+# Session-aware fusion: lower threshold when session risk escalates
+signal_fusion_session_aware: true
+signal_fusion_escalation_multiplier: 0.7
+session_tracking_enabled: true
+
+# Disable rate limiter for testing
+disabled_defenses:
+  - rate_limiter

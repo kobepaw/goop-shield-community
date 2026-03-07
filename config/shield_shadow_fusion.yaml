@@ -1,0 +1,15 @@
+# Signal Fusion Phase 2: Shadow mode for staging
+ranking_backend: auto
+failure_policy: open
+audit_enabled: true
+telemetry_enabled: true
+
+# Fusion: compute + log, don't block
+signal_fusion_enabled: true
+signal_fusion_blocking_enabled: false
+signal_fusion_threshold: 0.45
+signal_fusion_min_signal: 0.05
+
+# Disable rate limiter for testing
+disabled_defenses:
+  - rate_limiter

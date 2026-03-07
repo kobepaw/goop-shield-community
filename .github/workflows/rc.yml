@@ -1,0 +1,44 @@
+name: Release Candidate
+
+on:
+  push:
+    tags:
+      - "v*rc*"
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: rc-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    name: Test gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - run: pytest tests/ -v
+
+  publish-rc:
+    name: Publish to TestPyPI
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: [test]
+    environment: testpypi
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.12"
+      - run: pip install build
+      - run: python -m build
+      - uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e  # v1.13.0
+        with:
+          repository-url: https://test.pypi.org/legacy/
