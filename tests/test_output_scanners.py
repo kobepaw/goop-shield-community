@@ -88,9 +88,7 @@ class TestSecretLeakScanner:
         assert "[REDACTED]" in v.filtered_prompt
 
     def test_jwt_redacted(self):
-        v = self.scanner.scan(
-            _make_ctx("Auth: eyJAAAAAAAAAA.BBBBBBBBBB.CCCCCCCCCC")
-        )
+        v = self.scanner.scan(_make_ctx("Auth: eyJAAAAAAAAAA.BBBBBBBBBB.CCCCCCCCCC"))
         assert v.sanitized
         assert "[REDACTED]" in v.filtered_prompt
 
