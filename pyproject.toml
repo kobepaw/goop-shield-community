@@ -45,7 +45,7 @@ dev = [
 ]
 docs = ["mkdocs-material>=9.0", "mkdocs-awesome-pages-plugin"]
 security = ["pip-audit>=2.7", "bandit[sarif]>=1.7", "cyclonedx-bom>=4.0"]
-release = ["git-cliff>=2.0"]
+release = ["git-cliff>=2.12.0"]
 all = ["goop-shield-community[server,cli,mcp]"]
 
 [project.scripts]
